@@ -1,4 +1,5 @@
 import getAllData from './helper/getAllData';
+import extractDigits from './helper/extractId';
 
 export const GET_PLANETS_REQUEST = 'GET_PLANETS_REQUEST';
 export const GET_PLANETS_SUCCESS = 'GET_PLANETS_SUCCESS';
@@ -32,7 +33,21 @@ function getPlanets() {
         if (res.error) {
           throw res.error;
         }
-        dispatch(getPlanetsSuccess(res));
+        const planets = res.reduce((acc, planet) => {
+          // data normalisation to be used locally
+          const planetId = extractDigits(planet.url);
+          acc[planetId] = planet;
+
+          acc[planetId].films = acc[planetId].films.map(film =>
+            extractDigits(film)
+          );
+          acc[planetId].residents = acc[planetId].residents.map(resident =>
+            extractDigits(resident)
+          );
+
+          return acc;
+        }, {});
+        dispatch(getPlanetsSuccess(planets));
         return res;
       })
       .catch(error => {

@@ -1,4 +1,5 @@
 import getAllData from './helper/getAllData';
+import extractDigits from './helper/extractId';
 
 export const GET_VEHICLES_REQUEST = 'GET_VEHICLES_REQUEST';
 export const GET_VEHICLES_SUCCESS = 'GET_VEHICLES_SUCCESS';
@@ -32,7 +33,21 @@ function getVehicles() {
         if (res.error) {
           throw res.error;
         }
-        dispatch(getVehiclesSuccess(res));
+        const vehicles = res.reduce((acc, vehicle) => {
+          // data normalisation to be used locally
+          const vehicleId = extractDigits(vehicle.url);
+          acc[vehicleId] = vehicle;
+
+          acc[vehicleId].films = acc[vehicleId].films.map(film =>
+            extractDigits(film)
+          );
+          acc[vehicleId].pilots = acc[vehicleId].pilots.map(pilot =>
+            extractDigits(pilot)
+          );
+
+          return acc;
+        }, {});
+        dispatch(getVehiclesSuccess(vehicles));
         return res;
       })
       .catch(error => {

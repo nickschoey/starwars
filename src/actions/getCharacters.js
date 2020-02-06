@@ -33,7 +33,7 @@ function getCharacters() {
         if (res.error) {
           throw res.error;
         }
-        const object = res.reduce((acc, person) => {
+        const people = res.reduce((acc, person) => {
           // data normalisation to be used locally
           const personId = extractDigits(person.url);
           acc[personId] = person;
@@ -54,7 +54,7 @@ function getCharacters() {
           );
           return acc;
         }, {});
-        dispatch(getCharactersSuccess(object));
+        dispatch(getCharactersSuccess(people));
         return res;
       })
       .catch(error => {
