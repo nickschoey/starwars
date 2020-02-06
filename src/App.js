@@ -56,6 +56,18 @@ function App() {
               {
                 value: 'planets',
                 label: 'Planets'
+              },
+              {
+                value: 'species',
+                label: 'Species'
+              },
+              {
+                value: 'vehicles',
+                label: 'Vehicles'
+              },
+              {
+                value: 'films',
+                label: 'Films'
               }
             ]}
             onValueChange={changeRadio}
