@@ -1,21 +1,21 @@
-import { getMoviesRequest, getMoviesSuccess, getMoviesFailure } from './index';
+import { getFilmsRequest, getFilmsSuccess, getFilmsFailure } from './index';
 import getAllData from './helper/getAllData';
 
-function getMovies() {
+function getFilms() {
   return dispatch => {
-    dispatch(getMoviesRequest());
+    dispatch(getFilmsRequest());
     getAllData('films')
       .then(res => {
         if (res.error) {
           throw res.error;
         }
-        dispatch(getMoviesSuccess(res));
+        dispatch(getFilmsSuccess(res));
         return res;
       })
       .catch(error => {
-        dispatch(getMoviesFailure(error));
+        dispatch(getFilmsFailure(error));
       });
   };
 }
 
-export default getMovies;
+export default getFilms;

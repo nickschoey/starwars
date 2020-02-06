@@ -1,9 +1,9 @@
 export const GET_CHARACTERS_REQUEST = 'GET_CHARACTERS_REQUEST';
 export const GET_CHARACTERS_SUCCESS = 'GET_CHARACTERS_SUCCESS';
 export const GET_CHARACTERS_FAILURE = 'GET_CHARACTERS_FAILURE';
-export const GET_MOVIES_REQUEST = 'GET_MOVIES_REQUEST';
-export const GET_MOVIES_SUCCESS = 'GET_MOVIES_SUCCESS';
-export const GET_MOVIES_FAILURE = 'GET_CHARACTERS_FAILURE';
+export const GET_FILMS_REQUEST = 'GET_FILMS_REQUEST';
+export const GET_FILMS_SUCCESS = 'GET_FILMS_SUCCESS';
+export const GET_FILMS_FAILURE = 'GET_FILMS_FAILURE';
 
 export const getCharactersRequest = () => {
   return {
@@ -25,22 +25,22 @@ export const getCharactersFailure = error => {
   };
 };
 
-export const getMoviesRequest = () => {
+export const getFilmsRequest = () => {
   return {
-    type: GET_MOVIES_REQUEST
+    type: GET_FILMS_REQUEST
   };
 };
 
-export const getMoviesSuccess = movies => {
+export const getFilmsSuccess = films => {
   return {
-    type: GET_MOVIES_SUCCESS,
-    movies
+    type: GET_FILMS_SUCCESS,
+    films
   };
 };
 
-export const getMoviesFailure = error => {
+export const getFilmsFailure = error => {
   return {
-    type: GET_MOVIES_FAILURE,
+    type: GET_FILMS_FAILURE,
     error
   };
 };

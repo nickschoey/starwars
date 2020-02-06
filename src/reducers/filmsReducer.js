@@ -1,28 +1,28 @@
 import {
-  GET_MOVIES_REQUEST,
-  GET_MOVIES_SUCCESS,
-  GET_MOVIES_FAILURE
+  GET_FILMS_REQUEST,
+  GET_FILMS_SUCCESS,
+  GET_FILMS_FAILURE
 } from '../actions';
 
 const initialState = {
   pending: false,
-  movies: [],
+  films: [],
   error: null
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_MOVIES_REQUEST:
+    case GET_FILMS_REQUEST:
       return { ...state, pending: true };
-    case GET_MOVIES_SUCCESS:
-      return { ...state, pending: false, movies: action.movies };
-    case GET_MOVIES_FAILURE:
+    case GET_FILMS_SUCCESS:
+      return { ...state, pending: false, films: action.films };
+    case GET_FILMS_FAILURE:
       return { ...state, pending: false, error: action.error };
     default:
       return state;
   }
 };
 
-export const getMovies = state => state.movies;
+export const getMovies = state => state.films;
 export const getMoviesRequest = state => state.pending;
 export const getMoviesError = state => state.error;
