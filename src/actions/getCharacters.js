@@ -1,4 +1,5 @@
 import getAllData from './helper/getAllData';
+import extractDigits from './helper/extractId';
 
 export const GET_CHARACTERS_REQUEST = 'GET_CHARACTERS_REQUEST';
 export const GET_CHARACTERS_SUCCESS = 'GET_CHARACTERS_SUCCESS';
@@ -32,7 +33,28 @@ function getCharacters() {
         if (res.error) {
           throw res.error;
         }
-        dispatch(getCharactersSuccess(res));
+        const object = res.reduce((acc, person) => {
+          // data normalisation to be used locally
+          const personId = extractDigits(person.url);
+          acc[personId] = person;
+
+          acc[personId].homeworld = extractDigits(acc[personId].homeworld);
+
+          acc[personId].films = acc[personId].films.map(film =>
+            extractDigits(film)
+          );
+          acc[personId].species = acc[personId].species.map(specie =>
+            extractDigits(specie)
+          );
+          acc[personId].starships = acc[personId].starships.map(starship =>
+            extractDigits(starship)
+          );
+          acc[personId].vehicles = acc[personId].vehicles.map(vehicle =>
+            extractDigits(vehicle)
+          );
+          return acc;
+        }, {});
+        dispatch(getCharactersSuccess(object));
         return res;
       })
       .catch(error => {

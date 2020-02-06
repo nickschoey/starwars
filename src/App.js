@@ -9,12 +9,12 @@ import getPlanets from './actions/getPlanets';
 
 function App() {
   const dispatch = useDispatch();
-  dispatch(getCharacters());
+  // dispatch(getCharacters());
   // dispatch(getFilms());
   // dispatch(getStarships());
   // dispatch(getSpecies());
   // dispatch(getVehicles());
-  // dispatch(getPlanets());
+  dispatch(getPlanets());
 
   useEffect(() => {}, []);
 
