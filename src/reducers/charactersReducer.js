@@ -13,11 +13,11 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_CHARACTERS_REQUEST:
-      return { state, pending: true };
+      return { ...state, pending: true };
     case GET_CHARACTERS_SUCCESS:
-      return { state, pending: false, characters: action.characters };
+      return { ...state, pending: false, characters: action.characters };
     case GET_CHARACTERS_FAILURE:
-      return { state, pending: false, error: action.error };
+      return { ...state, pending: false, error: action.error };
     default:
       return state;
   }
