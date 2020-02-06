@@ -5,7 +5,7 @@ export default function getAllData(endpoint) {
   // first page
   return axios(`https://swapi.co/api/${endpoint}/`)
     .then(response => {
-      // collect people from first page
+      // collect data from first page
       data = response.data.results;
       return response.data.count;
     })

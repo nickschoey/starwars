@@ -2,7 +2,7 @@ import {
   GET_CHARACTERS_REQUEST,
   GET_CHARACTERS_SUCCESS,
   GET_CHARACTERS_FAILURE
-} from '../actions';
+} from '../actions/getCharacters';
 
 const initialState = {
   pending: false,

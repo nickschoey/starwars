@@ -2,7 +2,7 @@ import {
   GET_FILMS_REQUEST,
   GET_FILMS_SUCCESS,
   GET_FILMS_FAILURE
-} from '../actions';
+} from '../actions/getFilms';
 
 const initialState = {
   pending: false,
