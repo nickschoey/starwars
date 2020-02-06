@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   pending: false,
-  starships: [],
+  starships: {},
   error: null
 };
 

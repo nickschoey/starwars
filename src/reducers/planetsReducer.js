@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   pending: false,
-  planets: [],
+  planets: {},
   error: null
 };
 

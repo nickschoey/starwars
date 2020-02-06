@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   pending: false,
-  species: [],
+  species: {},
   error: null
 };
 
