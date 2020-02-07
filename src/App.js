@@ -13,6 +13,7 @@ import getStarships from './actions/getStarships';
 import getSpecies from './actions/getSpecies';
 import getVehicles from './actions/getVehicles';
 import getPlanets from './actions/getPlanets';
+import { StickyContainer } from 'react-sticky';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -22,11 +23,11 @@ const App = () => {
     // dispatch(getStarships());
     // dispatch(getSpecies());
     // dispatch(getVehicles());
-    // dispatch(getPlanets());
+    dispatch(getPlanets());
   }, []);
   return (
     <Router>
-      <div>
+      <StickyContainer>
         <Hero />
         <Switch>
           <Route exact path="/">
@@ -42,7 +43,7 @@ const App = () => {
             <Character />
           </Route>
         </Switch>
-      </div>
+      </StickyContainer>
     </Router>
   );
 };
