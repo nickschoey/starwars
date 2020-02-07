@@ -1,25 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {
-  Container,
-  Button,
-  Radios,
-  Checkbox,
-  TextInput,
-  TextArea,
-  Avatar,
-  Balloon,
-  List,
-  Table,
-  Progress,
-  Icon,
-  Sprite,
-  ControllerIcon
-} from 'nes-react';
+import { Container } from 'nes-react';
 
 const PersonCard = ({ person }) => {
-  return <CardFrame title={person.name}></CardFrame>;
+  return (
+    <CardFrame title={person.name}>
+      <CardContent>
+        <img src="https://via.placeholder.com/250" alt={person.name} />
+      </CardContent>
+    </CardFrame>
+  );
 };
 
 PersonCard.propTypes = {
@@ -29,10 +20,14 @@ PersonCard.propTypes = {
 };
 
 const CardFrame = styled(Container)`
-  margin: 5px;
-  position: relative;
   height: 300px;
   width: 300px;
+`;
+const CardContent = styled.div`
+  position: absolute;
+  bottom: 15px;
+  right: 25px;
+  z-index: -1;
 `;
 
 export default PersonCard;
