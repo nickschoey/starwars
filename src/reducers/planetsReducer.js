@@ -5,7 +5,7 @@ import {
 } from '../actions/getPlanets';
 
 const initialState = {
-  pending: true,
+  pending: null,
   data: {},
   error: null
 };
