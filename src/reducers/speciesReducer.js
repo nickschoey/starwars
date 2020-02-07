@@ -5,8 +5,8 @@ import {
 } from '../actions/getSpecies';
 
 const initialState = {
-  pending: false,
-  species: {},
+  pending: null,
+  data: {},
   error: null
 };
 
@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
     case GET_SPECIES_REQUEST:
       return { ...state, pending: true };
     case GET_SPECIES_SUCCESS:
-      return { ...state, pending: false, species: action.species };
+      return { ...state, pending: false, data: action.species };
     case GET_SPECIES_FAILURE:
       return { ...state, pending: false, error: action.error };
     default:
@@ -23,6 +23,6 @@ export default (state = initialState, action) => {
   }
 };
 
-export const getSpecies = state => state.species;
+export const getSpecies = state => state.data;
 export const getSpeciesRequest = state => state.pending;
 export const getSpeciesError = state => state.error;

@@ -11,8 +11,8 @@ const Characters = () => {
 
   const renderCharacters = () => {
     return (
-      characters.characters &&
-      Object.values(characters.characters).map(person => (
+      characters.data &&
+      Object.values(characters.data).map(person => (
         <PersonCard key={person.url} person={person} />
       ))
     );

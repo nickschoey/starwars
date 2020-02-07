@@ -5,8 +5,8 @@ import {
 } from '../actions/getVehicles';
 
 const initialState = {
-  pending: false,
-  vehicles: {},
+  pending: null,
+  data: {},
   error: null
 };
 
@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
     case GET_VEHICLES_REQUEST:
       return { ...state, pending: true };
     case GET_VEHICLES_SUCCESS:
-      return { ...state, pending: false, vehicles: action.vehicles };
+      return { ...state, pending: false, data: action.vehicles };
     case GET_VEHICLES_FAILURE:
       return { ...state, pending: false, error: action.error };
     default:
@@ -23,6 +23,6 @@ export default (state = initialState, action) => {
   }
 };
 
-export const getPlanets = state => state.vehicles;
+export const getPlanets = state => state.data;
 export const getPlanetsRequest = state => state.pending;
 export const getPlanetsError = state => state.error;

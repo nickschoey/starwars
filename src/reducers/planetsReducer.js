@@ -5,8 +5,8 @@ import {
 } from '../actions/getPlanets';
 
 const initialState = {
-  pending: false,
-  planets: {},
+  pending: true,
+  data: {},
   error: null
 };
 
@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
     case GET_PLANETS_REQUEST:
       return { ...state, pending: true };
     case GET_PLANETS_SUCCESS:
-      return { ...state, pending: false, planets: action.planets };
+      return { ...state, pending: false, data: action.planets };
     case GET_PLANETS_FAILURE:
       return { ...state, pending: false, error: action.error };
     default:

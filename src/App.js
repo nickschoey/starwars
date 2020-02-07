@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { StickyContainer } from 'react-sticky';
+
 import Character from './Character';
 import Hero from './components/Hero';
 import Planets from './components/Planets';
@@ -13,22 +15,23 @@ import getStarships from './actions/getStarships';
 import getSpecies from './actions/getSpecies';
 import getVehicles from './actions/getVehicles';
 import getPlanets from './actions/getPlanets';
-import { StickyContainer } from 'react-sticky';
+import LoadModal from './components/LoadModal';
 
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(getCharacters());
-    // dispatch(getFilms());
-    // dispatch(getStarships());
-    // dispatch(getSpecies());
-    // dispatch(getVehicles());
+    dispatch(getCharacters());
+    dispatch(getFilms());
+    dispatch(getStarships());
+    dispatch(getSpecies());
+    dispatch(getVehicles());
     dispatch(getPlanets());
   }, []);
   return (
     <Router>
       <StickyContainer>
         <Hero />
+        <LoadModal />
         <Switch>
           <Route exact path="/">
             <Characters />

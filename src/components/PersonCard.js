@@ -19,7 +19,7 @@ const Card = ({ person, planet }) => (
 
 const PersonCard = ({ person }) => {
   const history = useHistory();
-  const planet = useSelector(state => state.planets.planets[person.homeworld]);
+  const planet = useSelector(state => state.planets.data[person.homeworld]);
   const navToPerson = () => {
     history.push(`/character/1`);
   };
