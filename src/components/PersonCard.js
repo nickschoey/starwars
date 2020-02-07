@@ -22,7 +22,7 @@ const PersonCard = ({ person }) => {
   const planet = planets.data[person.homeworld];
   // const planet = useSelector(state => state.planets.data[person.homeworld]);
   const navToPerson = () => {
-    history.push(`/character/1`);
+    history.push(`/character/${person.id}`);
   };
 
   return (
