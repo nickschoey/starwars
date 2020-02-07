@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Container, Radios } from 'nes-react';
 import { useHistory } from 'react-router-dom';
+import { Sticky } from 'react-sticky';
 
 const routeOptions = [
   {
@@ -31,13 +32,17 @@ const Hero = () => {
       <HeroContainer dark>
         <TitleArea>Star Wars</TitleArea>
       </HeroContainer>
-      <ButtonArray>
-        <Radios
-          selectedValue={selectedRadio}
-          options={routeOptions}
-          onValueChange={navigateToView}
-        />
-      </ButtonArray>
+      <Sticky topOffset={250}>
+        {({ style }) => (
+          <ButtonArray style={style}>
+            <Radios
+              selectedValue={selectedRadio}
+              options={routeOptions}
+              onValueChange={navigateToView}
+            />
+          </ButtonArray>
+        )}
+      </Sticky>
     </>
   );
 };
@@ -45,13 +50,16 @@ const Hero = () => {
 const HeroContainer = styled(Container)`
   display: flex;
   justify-content: center;
-  height: 30vh;
+  height: 250px;
   width: 100%;
 `;
+
 const ButtonArray = styled.div`
+  z-index: 2000;
+  background-color: white;
   display: flex;
   justify-content: center;
-  padding-top: 45px;
+  padding-top: 15px;
   padding-bottom: 15px;
 `;
 
