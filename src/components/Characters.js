@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
+import React from 'react';
 import PersonCard from './PersonCard';
 
-import { characters } from '../data';
+import state from '../data';
 import CardView from './common/CardView';
 
 const Characters = () => {
   // const characters = useSelector(state => state.characters);
-
+  const { characters } = state;
   const renderCharacters = () => {
     return (
       characters.data &&

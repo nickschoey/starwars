@@ -37,6 +37,7 @@ function getPlanets() {
           // data normalisation to be used locally
           const planetId = extractDigits(planet.url);
           acc[planetId] = planet;
+          acc[planetId].id = planetId;
 
           acc[planetId].films = acc[planetId].films.map(film =>
             extractDigits(film)

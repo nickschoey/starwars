@@ -37,6 +37,7 @@ function getFilms() {
           // data normalisation to be used locally
           const filmId = extractDigits(film.url);
           acc[filmId] = film;
+          acc[filmId].id = filmId;
 
           acc[filmId].species = acc[filmId].species.map(specie =>
             extractDigits(specie)

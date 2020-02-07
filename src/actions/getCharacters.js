@@ -37,6 +37,7 @@ function getCharacters() {
           // data normalisation to be used locally
           const personId = extractDigits(person.url);
           acc[personId] = person;
+          acc[personId].id = personId;
 
           acc[personId].homeworld = extractDigits(acc[personId].homeworld);
 

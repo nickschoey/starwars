@@ -37,6 +37,7 @@ function getVehicles() {
           // data normalisation to be used locally
           const vehicleId = extractDigits(vehicle.url);
           acc[vehicleId] = vehicle;
+          acc[vehicleId].id = vehicleId;
 
           acc[vehicleId].films = acc[vehicleId].films.map(film =>
             extractDigits(film)

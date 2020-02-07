@@ -37,6 +37,7 @@ function getSpecies() {
           // data normalisation to be used locally
           const specieId = extractDigits(specie.url);
           acc[specieId] = specie;
+          acc[specieId].id = specieId;
 
           acc[specieId].homeworld = acc[specieId].homeworld
             ? extractDigits(acc[specieId].homeworld)

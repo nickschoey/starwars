@@ -37,6 +37,7 @@ function getStarships() {
           // data normalisation to be used locally
           const starshipId = extractDigits(starship.url);
           acc[starshipId] = starship;
+          acc[starshipId].id = starshipId;
 
           acc[starshipId].films = acc[starshipId].films.map(film =>
             extractDigits(film)
