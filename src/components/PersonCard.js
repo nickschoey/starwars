@@ -5,7 +5,7 @@ import Popup from 'reactjs-popup';
 import { Container } from 'nes-react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
+import { planets } from '../data';
 const Card = ({ person, planet }) => (
   <div style={{ display: 'flex', flexDirection: 'column' }}>
     <p>{`Name: ${person.name}`}</p>
@@ -19,7 +19,8 @@ const Card = ({ person, planet }) => (
 
 const PersonCard = ({ person }) => {
   const history = useHistory();
-  const planet = useSelector(state => state.planets.data[person.homeworld]);
+  const planet = planets.data[person.homeworld];
+  // const planet = useSelector(state => state.planets.data[person.homeworld]);
   const navToPerson = () => {
     history.push(`/character/1`);
   };
