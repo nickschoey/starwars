@@ -7,17 +7,6 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import state from '../data';
 
-const Card = ({ person, planet }) => (
-  <div style={{ display: 'flex', flexDirection: 'column' }}>
-    <p>{`Name: ${person.name}`}</p>
-    <p>{`Birth: ${person.birth_year}`}</p>
-    <p>{`Gender: ${person.gender}`}</p>
-    <p>{`Homeworld: ${planet.name}`}</p>
-    <p>{`Height: ${person.height}cm`}</p>
-    <p>{`Mass: ${person.mass}kg`}</p>
-  </div>
-);
-
 const PersonCard = ({ person }) => {
   const history = useHistory();
   const planet = state.planets.data[person.homeworld];
@@ -31,6 +20,7 @@ const PersonCard = ({ person }) => {
       on="hover"
       position="right center"
       trigger={
+        // eslint-disable-next-line react/jsx-wrap-multilines
         <div>
           <CardFrame title={person.name} onClick={navToPerson}>
             <CardContent>
@@ -40,15 +30,38 @@ const PersonCard = ({ person }) => {
         </div>
       }
     >
-      <Card person={person} planet={planet} />
+      <Tooltip person={person} planet={planet} />
     </Popup>
   );
 };
+
+const Tooltip = ({ person, planet }) => (
+  <TooltipContainer style={{ display: 'flex', flexDirection: 'column' }}>
+    <p>{`Name: ${person.name}`}</p>
+    <p>{`Birth: ${person.birth_year}`}</p>
+    <p>{`Gender: ${person.gender}`}</p>
+    <p>{`Homeworld: ${planet.name}`}</p>
+    <p>{`Height: ${person.height}cm`}</p>
+    <p>{`Mass: ${person.mass}kg`}</p>
+  </TooltipContainer>
+);
 
 PersonCard.propTypes = {
   person: PropTypes.objectOf({
     name: PropTypes.string,
     mass: PropTypes.string
+  }).isRequired
+};
+Tooltip.propTypes = {
+  person: PropTypes.objectOf({
+    name: PropTypes.string,
+    mass: PropTypes.string,
+    birth_year: PropTypes.string,
+    gender: PropTypes.string,
+    height: PropTypes.string
+  }).isRequired,
+  planet: PropTypes.objectOf({
+    name: PropTypes.string
   }).isRequired
 };
 
@@ -63,4 +76,10 @@ const CardContent = styled.div`
   z-index: -1;
 `;
 
+const TooltipContainer = styled(Container)`
+  background-color: white;
+  border: 5px solid black;
+  border-radius: 3px;
+  width: 400px;
+`;
 export default PersonCard;
