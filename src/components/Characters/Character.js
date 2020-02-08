@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container } from 'nes-react';
 import styled from 'styled-components';
@@ -9,15 +9,30 @@ const Character = () => {
   const { id } = useParams();
   const person = state.characters.data[id];
   const planet = state.planets.data[person.homeworld];
+  const species = state.species.data[person.species];
+  const [image, setImage] = useState('https://via.placeholder.com/250');
+  useEffect(() => {
+    loadImage(person.id);
+  }, []);
   const vehicles = person.vehicles.map(vehicle => {
     return state.vehicles.data[vehicle];
   });
+
   const starships = person.starships.map(starship => {
     return state.starships.data[starship];
   });
+
   const films = person.films.map(film => {
     return state.films.data[film];
   });
+
+  const loadImage = id => {
+    if (id < 5) {
+      import(`../../assets/${id}.png`).then(image => {
+        setImage(image.default);
+      });
+    }
+  };
 
   return (
     <MainContainer>
@@ -30,12 +45,12 @@ const Character = () => {
             width: '300px'
           }}
         >
-          <img src="https://via.placeholder.com/250" alt={person.name} />
+          <img src={image} alt={person.name} />
         </Container>
         <Container style={{ width: '650px' }}>
           <p>
             <strong>Name: </strong>
-            {person.name}
+            {`${person.name} (${species.name})`}
           </p>
           <p>
             <strong>Born in </strong>
@@ -93,4 +108,5 @@ const MainContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 export default Character;
