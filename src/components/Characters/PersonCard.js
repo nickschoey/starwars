@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import state from '../../data';
 import Anchor from '../common/Anchor';
+import loadImage from '../../helper/importImage';
 
 const PersonCard = ({ person }) => {
   const [image, setImage] = useState('https://via.placeholder.com/250');
@@ -14,20 +15,11 @@ const PersonCard = ({ person }) => {
   const planet = state.planets.data[person.homeworld];
   // const planet = useSelector(state => state.planets.data[person.homeworld]);
   useEffect(() => {
-    loadImage(person.id);
+    loadImage(person.id, setImage);
   }, []);
 
   const navToPerson = () => {
     history.push(`/character/${person.id}`);
-  };
-
-  const loadImage = id => {
-    if (id < 5) {
-      //  eslint-disable-line
-      import(`../../assets/${id}.png`).then(image => {
-        setImage(image.default);
-      });
-    }
   };
 
   return (

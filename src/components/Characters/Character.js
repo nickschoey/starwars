@@ -4,6 +4,7 @@ import { Container } from 'nes-react';
 import styled from 'styled-components';
 import state from '../../data';
 import Anchor from '../common/Anchor';
+import loadImage from '../../helper/importImage';
 
 const Character = () => {
   const { id } = useParams();
@@ -13,7 +14,7 @@ const Character = () => {
   const [image, setImage] = useState('https://via.placeholder.com/250');
 
   useEffect(() => {
-    loadImage(person.id);
+    loadImage(person.id, setImage);
   }, []);
 
   const vehicles = person.vehicles.map(vehicle => {
@@ -27,14 +28,6 @@ const Character = () => {
   const films = person.films.map(film => {
     return state.films.data[film];
   });
-
-  const loadImage = id => {
-    if (id < 5) {
-      import(`../../assets/${id}.png`).then(image => {
-        setImage(image.default);
-      });
-    }
-  };
 
   return (
     <MainContainer>
