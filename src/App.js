@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { StickyContainer } from 'react-sticky';
 
-import Character from './Character';
+import Character from './components/Characters/Character';
 import Hero from './components/Hero';
 import Planets from './components/Planets';
 import Films from './components/Films';
@@ -16,6 +16,7 @@ import getSpecies from './actions/getSpecies';
 import getVehicles from './actions/getVehicles';
 import getPlanets from './actions/getPlanets';
 import LoadModal from './components/LoadModal';
+import Planet from './components/Planets/Planet';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -32,9 +33,9 @@ const App = () => {
     <Router>
       <StickyContainer>
         <Hero />
-        {
-          //<LoadModal />
-        }
+
+        {/* <LoadModal /> */}
+
         <Switch>
           <Route exact path="/">
             <Characters />
@@ -47,6 +48,9 @@ const App = () => {
           </Route>
           <Route path="/character/:id">
             <Character />
+          </Route>
+          <Route path="/planet/:id">
+            <Planet />
           </Route>
         </Switch>
       </StickyContainer>
