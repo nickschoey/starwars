@@ -11,9 +11,11 @@ const Character = () => {
   const planet = state.planets.data[person.homeworld];
   const species = state.species.data[person.species];
   const [image, setImage] = useState('https://via.placeholder.com/250');
+
   useEffect(() => {
     loadImage(person.id);
   }, []);
+
   const vehicles = person.vehicles.map(vehicle => {
     return state.vehicles.data[vehicle];
   });
@@ -36,6 +38,8 @@ const Character = () => {
 
   return (
     <MainContainer>
+      <h1>{person.name}</h1>
+      <h2>{`(${species.name})`}</h2>
       <div style={{ display: 'flex' }}>
         <Container
           style={{
@@ -48,10 +52,6 @@ const Character = () => {
           <img src={image} alt={person.name} />
         </Container>
         <Container style={{ width: '650px' }}>
-          <p>
-            <strong>Name: </strong>
-            {`${person.name} (${species.name})`}
-          </p>
           <p>
             <strong>Born in </strong>
             <Anchor to={`/planet/${planet.id}`}>{`${planet.name}`}</Anchor>
@@ -82,7 +82,7 @@ const Character = () => {
       <div style={{ display: 'flex', width: '950px' }}>
         <Container title="Vehicles" style={{ flexGrow: 1 }}>
           {vehicles.map(vehicle => (
-            <p>{vehicle.name}</p>
+            <p key={vehicle.url}>{vehicle.name}</p>
           ))}
         </Container>
         <Container title="Starships" style={{ flexGrow: 1 }}>
@@ -107,6 +107,7 @@ const MainContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 20px;
 `;
 
 export default Character;

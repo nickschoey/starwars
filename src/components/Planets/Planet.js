@@ -64,15 +64,13 @@ const Planet = () => {
 
   return (
     <MainContainer>
+      <h1>{planet.name}</h1>
+      <h3>{`(${renderNumber(
+        planet.population,
+        'population',
+        'Population Unknown'
+      )})`}</h3>
       <Container style={{ flex: 1 }}>
-        <p>
-          <strong>Planet: </strong>
-          {`${planet.name} (${renderNumber(
-            planet.population,
-            'population',
-            'Population Unknown'
-          )})`}
-        </p>
         <p>
           <strong>Rotation Period: </strong>
           {renderNumber(planet.rotation_period, 'hours')}
@@ -119,6 +117,7 @@ const MainContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 20px;
 `;
 
 export default Planet;
