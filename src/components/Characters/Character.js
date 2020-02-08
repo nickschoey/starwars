@@ -2,7 +2,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Container } from 'nes-react';
 import styled from 'styled-components';
-import state from './data';
+import state from '../../data';
+import Anchor from '../common/Anchor';
 
 const Character = () => {
   const { id } = useParams();
@@ -17,9 +18,7 @@ const Character = () => {
   const films = person.films.map(film => {
     return state.films.data[film];
   });
-  console.log(vehicles);
 
-  console.log(person);
   return (
     <MainContainer>
       <div style={{ display: 'flex' }}>
@@ -40,7 +39,7 @@ const Character = () => {
           </p>
           <p>
             <strong>Born in </strong>
-            {planet.name}
+            <Anchor to={`/planets/${planet.id}`}>{`${planet.name}`}</Anchor>
             <strong> in </strong>
             {person.birth_year}
           </p>
