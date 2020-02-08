@@ -1,5 +1,5 @@
-import getAllData from './helper/getAllData';
-import extractDigits from './helper/extractId';
+import getAllData from '../helper/getAllData';
+import extractDigits from '../helper/extractId';
 
 export const GET_VEHICLES_REQUEST = 'GET_VEHICLES_REQUEST';
 export const GET_VEHICLES_SUCCESS = 'GET_VEHICLES_SUCCESS';

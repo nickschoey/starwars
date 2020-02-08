@@ -1,5 +1,5 @@
-import getAllData from './helper/getAllData';
-import extractDigits from './helper/extractId';
+import getAllData from '../helper/getAllData';
+import extractDigits from '../helper/extractId';
 
 export const GET_SPECIES_REQUEST = 'GET_SPECIES_REQUEST';
 export const GET_SPECIES_SUCCESS = 'GET_SPECIES_SUCCESS';

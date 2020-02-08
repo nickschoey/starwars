@@ -1,5 +1,5 @@
-import getAllData from './helper/getAllData';
-import extractDigits from './helper/extractId';
+import getAllData from '../helper/getAllData';
+import extractDigits from '../helper/extractId';
 
 export const GET_FILMS_REQUEST = 'GET_FILMS_REQUEST';
 export const GET_FILMS_SUCCESS = 'GET_FILMS_SUCCESS';

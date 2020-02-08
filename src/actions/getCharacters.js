@@ -1,5 +1,5 @@
-import getAllData from './helper/getAllData';
-import extractDigits from './helper/extractId';
+import getAllData from '../helper/getAllData';
+import extractDigits from '../helper/extractId';
 
 export const GET_CHARACTERS_REQUEST = 'GET_CHARACTERS_REQUEST';
 export const GET_CHARACTERS_SUCCESS = 'GET_CHARACTERS_SUCCESS';

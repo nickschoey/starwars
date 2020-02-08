@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// Extracts all data from Swapi in consecutive calls
 export default function getAllData(endpoint) {
   let data = [];
   // first page

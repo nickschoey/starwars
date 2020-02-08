@@ -1,5 +1,5 @@
-import getAllData from './helper/getAllData';
-import extractDigits from './helper/extractId';
+import getAllData from '../helper/getAllData';
+import extractDigits from '../helper/extractId';
 
 export const GET_STARSHIPS_REQUEST = 'GET_STARSHIPS_REQUEST';
 export const GET_STARSHIPS_SUCCESS = 'GET_STARSHIPS_SUCCESS';

@@ -1,5 +1,5 @@
-import getAllData from './helper/getAllData';
-import extractDigits from './helper/extractId';
+import getAllData from '../helper/getAllData';
+import extractDigits from '../helper/extractId';
 
 export const GET_PLANETS_REQUEST = 'GET_PLANETS_REQUEST';
 export const GET_PLANETS_SUCCESS = 'GET_PLANETS_SUCCESS';
