@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Popup from 'reactjs-popup';
@@ -9,11 +9,25 @@ import state from '../../data';
 import Anchor from '../common/Anchor';
 
 const PersonCard = ({ person }) => {
+  const [image, setImage] = useState('https://via.placeholder.com/250');
   const history = useHistory();
   const planet = state.planets.data[person.homeworld];
   // const planet = useSelector(state => state.planets.data[person.homeworld]);
+  useEffect(() => {
+    loadImage(person.id);
+  }, []);
+
   const navToPerson = () => {
     history.push(`/character/${person.id}`);
+  };
+
+  const loadImage = id => {
+    if (id < 5) {
+      //  eslint-disable-line
+      import(`../../assets/${id}.png`).then(image => {
+        setImage(image.default);
+      });
+    }
   };
 
   return (
@@ -25,7 +39,11 @@ const PersonCard = ({ person }) => {
         <div style={{ padding: '5px' }}>
           <CardFrame rounded title={person.name} onClick={navToPerson}>
             <CardContent>
-              <img src="https://via.placeholder.com/250" alt={person.name} />
+              <img
+                style={{ height: 'auto', width: '100%' }}
+                src={image}
+                alt={person.name}
+              />
             </CardContent>
           </CardFrame>
         </div>
@@ -43,7 +61,7 @@ const Tooltip = ({ person, planet }) => (
     <p>{`Gender: ${person.gender}`}</p>
     <p>
       {`Homeworld: `}
-      <Anchor to={`planets/${planet.id}`}>{`${planet.name}`}</Anchor>
+      <Anchor to={`planet/${planet.id}`}>{`${planet.name}`}</Anchor>
     </p>
     <p>{`Height: ${person.height}cm`}</p>
     <p>{`Mass: ${person.mass}kg`}</p>
@@ -74,9 +92,9 @@ const CardFrame = styled(Container)`
   width: 300px;
 `;
 const CardContent = styled.div`
+  background-color: #212529;
   position: absolute;
   bottom: 15px;
-  right: 25px;
   z-index: -1;
 `;
 

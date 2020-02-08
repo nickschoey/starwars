@@ -16,7 +16,9 @@ const PlanetCard = ({ planet }) => {
   );
 };
 
-PlanetCard.propTypes = {};
+PlanetCard.propTypes = {
+  planet: PropTypes.node.isRequired
+};
 
 const PlanetCardContainer = styled.div`
   &:hover {

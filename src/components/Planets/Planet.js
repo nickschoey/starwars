@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { Container, List } from 'nes-react';
 import state from '../../data';
-import { Container } from 'nes-react';
 // name: "Alderaan"
 // rotation_period: "24"
 // orbital_period: "364"
@@ -24,6 +24,14 @@ const formatNumber = num => {
 const Planet = () => {
   const { id } = useParams();
   const planet = state.planets.data[id];
+  const people = state.characters.data;
+  const films = state.films.data;
+
+  const residents = planet.residents.map(personId => {
+    return people[personId];
+  });
+
+  const appearedFilms = planet.films.map(filmsId => films[filmsId]);
 
   const renderNumber = (data, measure = '', unknownMsg = 'Unknown') => {
     const parsedNumber = parseInt(data, 10);
@@ -32,6 +40,26 @@ const Planet = () => {
       return unknownMsg;
     }
     return `${formatNumber(parsedNumber)} ${measure}`;
+  };
+
+  const renderPeople = () => {
+    return (
+      <List>
+        {residents.map(resident => (
+          <li>{resident.name}</li>
+        ))}
+      </List>
+    );
+  };
+
+  const renderFilms = () => {
+    return (
+      <List>
+        {appearedFilms.map(film => (
+          <li>{film.title}</li>
+        ))}
+      </List>
+    );
   };
 
   return (
@@ -74,6 +102,14 @@ const Planet = () => {
           {renderNumber(planet.surface_water, '%')}
         </p>
       </Container>
+      <div style={{ display: 'flex', flexGrow: 1 }}>
+        <Container style={{ flexGrow: 1 }} title={`People from ${planet.name}`}>
+          {renderPeople()}
+        </Container>
+        <Container title="Films" style={{ flexGrow: 1 }}>
+          {renderFilms()}
+        </Container>
+      </div>
     </MainContainer>
   );
 };

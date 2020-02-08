@@ -54,7 +54,7 @@ const Character = () => {
           </p>
           <p>
             <strong>Born in </strong>
-            <Anchor to={`/planets/${planet.id}`}>{`${planet.name}`}</Anchor>
+            <Anchor to={`/planet/${planet.id}`}>{`${planet.name}`}</Anchor>
             <strong> in </strong>
             {person.birth_year}
           </p>
