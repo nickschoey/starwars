@@ -4,16 +4,36 @@ import { Container } from 'nes-react';
 import styled from 'styled-components';
 import Anchor from '../common/Anchor';
 import romanNumerals from '../../helper/romanNumerals';
+import state from '../../data';
+import PersonMiniature from '../common/PersonMiniature';
 
 const FilmCard = ({ film }) => {
+  const allCharacters = state.characters.data;
+  const filmCharacters = film.characters.map(id => allCharacters[id]);
+
   return (
-    <FilmCardContainer>
-      <Anchor to={`/film/${film.id}`}>
+    <Anchor to={`/film/${film.id}`}>
+      <FilmCardContainer>
         <InnerContainer dark>
           <BigText>{`${romanNumerals[film.episode_id]} ${film.title}`}</BigText>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center'
+            }}
+          >
+            {filmCharacters.map(character => (
+              <PersonMiniature
+                justMiniature
+                withLabel={false}
+                id={character.id}
+              />
+            ))}
+          </div>
         </InnerContainer>
-      </Anchor>
-    </FilmCardContainer>
+      </FilmCardContainer>
+    </Anchor>
   );
 };
 
@@ -21,19 +41,25 @@ const FilmCardContainer = styled.div`
   display: flex;
   flex-grow: 1;
   align-items: center;
-
-  height: 200px;
-  width: 100%;
+  width: 900px;
+  padding: 10px;
 `;
 
 const InnerContainer = styled(Container)`
+  display: flex;
   flex-grow: 1;
-  height: 100%;
+  max-height: 100%;
+  flex-direction: column;
 `;
 
 const BigText = styled.div`
-  font-size: 35px;
-  color: #ffe81f;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  &:hover {
+    color: #ffe81f;
+  }
 `;
 
 FilmCard.propTypes = {

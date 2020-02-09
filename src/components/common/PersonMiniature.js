@@ -4,12 +4,19 @@ import styled from 'styled-components';
 import Anchor from './Anchor';
 import loadImage from '../../helper/importImage';
 
-const PersonMiniature = ({ name, id, withLabel }) => {
+const PersonMiniature = ({ name, id, withLabel, justMiniature }) => {
   const [image, setImage] = useState('https://via.placeholder.com/100');
   useEffect(() => {
     loadImage(id, setImage);
   }, [id]);
 
+  if (justMiniature) {
+    return (
+      <div>
+        <SmallImage src={image} />
+      </div>
+    );
+  }
   return (
     <Anchor to={`/character/${id}`}>
       <Wrapper>
@@ -23,12 +30,13 @@ const PersonMiniature = ({ name, id, withLabel }) => {
 };
 
 PersonMiniature.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   id: PropTypes.number.isRequired,
   withLabel: PropTypes.bool
 };
 
 PersonMiniature.defaultProps = {
+  name: '',
   withLabel: true
 };
 
@@ -47,6 +55,10 @@ const ImageWrapper = styled.div`
 
 const Image = styled.img`
   height: 80px;
+  width: auto;
+`;
+const SmallImage = styled.img`
+  height: 45px;
   width: auto;
 `;
 
