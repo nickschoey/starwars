@@ -37,23 +37,23 @@ export default () => {
     const { data, pending } = state;
     if (pending === null) {
       return (
-        <div>
-          <p>{`Counting ${tag} in the galaxy...`}</p>
+        <div style={{ paddingTop: '10px' }}>
+          <div>{`Counting ${tag} in the galaxy...`}</div>
           <Progress value={0} max={100} />
         </div>
       );
     }
     if (pending) {
       return (
-        <div>
-          <p>{`Counting ${tag} in the galaxy...`}</p>
+        <div style={{ paddingTop: '10px' }}>
+          <dvi>{`Counting ${tag} in the galaxy...`}</dvi>
           <Progress value={50} max={100} />
         </div>
       );
     }
     return (
-      <div>
-        <p>{`Done! ${Object.keys(data).length} ${tag} found.`}</p>
+      <div style={{ paddingTop: '10px' }}>
+        <div>{`Done! ${Object.keys(data).length} ${tag} found.`}</div>
         <Progress value={100} max={100} primary />
       </div>
     );
@@ -67,8 +67,8 @@ export default () => {
       closeOnDocumentClick={false}
       lockScroll={false}
     >
-      <Container>
-        <p>Welcome to the Star Wars people catalogue!</p>
+      <Container style={{ color: 'black' }}>
+        <p>Welcome to the 8 bits Star Wars catalogue!</p>
 
         <p>Give us a sec while we fetch all the needed data!</p>
         {renderProgress(characters, 'people')}
