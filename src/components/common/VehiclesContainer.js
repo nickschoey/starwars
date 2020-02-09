@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import state from '../../data';
 import VehicleTooltip from './VehicleTooltip';
 
-const VehiclesContainer = ({ vehicleIds, type, tooltipAlign }) => {
+const VehiclesContainer = ({ vehicleIds, type, tooltipAlign, title }) => {
   const allVehicles = state[type].data;
   const vehicles = vehicleIds.map(id => allVehicles[id]);
 
@@ -21,7 +21,7 @@ const VehiclesContainer = ({ vehicleIds, type, tooltipAlign }) => {
   };
 
   return (
-    <StyledContainer dark title="Vehicles">
+    <StyledContainer dark title={title}>
       {renderVehicles()}
     </StyledContainer>
   );
@@ -42,7 +42,8 @@ const VehicleText = styled.p`
 VehiclesContainer.propTypes = {
   vehicleIds: PropTypes.arrayOf(PropTypes.number).isRequired,
   type: PropTypes.string.isRequired,
-  tooltipAlign: PropTypes.string.isRequired
+  tooltipAlign: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
 };
 
 export default VehiclesContainer;

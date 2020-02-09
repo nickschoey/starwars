@@ -29,13 +29,15 @@ const Character = () => {
     const speciesPlanet = state.planets.data[species.homeworld];
     return (
       <div>
-        <h2 data-tip data-for="speciesInfo">{`(${species.name})`}</h2>
+        <h2 style={{ color: '#b6231e' }} data-tip data-for="speciesInfo">
+          {`(${species.name})`}
+        </h2>
         <ReactTooltip id="speciesInfo" place="bottom">
           <p>
             {`${species.classification} ${species.designation} ${
               species.homeworld !== null
                 ? ` originary from ${speciesPlanet.name}.`
-                : `without homeworld.`
+                : `without a homeworld.`
             }`}
           </p>
         </ReactTooltip>
@@ -80,11 +82,13 @@ const Character = () => {
           vehicleIds={person.vehicles}
           type="vehicles"
           tooltipAlign="left"
+          title="Vehicles"
         />
         <VehiclesContainer
           vehicleIds={person.starships}
           type="starships"
           tooltipAlign="right"
+          title="Starships"
         />
       </div>
       <FilmsContainer styling={{ width: '950px' }} filmIds={person.films} />
