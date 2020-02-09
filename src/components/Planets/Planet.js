@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Container } from 'nes-react';
 import state from '../../data';
 import PeopleContainer from '../common/PeopleContainer';
+import FilmsContainer from '../common/FilmsContainer';
 
 const formatNumber = num => {
   return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
@@ -12,9 +13,6 @@ const formatNumber = num => {
 const Planet = () => {
   const { id } = useParams();
   const planet = state.planets.data[id];
-  const films = state.films.data;
-
-  const appearedFilms = planet.films.map(filmsId => films[filmsId]);
 
   const renderNumber = (data, measure = '', unknownMsg = 'Unknown') => {
     const parsedNumber = parseInt(data, 10);
@@ -25,23 +23,13 @@ const Planet = () => {
     return `${formatNumber(parsedNumber)}${measure}`;
   };
 
-  const renderFilms = () => {
-    return (
-      <div>
-        {appearedFilms.map(film => (
-          <p>{film.title}</p>
-        ))}
-      </div>
-    );
-  };
-
   return (
     <MainContainer>
       <h1>{planet.name}</h1>
       <h3>
         {`(${renderNumber(
           planet.population,
-          'population',
+          ' population',
           'Population Unknown'
         )})`}
       </h3>
@@ -76,9 +64,7 @@ const Planet = () => {
             {renderNumber(planet.surface_water, '%')}
           </p>
         </Container>
-        <Container title="Films" style={{ width: '450px' }}>
-          {renderFilms()}
-        </Container>
+        <FilmsContainer styling={{ width: '450px' }} filmIds={planet.films} />
       </div>
       <PeopleContainer
         title={`People from ${planet.name}`}

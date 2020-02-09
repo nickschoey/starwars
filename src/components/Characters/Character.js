@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import state from '../../data';
 import Anchor from '../common/Anchor';
 import loadImage from '../../helper/importImage';
+import FilmsContainer from '../common/FilmsContainer';
 
 const Character = () => {
   const { id } = useParams();
@@ -25,10 +26,6 @@ const Character = () => {
     return state.starships.data[starship];
   });
 
-  const films = person.films.map(film => {
-    return state.films.data[film];
-  });
-
   return (
     <MainContainer>
       <h1>{person.name}</h1>
@@ -46,7 +43,12 @@ const Character = () => {
         </Container>
         <Container style={{ width: '650px' }}>
           <p>
-            <strong>Born in </strong>
+            {species.name === 'Droid' ? (
+              <strong>Built in </strong>
+            ) : (
+              <strong>Born in </strong>
+            )}
+
             <Anchor to={`/planet/${planet.id}`}>{`${planet.name}`}</Anchor>
             <strong> in </strong>
             {person.birth_year}
@@ -84,13 +86,7 @@ const Character = () => {
           ))}
         </Container>
       </div>
-      <div style={{ display: 'flex', width: '950px' }}>
-        <Container title="Films" style={{ flexGrow: 1 }}>
-          {films.map(film => (
-            <p>{film.title}</p>
-          ))}
-        </Container>
-      </div>
+      <FilmsContainer styling={{ width: '950px' }} filmIds={person.films} />
     </MainContainer>
   );
 };
