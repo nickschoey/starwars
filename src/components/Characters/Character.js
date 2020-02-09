@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container } from 'nes-react';
-import styled from 'styled-components';
 import ReactTooltip from 'react-tooltip';
 import state from '../../data';
 import Anchor from '../common/Anchor';
@@ -9,7 +8,11 @@ import loadImage from '../../helper/importImage';
 import FilmsContainer from '../common/FilmsContainer';
 import VehiclesContainer from '../common/VehiclesContainer';
 import InfoElement from '../common/InfoElement';
-import { MainContainer, FlexContainer } from '../common/Containers';
+import {
+  MainContainer,
+  FlexContainer,
+  ImageContainer
+} from '../common/Containers';
 
 const Character = () => {
   const { id } = useParams();
@@ -88,12 +91,5 @@ const Character = () => {
     </MainContainer>
   );
 };
-
-const ImageContainer = styled(Container)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 300px;
-`;
 
 export default Character;
