@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { MainContainer } from './Containers';
 
 const CardView = ({ children }) => {
   return (
@@ -13,14 +14,6 @@ const CardView = ({ children }) => {
 CardView.propTypes = {
   children: PropTypes.node.isRequired
 };
-
-const MainContainer = styled.div`
-  background-color: #212529;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
 
 const CardContainer = styled.div`
   z-index: 3;
