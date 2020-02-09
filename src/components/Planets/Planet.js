@@ -5,23 +5,11 @@ import { Container } from 'nes-react';
 import state from '../../data';
 import PeopleContainer from '../common/PeopleContainer';
 import FilmsContainer from '../common/FilmsContainer';
-
-const formatNumber = num => {
-  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-};
+import renderNumber from '../../helper/renderNumber';
 
 const Planet = () => {
   const { id } = useParams();
   const planet = state.planets.data[id];
-
-  const renderNumber = (data, measure = '', unknownMsg = 'Unknown') => {
-    const parsedNumber = parseInt(data, 10);
-    // eslint-disable-next-line no-restricted-globals
-    if (isNaN(parsedNumber)) {
-      return unknownMsg;
-    }
-    return `${formatNumber(parsedNumber)}${measure}`;
-  };
 
   return (
     <MainContainer>
