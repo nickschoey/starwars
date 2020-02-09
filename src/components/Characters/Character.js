@@ -7,6 +7,8 @@ import Anchor from '../common/Anchor';
 import loadImage from '../../helper/importImage';
 import FilmsContainer from '../common/FilmsContainer';
 import VehiclesContainer from '../common/VehiclesContainer';
+import InfoElement from '../common/InfoElement';
+import { MainContainer, FlexContainer } from '../common/Containers';
 
 const Character = () => {
   const { id } = useParams();
@@ -23,50 +25,28 @@ const Character = () => {
     <MainContainer>
       <h1>{person.name}</h1>
       <h2>{`(${species.name})`}</h2>
-      <div style={{ display: 'flex' }}>
-        <Container
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '300px'
-          }}
-        >
+      <FlexContainer>
+        <ImageContainer>
           <img src={image} alt={person.name} />
-        </Container>
+        </ImageContainer>
         <Container style={{ width: '650px' }}>
-          <p>
-            {species.name === 'Droid' ? (
-              <strong>Built in </strong>
-            ) : (
-              <strong>Born in </strong>
-            )}
-
-            <Anchor to={`/planet/${planet.id}`}>{`${planet.name}`}</Anchor>
-            <strong> in </strong>
-            {person.birth_year}
-          </p>
-          <p>
-            <strong>Height: </strong>
-            {`${person.height}cm. `}
-            <strong>Weight: </strong>
-            {`${person.mass}kg.`}
-          </p>
-
-          <p>
-            <strong>Eye Color: </strong>
-            {person.eye_color}
-          </p>
-          <p>
-            <strong>Hair: </strong>
-            {person.hair_color}
-          </p>
-          <p>
-            <strong>Skin: </strong>
-            {person.skin_color}
-          </p>
+          <FlexContainer>
+            <InfoElement
+              title={species.name === 'Droid' ? 'Built in ' : 'Born in '}
+              data={<Anchor to={`/planet/${planet.id}`}>{planet.name}</Anchor>}
+            />
+            <InfoElement title="in " data={person.birth_year} />
+          </FlexContainer>
+          <FlexContainer>
+            <InfoElement title="Height: " data={`${person.height}cm.`} />
+            <InfoElement title="Weight: " data={`${person.mass}kg.`} />
+          </FlexContainer>
+          <InfoElement title="Eye Color: " data={person.eye_color} />
+          <InfoElement title="Hair: " data={person.hair_color} />
+          <InfoElement title="Skin: " data={person.skin_color} />
         </Container>
-      </div>
+      </FlexContainer>
+
       <div style={{ display: 'flex', width: '950px' }}>
         <VehiclesContainer
           vehicleIds={person.vehicles}
@@ -84,12 +64,11 @@ const Character = () => {
   );
 };
 
-const MainContainer = styled.div`
+const ImageContainer = styled(Container)`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding-top: 20px;
+  justify-content: center;
+  width: 300px;
 `;
 
 export default Character;

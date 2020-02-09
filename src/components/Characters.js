@@ -17,14 +17,7 @@ const Characters = () => {
     );
   };
 
-  return (
-    <div style={{ display: 'flex' }}>
-      <CharacterFilters />
-
-      <CardView style={{ flexGrow: 1 }}>{renderCharacters()}</CardView>
-      <div style={{ flexGrow: 1 }} />
-    </div>
-  );
+  return <CardView>{renderCharacters()}</CardView>;
 };
 
 export default Characters;
