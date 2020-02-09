@@ -4,25 +4,32 @@ import styled from 'styled-components';
 import Anchor from './Anchor';
 import loadImage from '../../helper/importImage';
 
-const PersonMiniature = ({ name, id }) => {
+const PersonMiniature = ({ name, id, withLabel }) => {
   const [image, setImage] = useState('https://via.placeholder.com/100');
   useEffect(() => {
     loadImage(id, setImage);
   }, [id]);
 
   return (
-    <Wrapper>
-      <ImageWrapper>
-        <Image src={image} />
-      </ImageWrapper>
-      <Anchor to={`/character/${id}`}>{name}</Anchor>
-    </Wrapper>
+    <Anchor color="#162E59" to={`/character/${id}`}>
+      <Wrapper>
+        <ImageWrapper>
+          <Image src={image} />
+        </ImageWrapper>
+        {withLabel && <p>{name}</p>}
+      </Wrapper>
+    </Anchor>
   );
 };
 
 PersonMiniature.propTypes = {
   name: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired
+  id: PropTypes.number.isRequired,
+  withLabel: PropTypes.bool
+};
+
+PersonMiniature.defaultProps = {
+  withLabel: true
 };
 
 const Wrapper = styled.div`
