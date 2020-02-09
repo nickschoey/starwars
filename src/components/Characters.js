@@ -1,33 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Fuse from 'fuse.js';
 import PersonCard from './Characters/PersonCard';
 import state from '../data';
 import CardView from './common/CardView';
-import { enableVisible } from '../actions/search';
-
-const applyFilter = (searchText, values, keys) => {
-  const options = {
-    shouldSort: true,
-    tokenize: true,
-    matchAllTokens: true,
-    threshold: 0.1,
-    location: 0,
-    distance: 100,
-    maxPatternLength: 32,
-    minMatchCharLength: 1,
-    keys
-  };
-  const fuse = new Fuse(values, options);
-  return fuse.search(searchText);
-};
+import { enableVisible, resetSearch } from '../actions/search';
+import applyFilter from '../helper/applyFilter';
 
 const Characters = () => {
   // const characters = useSelector(state => state.characters);
-  const searchText = useSelector(state => state.search.text);
+  const dispatch = useDispatch();
   const allCharacters = state.characters.data;
   const [characters, setCharacters] = useState(allCharacters);
-  const dispatch = useDispatch();
+  const searchText = useSelector(stat => stat.search.text);
 
   useEffect(() => {
     if (searchText !== '') {
@@ -43,6 +27,7 @@ const Characters = () => {
   }, [searchText]);
 
   useEffect(() => {
+    dispatch(resetSearch());
     dispatch(enableVisible());
   }, []);
 

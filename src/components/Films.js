@@ -1,16 +1,31 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import CardView from './common/CardView';
 import state from '../data';
 import FilmCard from './Films/FilmCard';
 import { MainContainer } from './common/Containers';
-import { enableVisible } from '../actions/search';
+import { enableVisible, resetSearch } from '../actions/search';
+import applyFilter from '../helper/applyFilter';
 
 const Films = () => {
-  const films = state.films.data;
   const dispatch = useDispatch();
+  const allFilms = state.films.data;
+  const [films, setFilms] = useState(allFilms);
+  const searchText = useSelector(stat => stat.search.text);
 
   useEffect(() => {
+    if (searchText !== '') {
+      const filteredData = applyFilter(searchText, Object.values(allFilms), [
+        'title'
+      ]);
+      setFilms(filteredData);
+    } else {
+      setFilms(allFilms);
+    }
+  }, [searchText]);
+
+  useEffect(() => {
+    dispatch(resetSearch());
     dispatch(enableVisible());
   }, []);
 

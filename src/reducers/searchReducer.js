@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
     case CHANGE_SEARCH:
       return { ...state, text: action.payload };
     case RESET_SEARCH:
-      return { ...state, text: initialState };
+      return { ...state, text: '' };
     case ENABLE_VISIBLE:
       return { ...state, visible: true };
     case DISABLE_VISIBLE:
