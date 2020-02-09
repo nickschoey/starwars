@@ -18,15 +18,15 @@ const Film = () => {
   const romanNumeral = romanNumerals[film.episode_id];
   console.log(film);
   return (
-    <MainContainer>
+    <MainContainer dark>
       <h1>{`Star Wars Episode ${romanNumeral}: ${film.title}`}</h1>
-      <FlexContainer>
-        <ImageContainer>
+      <FlexContainer dark>
+        <ImageContainer dark>
           <div style={{ fontSize: '5rem', padding: '10px' }}>
             {romanNumeral}
           </div>
         </ImageContainer>
-        <Container style={{ width: '800px' }}>
+        <Container dark style={{ width: '800px' }}>
           <InfoElement title="Title: " data={film.title} />
           <InfoElement title="Directed by " data={film.director} />
           <InfoElement title="Produced by " data={film.producer} />

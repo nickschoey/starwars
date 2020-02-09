@@ -17,12 +17,12 @@ const Planet = () => {
       <h3>
         {`(${renderNumber(
           planet.population,
-          ' population',
+          ' inhabitants',
           'Population Unknown'
         )})`}
       </h3>
       <div style={{ display: 'flex' }}>
-        <Container style={{ width: '650px' }}>
+        <Container dark style={{ width: '650px' }}>
           <p>
             <strong>Rotation Period: </strong>
             {renderNumber(planet.rotation_period, ' hours')}
@@ -55,7 +55,7 @@ const Planet = () => {
         <FilmsContainer styling={{ width: '450px' }} filmIds={planet.films} />
       </div>
       <PeopleContainer
-        title={`People from ${planet.name}`}
+        title={`Characters from ${planet.name}`}
         styling={{ width: '1100px' }}
         peopleIds={planet.residents}
       />

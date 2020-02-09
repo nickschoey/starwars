@@ -15,6 +15,7 @@ CardView.propTypes = {
 };
 
 const MainContainer = styled.div`
+  background-color: #212529;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,6 +23,7 @@ const MainContainer = styled.div`
 `;
 
 const CardContainer = styled.div`
+  z-index: 3;
   margin-top: 10px;
   width: 1024px;
   display: flex;

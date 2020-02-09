@@ -44,15 +44,15 @@ const Character = () => {
   };
 
   return (
-    <MainContainer>
+    <MainContainer dark>
       <h1>{person.name}</h1>
       {renderSpecies()}
-      <FlexContainer>
-        <ImageContainer>
+      <FlexContainer dark>
+        <ImageContainer dark>
           <img src={image} alt={person.name} />
         </ImageContainer>
-        <Container style={{ width: '650px' }}>
-          <FlexContainer>
+        <Container dark style={{ width: '650px' }}>
+          <FlexContainer dark>
             <div style={{ marginRight: '10px' }}>
               <InfoElement
                 title={species.name === 'Droid' ? 'Built in ' : 'Born in '}
@@ -63,7 +63,7 @@ const Character = () => {
             </div>
             <InfoElement title="in " data={person.birth_year} />
           </FlexContainer>
-          <FlexContainer>
+          <FlexContainer dark>
             <div style={{ marginRight: '10px' }}>
               <InfoElement title="Height: " data={`${person.height}cm.`} />
             </div>

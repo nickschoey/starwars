@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, List } from 'nes-react';
+import { Container } from 'nes-react';
 import styled from 'styled-components';
 import state from '../../data';
 import Anchor from './Anchor';
@@ -11,14 +11,12 @@ const FilmsContainer = ({ styling, filmIds }) => {
 
   return (
     <FilmsNesContainer>
-      <Container title="Films" style={styling}>
-        <List solid>
-          {films.map(film => (
-            <li>
-              <Anchor to={`/film/${film.id}`}>{film.title}</Anchor>
-            </li>
-          ))}
-        </List>
+      <Container dark title="Films" style={styling}>
+        {films.map(film => (
+          <p>
+            <Anchor to={`/film/${film.id}`}>{film.title}</Anchor>
+          </p>
+        ))}
       </Container>
     </FilmsNesContainer>
   );

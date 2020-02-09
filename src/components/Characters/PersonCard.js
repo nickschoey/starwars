@@ -15,7 +15,7 @@ const PersonCard = ({ person }) => {
   return (
     <CardContainer>
       <Anchor to={`/character/${person.id}`}>
-        <CardFrame rounded title={person.name}>
+        <CardFrame dark rounded title={person.name}>
           <CardContent>
             <Image src={image} alt={person.name} />
           </CardContent>
@@ -34,7 +34,6 @@ const CardFrame = styled(Container)`
   width: 300px;
 `;
 const CardContent = styled.div`
-  background-color: #212529;
   position: absolute;
   bottom: 15px;
   z-index: -1;

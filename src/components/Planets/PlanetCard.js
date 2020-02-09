@@ -6,7 +6,7 @@ import Anchor from '../common/Anchor';
 const PlanetCard = ({ planet }) => {
   return (
     <Anchor to={`/planet/${planet.id}`}>
-      <Container>{planet.name}</Container>
+      <Container dark>{planet.name}</Container>
     </Anchor>
   );
 };

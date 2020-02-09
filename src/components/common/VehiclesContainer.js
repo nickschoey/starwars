@@ -12,15 +12,19 @@ const VehiclesContainer = ({ vehicleIds, type, tooltipAlign }) => {
   const renderVehicles = () => {
     return vehicles.map(vehicle => (
       <VehicleElement key={vehicle.url}>
-        <p data-tip data-for={vehicle.url}>
+        <VehicleText data-tip data-for={vehicle.url}>
           {vehicle.name}
-        </p>
+        </VehicleText>
         <VehicleTooltip vehicle={vehicle} align={tooltipAlign} />
       </VehicleElement>
     ));
   };
 
-  return <StyledContainer title="Vehicles">{renderVehicles()}</StyledContainer>;
+  return (
+    <StyledContainer dark title="Vehicles">
+      {renderVehicles()}
+    </StyledContainer>
+  );
 };
 
 const StyledContainer = styled(Container)`
@@ -29,6 +33,10 @@ const StyledContainer = styled(Container)`
 
 const VehicleElement = styled.div`
   display: flex;
+`;
+
+const VehicleText = styled.p`
+  color: #b6231e;
 `;
 
 VehiclesContainer.propTypes = {

@@ -15,6 +15,7 @@ const StyledLink = styled(Link)`
   color: ${props => props.color};
   text-decoration: none;
   &:hover {
+    color: #a39000;
     text-decoration: none;
   }
 `;
@@ -26,7 +27,7 @@ Anchor.propTypes = {
 };
 
 Anchor.defaultProps = {
-  color: '#b6231e'
+  color: '#ffe81f'
 };
 
 export default Anchor;

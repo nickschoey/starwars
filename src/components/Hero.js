@@ -30,7 +30,7 @@ const Hero = () => {
   return (
     <>
       <HeroContainer dark>
-        <TitleArea>Star Wars</TitleArea>
+        <TitleArea>The 8 bits Star Wars Catalog</TitleArea>
       </HeroContainer>
       <Sticky topOffset={250}>
         {({ style }) => (
@@ -47,7 +47,8 @@ const Hero = () => {
   );
 };
 
-const HeroContainer = styled(Container)`
+const HeroContainer = styled.div`
+  background-color: #212529;
   display: flex;
   justify-content: center;
   height: 250px;
@@ -55,8 +56,9 @@ const HeroContainer = styled(Container)`
 `;
 
 const ButtonArray = styled.div`
+  color: #ffe81f;
+  background-color: #212529;
   z-index: 2000;
-  background-color: white;
   display: flex;
   justify-content: center;
   padding-top: 15px;
@@ -67,7 +69,7 @@ const TitleArea = styled.div`
   justify-self: center;
   align-self: center;
   color: #ffe81f;
-  font-size: 5em;
+  font-size: 3em;
 `;
 
 export default Hero;

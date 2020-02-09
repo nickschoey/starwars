@@ -11,7 +11,7 @@ const PersonMiniature = ({ name, id, withLabel }) => {
   }, [id]);
 
   return (
-    <Anchor color="#162E59" to={`/character/${id}`}>
+    <Anchor to={`/character/${id}`}>
       <Wrapper>
         <ImageWrapper>
           <Image src={image} />

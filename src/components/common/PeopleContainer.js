@@ -16,7 +16,7 @@ const PeopleContainer = ({ title, styling, peopleIds }) => {
   };
 
   return (
-    <Container title={title} style={styling}>
+    <Container dark title={title} style={styling}>
       <MiniatureContainer
         style={{
           display: 'flex',
