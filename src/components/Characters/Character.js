@@ -6,25 +6,18 @@ import state from '../../data';
 import Anchor from '../common/Anchor';
 import loadImage from '../../helper/importImage';
 import FilmsContainer from '../common/FilmsContainer';
+import VehiclesContainer from '../common/VehiclesContainer';
 
 const Character = () => {
   const { id } = useParams();
   const person = state.characters.data[id];
   const planet = state.planets.data[person.homeworld];
   const species = state.species.data[person.species];
-  const [image, setImage] = useState('https://via.placeholder.com/250');
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     loadImage(person.id, setImage);
   }, []);
-
-  const vehicles = person.vehicles.map(vehicle => {
-    return state.vehicles.data[vehicle];
-  });
-
-  const starships = person.starships.map(starship => {
-    return state.starships.data[starship];
-  });
 
   return (
     <MainContainer>
@@ -75,16 +68,16 @@ const Character = () => {
         </Container>
       </div>
       <div style={{ display: 'flex', width: '950px' }}>
-        <Container title="Vehicles" style={{ flexGrow: 1 }}>
-          {vehicles.map(vehicle => (
-            <p key={vehicle.url}>{vehicle.name}</p>
-          ))}
-        </Container>
-        <Container title="Starships" style={{ flexGrow: 1 }}>
-          {starships.map(starship => (
-            <p>{starship.name}</p>
-          ))}
-        </Container>
+        <VehiclesContainer
+          vehicleIds={person.vehicles}
+          type="vehicles"
+          tooltipAlign="left"
+        />
+        <VehiclesContainer
+          vehicleIds={person.starships}
+          type="starships"
+          tooltipAlign="right"
+        />
       </div>
       <FilmsContainer styling={{ width: '950px' }} filmIds={person.films} />
     </MainContainer>
