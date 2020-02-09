@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Container } from 'nes-react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
+import Anchor from '../common/Anchor';
 
 const PlanetCard = ({ planet }) => {
   const history = useHistory();
@@ -10,9 +11,11 @@ const PlanetCard = ({ planet }) => {
     history.push(`/planet/${planet.id}`);
   };
   return (
-    <PlanetCardContainer onClick={navToPlanet}>
-      <Container>{planet.name}</Container>
-    </PlanetCardContainer>
+    <Anchor to={`/planet/${planet.id}`}>
+      <PlanetCardContainer>
+        <Container>{planet.name}</Container>
+      </PlanetCardContainer>
+    </Anchor>
   );
 };
 

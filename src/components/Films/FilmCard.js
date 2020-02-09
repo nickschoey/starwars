@@ -2,38 +2,45 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container } from 'nes-react';
 import styled from 'styled-components';
-
-const romanNumerals = {
-  1: 'I',
-  2: 'II',
-  3: 'III',
-  4: 'IV',
-  5: 'V',
-  6: 'VI',
-  7: 'VII'
-};
+import Anchor from '../common/Anchor';
+import romanNumerals from '../../helper/romanNumerals';
 
 const FilmCard = ({ film }) => {
-  const renderTitle = () => {
-    return `${romanNumerals[film.episode_id]} ${film.title}`;
-  };
-
-  return <FilmCardContainer dark>{renderTitle()}</FilmCardContainer>;
+  return (
+    <FilmCardContainer>
+      <InnerContainer dark>
+        <Anchor to={`/film/${film.id}`}>
+          <BigText>{`${romanNumerals[film.episode_id]} ${film.title}`}</BigText>
+        </Anchor>
+      </InnerContainer>
+    </FilmCardContainer>
+  );
 };
 
-FilmCard.propTypes = {};
-
-const FilmCardContainer = styled(Container)`
+const FilmCardContainer = styled.div`
   display: flex;
-  justify-content: center;
+  flex-grow: 1;
   align-items: center;
-  font-size: 35px;
-  color: #ffe81f;
+
   height: 200px;
   width: 100%;
-  &:hover {
-    cursor: url(https://unpkg.com/nes.css/assets/cursor-click.png);
-  }
 `;
+
+const InnerContainer = styled(Container)`
+  flex-grow: 1;
+  height: 100%;
+`;
+
+const BigText = styled.div`
+  font-size: 35px;
+  color: #ffe81f;
+`;
+
+FilmCard.propTypes = {
+  film: PropTypes.objectOf({
+    episode_id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired
+  }).isRequired
+};
 
 export default FilmCard;
