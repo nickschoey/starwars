@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container } from 'nes-react';
 import styled from 'styled-components';
+import ReactTooltip from 'react-tooltip';
 import state from '../../data';
 import Anchor from '../common/Anchor';
 import loadImage from '../../helper/importImage';
@@ -21,24 +22,48 @@ const Character = () => {
     loadImage(person.id, setImage);
   }, []);
 
+  const renderSpecies = () => {
+    const speciesPlanet = state.planets.data[species.homeworld];
+    return (
+      <div>
+        <h2 data-tip data-for="speciesInfo">{`(${species.name})`}</h2>
+        <ReactTooltip id="speciesInfo" place="bottom">
+          <p>
+            {`${species.classification} ${species.designation} ${
+              species.homeworld !== null
+                ? ` originary from ${speciesPlanet.name}.`
+                : `without homeworld.`
+            }`}
+          </p>
+        </ReactTooltip>
+      </div>
+    );
+  };
+
   return (
     <MainContainer>
       <h1>{person.name}</h1>
-      <h2>{`(${species.name})`}</h2>
+      {renderSpecies()}
       <FlexContainer>
         <ImageContainer>
           <img src={image} alt={person.name} />
         </ImageContainer>
         <Container style={{ width: '650px' }}>
           <FlexContainer>
-            <InfoElement
-              title={species.name === 'Droid' ? 'Built in ' : 'Born in '}
-              data={<Anchor to={`/planet/${planet.id}`}>{planet.name}</Anchor>}
-            />
+            <div style={{ marginRight: '10px' }}>
+              <InfoElement
+                title={species.name === 'Droid' ? 'Built in ' : 'Born in '}
+                data={
+                  <Anchor to={`/planet/${planet.id}`}>{planet.name}</Anchor>
+                }
+              />
+            </div>
             <InfoElement title="in " data={person.birth_year} />
           </FlexContainer>
           <FlexContainer>
-            <InfoElement title="Height: " data={`${person.height}cm.`} />
+            <div style={{ marginRight: '10px' }}>
+              <InfoElement title="Height: " data={`${person.height}cm.`} />
+            </div>
             <InfoElement title="Weight: " data={`${person.mass}kg.`} />
           </FlexContainer>
           <InfoElement title="Eye Color: " data={person.eye_color} />
