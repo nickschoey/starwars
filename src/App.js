@@ -17,6 +17,7 @@ import getVehicles from './actions/getVehicles';
 import getPlanets from './actions/getPlanets';
 import LoadModal from './components/LoadModal';
 import Planet from './components/Planets/Planet';
+import Film from './components/Films/Film';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -51,6 +52,9 @@ const App = () => {
           </Route>
           <Route path="/planet/:id">
             <Planet />
+          </Route>
+          <Route path="/film/:id">
+            <Film />
           </Route>
         </Switch>
       </StickyContainer>

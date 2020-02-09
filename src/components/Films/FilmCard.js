@@ -8,11 +8,11 @@ import romanNumerals from '../../helper/romanNumerals';
 const FilmCard = ({ film }) => {
   return (
     <FilmCardContainer>
-      <InnerContainer dark>
-        <Anchor to={`/film/${film.id}`}>
+      <Anchor to={`/film/${film.id}`}>
+        <InnerContainer dark>
           <BigText>{`${romanNumerals[film.episode_id]} ${film.title}`}</BigText>
-        </Anchor>
-      </InnerContainer>
+        </InnerContainer>
+      </Anchor>
     </FilmCardContainer>
   );
 };
