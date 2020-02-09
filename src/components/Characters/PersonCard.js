@@ -30,8 +30,8 @@ const CardContainer = styled.div`
 `;
 
 const CardFrame = styled(Container)`
-  height: 300px;
-  width: 300px;
+  height: 240px;
+  width: 240px;
 `;
 const CardContent = styled.div`
   position: absolute;

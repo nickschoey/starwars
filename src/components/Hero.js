@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Container, Radios } from 'nes-react';
+import { Radios } from 'nes-react';
 import { useHistory } from 'react-router-dom';
 import { Sticky } from 'react-sticky';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeSearch } from '../actions/search';
 
 const routeOptions = [
   {
@@ -21,55 +23,56 @@ const routeOptions = [
 
 const Hero = () => {
   const [selectedRadio, setselectedRadio] = useState('/');
+  const dispatch = useDispatch();
+  const searchValue = useSelector(state => state.search.text);
   const history = useHistory();
 
   const navigateToView = value => {
     setselectedRadio(value);
     history.push(value);
   };
+
+  const handleChange = e => {
+    dispatch(changeSearch(e.target.value));
+  };
   return (
-    <>
-      <HeroContainer dark>
-        <TitleArea>The 8 bits Star Wars Catalog</TitleArea>
-      </HeroContainer>
-      <Sticky topOffset={250}>
-        {({ style }) => (
-          <ButtonArray style={style}>
-            <Radios
-              selectedValue={selectedRadio}
-              options={routeOptions}
-              onValueChange={navigateToView}
+    <Sticky>
+      {({ style }) => (
+        <ButtonArray style={style}>
+          <div style={{ justifySelf: 'flex-start' }}>
+            The 8 bits Star Wars Catalog
+          </div>
+          <div>
+            <StyledInput
+              placeholder="Search"
+              value={searchValue}
+              onChange={handleChange}
             />
-          </ButtonArray>
-        )}
-      </Sticky>
-    </>
+          </div>
+          <StyledRadios
+            selectedValue={selectedRadio}
+            options={routeOptions}
+            onValueChange={navigateToView}
+          />
+        </ButtonArray>
+      )}
+    </Sticky>
   );
 };
 
-const HeroContainer = styled.div`
-  background-color: #212529;
-  display: flex;
-  justify-content: center;
-  height: 250px;
-  width: 100%;
-`;
-
 const ButtonArray = styled.div`
+  font-size: 1.2rem;
   color: #ffe81f;
   background-color: #212529;
   z-index: 2000;
   display: flex;
-  justify-content: center;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.4rem 3rem;
+  border-bottom: 4px solid #fafafa;
 `;
 
-const TitleArea = styled.div`
-  justify-self: center;
-  align-self: center;
-  color: #ffe81f;
-  font-size: 3em;
-`;
+const StyledRadios = styled(Radios)``;
 
+const StyledInput = styled.input``;
 export default Hero;
