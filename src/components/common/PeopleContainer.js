@@ -32,8 +32,8 @@ const PeopleContainer = ({ title, styling, peopleIds }) => {
 
 PeopleContainer.propTypes = {
   title: PropTypes.string.isRequired,
-  styling: PropTypes.objectOf({ width: PropTypes.string }).isRequired,
-  peopleIds: PropTypes.arrayOf(PropTypes.number).isRequired
+  styling: PropTypes.object.isRequired,
+  peopleIds: PropTypes.array.isRequired
 };
 
 const MiniatureContainer = styled.div`

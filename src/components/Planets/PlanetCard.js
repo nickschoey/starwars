@@ -19,7 +19,7 @@ const PlanetContainer = styled(Container)`
 `;
 
 PlanetCard.propTypes = {
-  planet: PropTypes.node.isRequired
+  planet: PropTypes.object.isRequired
 };
 
 export default PlanetCard;

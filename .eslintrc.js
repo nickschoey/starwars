@@ -23,7 +23,8 @@ module.exports = {
     'jest/no-focused-tests': 'error',
     'jest/no-identical-title': 'error',
     'jest/prefer-to-have-length': 'warn',
-    'jest/valid-expect': 'error'
+    'jest/valid-expect': 'error',
+    'react/forbid-prop-types': 0
   },
   env: {
     'jest/globals': true

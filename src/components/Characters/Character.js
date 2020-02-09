@@ -27,7 +27,7 @@ const Character = () => {
   useEffect(() => {
     loadImage(person.id, setImage);
     dispatch(disableVisible());
-  }, []);
+  }, [dispatch, person.id]);
 
   const renderSpecies = () => {
     const speciesPlanet = state.planets.data[species.homeworld];

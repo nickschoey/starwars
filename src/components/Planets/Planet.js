@@ -16,7 +16,7 @@ const Planet = () => {
 
   useEffect(() => {
     dispatch(disableVisible());
-  }, []);
+  }, [dispatch]);
 
   return (
     <MainContainer>

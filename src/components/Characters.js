@@ -24,12 +24,12 @@ const Characters = () => {
     } else {
       setCharacters(allCharacters);
     }
-  }, [searchText]);
+  }, [searchText, allCharacters]);
 
   useEffect(() => {
     dispatch(resetSearch());
     dispatch(enableVisible());
-  }, []);
+  }, [dispatch]);
 
   const renderCharacters = () => {
     return Object.values(characters).map(person => (

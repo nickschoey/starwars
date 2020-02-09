@@ -32,12 +32,14 @@ const PersonMiniature = ({ name, id, withLabel, justMiniature }) => {
 PersonMiniature.propTypes = {
   name: PropTypes.string,
   id: PropTypes.number.isRequired,
-  withLabel: PropTypes.bool
+  withLabel: PropTypes.bool,
+  justMiniature: PropTypes.bool
 };
 
 PersonMiniature.defaultProps = {
   name: '',
-  withLabel: true
+  withLabel: true,
+  justMiniature: false
 };
 
 const Wrapper = styled.div`

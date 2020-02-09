@@ -27,7 +27,7 @@ const Film = () => {
 
   useEffect(() => {
     dispatch(disableVisible());
-  }, []);
+  }, [dispatch]);
 
   const renderSpecies = () =>
     filmSpecies.map(specie => {
@@ -51,7 +51,7 @@ const Film = () => {
     });
   const renderPlanets = () =>
     filmPlanets.map(planet => (
-      <p>
+      <p key={planet.url}>
         <Anchor to={`/planet/${planet.id}`}>{planet.name}</Anchor>
       </p>
     ));

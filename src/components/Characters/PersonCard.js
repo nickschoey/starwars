@@ -10,7 +10,7 @@ const PersonCard = ({ person }) => {
 
   useEffect(() => {
     loadImage(person.id, setImage);
-  }, []);
+  }, [person.id]);
 
   return (
     <CardContainer>
@@ -45,10 +45,7 @@ const Image = styled.img`
 `;
 
 PersonCard.propTypes = {
-  person: PropTypes.objectOf({
-    name: PropTypes.string,
-    id: PropTypes.number
-  }).isRequired
+  person: PropTypes.object.isRequired
 };
 
 export default PersonCard;

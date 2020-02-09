@@ -22,15 +22,17 @@ const Films = () => {
     } else {
       setFilms(allFilms);
     }
-  }, [searchText]);
+  }, [searchText, allFilms]);
 
   useEffect(() => {
     dispatch(resetSearch());
     dispatch(enableVisible());
-  }, []);
+  }, [dispatch]);
 
   const renderFilms = () => {
-    return Object.values(films).map(film => <FilmCard film={film} />);
+    return Object.values(films).map(film => (
+      <FilmCard key={film.url} film={film} />
+    ));
   };
   return (
     <MainContainer>

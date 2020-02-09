@@ -25,6 +25,7 @@ const FilmCard = ({ film }) => {
           >
             {filmCharacters.map(character => (
               <PersonMiniature
+                key={character.url}
                 justMiniature
                 withLabel={false}
                 id={character.id}
@@ -63,10 +64,7 @@ const BigText = styled.div`
 `;
 
 FilmCard.propTypes = {
-  film: PropTypes.objectOf({
-    episode_id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired
-  }).isRequired
+  film: PropTypes.object.isRequired
 };
 
 export default FilmCard;

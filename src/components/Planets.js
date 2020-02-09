@@ -13,25 +13,25 @@ const Planets = () => {
   const searchText = useSelector(stat => stat.search.text);
 
   useEffect(() => {
-    console.log('here');
     if (searchText !== '') {
       const filteredData = applyFilter(searchText, Object.values(allPlanets), [
         'name'
       ]);
-      console.log(filteredData);
       setPlanets(filteredData);
     } else {
       setPlanets(allPlanets);
     }
-  }, [searchText]);
+  }, [searchText, allPlanets]);
 
   useEffect(() => {
     dispatch(resetSearch());
     dispatch(enableVisible());
-  }, []);
+  }, [dispatch]);
 
   const renderPlanets = () => {
-    return Object.values(planets).map(planet => <PlanetCard planet={planet} />);
+    return Object.values(planets).map(planet => (
+      <PlanetCard key={planet.url} planet={planet} />
+    ));
   };
   return (
     <div>

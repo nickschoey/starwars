@@ -13,7 +13,7 @@ const FilmsContainer = ({ styling, filmIds }) => {
     <FilmsNesContainer>
       <Container dark title="Films" style={styling}>
         {films.map(film => (
-          <p>
+          <p key={film.url}>
             <Anchor to={`/film/${film.id}`}>{film.title}</Anchor>
           </p>
         ))}
@@ -27,7 +27,7 @@ const FilmsNesContainer = styled.div`
 `;
 
 FilmsContainer.propTypes = {
-  styling: PropTypes.objectOf({ width: PropTypes.string }).isRequired,
+  styling: PropTypes.object.isRequired,
   filmIds: PropTypes.arrayOf(PropTypes.number).isRequired
 };
 
