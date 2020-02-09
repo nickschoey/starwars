@@ -47,7 +47,7 @@ const Image = styled.img`
 PersonCard.propTypes = {
   person: PropTypes.objectOf({
     name: PropTypes.string,
-    mass: PropTypes.string
+    id: PropTypes.number
   }).isRequired
 };
 

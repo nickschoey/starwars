@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Container } from 'nes-react';
 import ReactTooltip from 'react-tooltip';
@@ -13,14 +14,20 @@ import InfoElement from '../common/InfoElement';
 import VehiclesContainer from '../common/VehiclesContainer';
 import PeopleContainer from '../common/PeopleContainer';
 import Anchor from '../common/Anchor';
+import { disableVisible } from '../../actions/search';
 
 const Film = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const film = state.films.data[id];
   const species = state.species.data;
   const planets = state.planets.data;
   const filmSpecies = film.species.map(speciesId => species[speciesId]);
   const filmPlanets = film.planets.map(planetId => planets[planetId]);
+
+  useEffect(() => {
+    dispatch(disableVisible());
+  }, []);
 
   const renderSpecies = () =>
     filmSpecies.map(specie => {

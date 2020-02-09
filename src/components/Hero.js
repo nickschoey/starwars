@@ -25,6 +25,7 @@ const Hero = () => {
   const [selectedRadio, setselectedRadio] = useState('/');
   const dispatch = useDispatch();
   const searchValue = useSelector(state => state.search.text);
+  const searchVisible = useSelector(state => state.search.visible);
   const history = useHistory();
 
   const navigateToView = value => {
@@ -44,9 +45,10 @@ const Hero = () => {
           </div>
           <div>
             <StyledInput
-              placeholder="Search"
+              visible={searchVisible}
               value={searchValue}
               onChange={handleChange}
+              placeholder="Search"
             />
           </div>
           <StyledRadios
@@ -74,5 +76,7 @@ const ButtonArray = styled.div`
 
 const StyledRadios = styled(Radios)``;
 
-const StyledInput = styled.input``;
+const StyledInput = styled.input`
+  visibility: ${props => (props.visible ? 'unset' : 'hidden')};
+`;
 export default Hero;

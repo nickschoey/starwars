@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Container } from 'nes-react';
@@ -6,10 +7,16 @@ import state from '../../data';
 import PeopleContainer from '../common/PeopleContainer';
 import FilmsContainer from '../common/FilmsContainer';
 import renderNumber from '../../helper/renderNumber';
+import { disableVisible } from '../../actions/search';
 
 const Planet = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const planet = state.planets.data[id];
+
+  useEffect(() => {
+    dispatch(disableVisible());
+  }, []);
 
   return (
     <MainContainer>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Container } from 'nes-react';
 import ReactTooltip from 'react-tooltip';
@@ -13,9 +14,11 @@ import {
   FlexContainer,
   ImageContainer
 } from '../common/Containers';
+import { disableVisible } from '../../actions/search';
 
 const Character = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const person = state.characters.data[id];
   const planet = state.planets.data[person.homeworld];
   const species = state.species.data[person.species];
@@ -23,6 +26,7 @@ const Character = () => {
 
   useEffect(() => {
     loadImage(person.id, setImage);
+    dispatch(disableVisible());
   }, []);
 
   const renderSpecies = () => {
