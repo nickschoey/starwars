@@ -15,6 +15,7 @@ import {
   ImageContainer
 } from '../common/Containers';
 import { disableVisible } from '../../actions/search';
+import renderNumber from '../../helper/renderNumber';
 
 const Character = () => {
   const { id } = useParams();
@@ -30,6 +31,14 @@ const Character = () => {
   }, [dispatch, person.id]);
 
   const renderSpecies = () => {
+    if (!species) {
+      return (
+        <div>
+          <h2>Unknown Species</h2>
+        </div>
+      );
+    }
+
     const speciesPlanet = state.planets.data[species.homeworld];
     return (
       <div>
@@ -61,7 +70,9 @@ const Character = () => {
           <FlexContainer dark>
             <div style={{ marginRight: '10px' }}>
               <InfoElement
-                title={species.name === 'Droid' ? 'Built in ' : 'Born in '}
+                title={
+                  species && species.name === 'Droid' ? 'Built in ' : 'Born in '
+                }
                 data={
                   <Anchor to={`/planet/${planet.id}`}>{planet.name}</Anchor>
                 }
@@ -71,9 +82,15 @@ const Character = () => {
           </FlexContainer>
           <FlexContainer dark>
             <div style={{ marginRight: '10px' }}>
-              <InfoElement title="Height: " data={`${person.height}cm.`} />
+              <InfoElement
+                title="Height: "
+                data={`${renderNumber(person.height, 'cm.')}`}
+              />
             </div>
-            <InfoElement title="Weight: " data={`${person.mass}kg.`} />
+            <InfoElement
+              title="Weight: "
+              data={`${renderNumber(person.mass, 'kg.')}`}
+            />
           </FlexContainer>
           <InfoElement title="Eye Color: " data={person.eye_color} />
           <InfoElement title="Hair: " data={person.hair_color} />
