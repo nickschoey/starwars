@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  color: #fafafa;
+  color: #fafafa !important;
   font-family: 'Press Start 2P', cursive;
-  background-color: #212529;
+  background-color: #212529 !important;
 }
