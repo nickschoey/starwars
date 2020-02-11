@@ -7,6 +7,7 @@ import { enableVisible, resetSearch } from '../actions/search';
 import applyFilter from '../helper/applyFilter';
 import { Container, Button } from 'nes-react';
 import sortCollection from '../helper/sortCollection';
+import { GridContainer } from './common/Containers';
 
 const Planets = () => {
   const dispatch = useDispatch();
@@ -44,14 +45,7 @@ const Planets = () => {
     ));
   };
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column',
-        paddingTop: '7rem'
-      }}
-    >
+    <GridContainer>
       <h1>Planets</h1>
       <div style={{ alignSelf: 'center' }}>
         <Container dark title="Sort">
@@ -61,7 +55,7 @@ const Planets = () => {
         </Container>
       </div>
       <CardView>{renderPlanets()}</CardView>
-    </div>
+    </GridContainer>
   );
 };
 

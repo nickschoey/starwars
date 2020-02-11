@@ -7,6 +7,7 @@ import CardView from './common/CardView';
 import { enableVisible, resetSearch } from '../actions/search';
 import applyFilter from '../helper/applyFilter';
 import sortCollection from '../helper/sortCollection';
+import { GridContainer } from './common/Containers';
 
 const Characters = () => {
   // const characters = useSelector(state => state.characters);
@@ -54,14 +55,7 @@ const Characters = () => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column',
-        paddingTop: '7rem'
-      }}
-    >
+    <GridContainer>
       <h1>People</h1>
       <div style={{ alignSelf: 'center' }}>
         <Container dark title="Sort">
@@ -71,7 +65,7 @@ const Characters = () => {
         </Container>
       </div>
       <CardView>{renderCharacters()}</CardView>
-    </div>
+    </GridContainer>
   );
 };
 

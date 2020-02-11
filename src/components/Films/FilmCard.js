@@ -6,6 +6,7 @@ import Anchor from '../common/Anchor';
 import romanNumerals from '../../helper/romanNumerals';
 import state from '../../data';
 import PersonMiniature from '../common/PersonMiniature';
+import { device } from '../../helper/constants';
 
 const FilmCard = ({ film }) => {
   const allCharacters = state.characters.data;
@@ -42,8 +43,9 @@ const FilmCardContainer = styled.div`
   display: flex;
   flex-grow: 1;
   align-items: center;
-  width: 900px;
   padding: 10px;
+  max-width: 900px;
+  font-size: 4px !important;
 `;
 
 const InnerContainer = styled(Container)`
@@ -57,9 +59,12 @@ const BigText = styled.div`
   padding-bottom: 10px;
   display: flex;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1rem;
   &:hover {
     color: #ffe81f;
+  }
+  @media ${device.tablet} {
+    font-size: 2rem;
   }
 `;
 

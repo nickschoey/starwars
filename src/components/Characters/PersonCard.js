@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Container } from 'nes-react';
 import Anchor from '../common/Anchor';
 import loadImage from '../../helper/importImage';
+import { device } from '../../helper/constants';
 
 const PersonCard = ({ person }) => {
   const [image, setImage] = useState(null);
@@ -30,8 +31,12 @@ const CardContainer = styled.div`
 `;
 
 const CardFrame = styled(Container)`
-  height: 230px;
-  width: 230px;
+  height: 170px;
+  width: 170px;
+  @media ${device.tablet} {
+    height: 230px;
+    width: 230px;
+  }
 `;
 const CardContent = styled.div`
   position: absolute;

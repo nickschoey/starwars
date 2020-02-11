@@ -7,6 +7,9 @@ import FilmCard from './Films/FilmCard';
 import { enableVisible, resetSearch } from '../actions/search';
 import applyFilter from '../helper/applyFilter';
 import sortCollection from '../helper/sortCollection';
+import styled from 'styled-components';
+import { device } from '../helper/constants';
+import { GridContainer } from './common/Containers';
 
 const Films = () => {
   const dispatch = useDispatch();
@@ -44,14 +47,7 @@ const Films = () => {
     ));
   };
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column',
-        paddingTop: '7rem'
-      }}
-    >
+    <GridContainer>
       <h1>Films</h1>
       <div style={{ alignSelf: 'center' }}>
         <Container dark title="Sort">
@@ -61,7 +57,7 @@ const Films = () => {
         </Container>
       </div>
       <CardView>{renderFilms()}</CardView>
-    </div>
+    </GridContainer>
   );
 };
 

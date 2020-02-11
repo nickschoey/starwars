@@ -9,6 +9,13 @@ export const MainContainer = styled.div`
   padding-top: 20px;
 `;
 
+export const GridContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 2rem;
+`;
+
 export const FlexContainer = styled.div`
   display: flex;
 `;
