@@ -5,13 +5,13 @@ import styled from 'styled-components';
 import state from '../../data';
 import Anchor from './Anchor';
 
-const FilmsContainer = ({ styling, filmIds }) => {
+const FilmsContainer = ({ filmIds }) => {
   const allFilms = state.films.data;
   const films = filmIds.map(id => allFilms[id]);
 
   return (
     <FilmsNesContainer>
-      <Container dark title="Films" style={styling}>
+      <Container style={{ flexGrow: 1 }} dark title="Films">
         {films.map(film => (
           <p key={film.url}>
             <Anchor to={`/film/${film.id}`}>{film.title}</Anchor>
@@ -23,11 +23,12 @@ const FilmsContainer = ({ styling, filmIds }) => {
 };
 
 const FilmsNesContainer = styled.div`
+  margin: 5px;
   display: flex;
+  width: 95%;
 `;
 
 FilmsContainer.propTypes = {
-  styling: PropTypes.object.isRequired,
   filmIds: PropTypes.arrayOf(PropTypes.number).isRequired
 };
 

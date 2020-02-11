@@ -4,6 +4,7 @@ import { Container } from 'nes-react';
 import styled from 'styled-components';
 import state from '../../data';
 import VehicleTooltip from './VehicleTooltip';
+import { colors } from '../../helper/constants';
 
 const VehiclesContainer = ({ vehicleIds, type, tooltipAlign, title }) => {
   const allVehicles = state[type].data;
@@ -11,32 +12,24 @@ const VehiclesContainer = ({ vehicleIds, type, tooltipAlign, title }) => {
 
   const renderVehicles = () => {
     return vehicles.map(vehicle => (
-      <VehicleElement key={vehicle.url}>
+      <div key={vehicle.url}>
         <VehicleText data-tip data-for={vehicle.url}>
           {vehicle.name}
         </VehicleText>
         <VehicleTooltip vehicle={vehicle} align={tooltipAlign} />
-      </VehicleElement>
+      </div>
     ));
   };
 
   return (
-    <StyledContainer dark title={title}>
+    <Container style={{ flexGrow: 1 }} dark title={title}>
       {renderVehicles()}
-    </StyledContainer>
+    </Container>
   );
 };
 
-const StyledContainer = styled(Container)`
-  flex-grow: 1;
-`;
-
-const VehicleElement = styled.div`
-  display: flex;
-`;
-
 const VehicleText = styled.p`
-  color: #b6231e;
+  color: ${colors.starWarsRed};
 `;
 
 VehiclesContainer.propTypes = {

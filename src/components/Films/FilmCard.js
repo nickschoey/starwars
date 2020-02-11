@@ -6,7 +6,7 @@ import Anchor from '../common/Anchor';
 import romanNumerals from '../../helper/romanNumerals';
 import state from '../../data';
 import PersonMiniature from '../common/PersonMiniature';
-import { device } from '../../helper/constants';
+import { device, colors } from '../../helper/constants';
 
 const FilmCard = ({ film }) => {
   const allCharacters = state.characters.data;
@@ -45,7 +45,6 @@ const FilmCardContainer = styled.div`
   align-items: center;
   padding: 10px;
   max-width: 900px;
-  font-size: 4px !important;
 `;
 
 const InnerContainer = styled(Container)`
@@ -61,7 +60,7 @@ const BigText = styled.div`
   justify-content: center;
   font-size: 1rem;
   &:hover {
-    color: #ffe81f;
+    color: ${colors.starWarsYellow};
   }
   @media ${device.tablet} {
     font-size: 2rem;

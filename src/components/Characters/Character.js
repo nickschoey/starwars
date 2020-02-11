@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Container } from 'nes-react';
 import ReactTooltip from 'react-tooltip';
+import styled from 'styled-components';
 import state from '../../data';
 import Anchor from '../common/Anchor';
 import loadImage from '../../helper/importImage';
@@ -16,6 +17,7 @@ import {
 } from '../common/Containers';
 import { disableVisible } from '../../actions/search';
 import renderNumber from '../../helper/renderNumber';
+import { device } from '../../helper/constants';
 
 const Character = () => {
   const { id } = useParams();
@@ -59,62 +61,77 @@ const Character = () => {
   };
 
   return (
-    <MainContainer dark>
-      <h1>{person.name}</h1>
-      {renderSpecies()}
-      <FlexContainer dark>
-        <ImageContainer dark>
-          <img src={image} alt={person.name} />
-        </ImageContainer>
-        <Container dark style={{ width: '650px' }}>
-          <FlexContainer dark>
-            <div style={{ marginRight: '10px' }}>
-              <InfoElement
-                title={
-                  species && species.name === 'Droid' ? 'Built in ' : 'Born in '
-                }
-                data={
-                  <Anchor to={`/planet/${planet.id}`}>{planet.name}</Anchor>
-                }
-              />
-            </div>
-            <InfoElement title="in " data={person.birth_year} />
-          </FlexContainer>
-          <FlexContainer dark>
-            <div style={{ marginRight: '10px' }}>
-              <InfoElement
-                title="Height: "
-                data={`${renderNumber(person.height, 'cm.')}`}
-              />
-            </div>
-            <InfoElement
-              title="Weight: "
-              data={`${renderNumber(person.mass, 'kg.')}`}
-            />
-          </FlexContainer>
-          <InfoElement title="Eye Color: " data={person.eye_color} />
-          <InfoElement title="Hair: " data={person.hair_color} />
-          <InfoElement title="Skin: " data={person.skin_color} />
-        </Container>
-      </FlexContainer>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <MainContainer dark>
+        <h1 style={{ textAlign: 'center' }}>{person.name}</h1>
+        {renderSpecies()}
 
-      <div style={{ display: 'flex', width: '950px' }}>
-        <VehiclesContainer
-          vehicleIds={person.vehicles}
-          type="vehicles"
-          tooltipAlign="left"
-          title="Vehicles"
-        />
-        <VehiclesContainer
-          vehicleIds={person.starships}
-          type="starships"
-          tooltipAlign="right"
-          title="Starships"
-        />
-      </div>
-      <FilmsContainer styling={{ width: '950px' }} filmIds={person.films} />
-    </MainContainer>
+        <FlexContainer dark>
+          <ImageContainer dark>
+            <img src={image} alt={person.name} />
+          </ImageContainer>
+          <Container dark>
+            <FlexContainer dark>
+              <div style={{ marginRight: '10px' }}>
+                <InfoElement
+                  title={
+                    species && species.name === 'Droid'
+                      ? 'Built in '
+                      : 'Born in '
+                  }
+                  data={
+                    <Anchor to={`/planet/${planet.id}`}>{planet.name}</Anchor>
+                  }
+                />
+              </div>
+              <InfoElement title="in " data={person.birth_year} />
+            </FlexContainer>
+            <FlexContainer dark>
+              <div style={{ marginRight: '10px' }}>
+                <InfoElement
+                  title="Height: "
+                  data={`${renderNumber(person.height, 'cm.')}`}
+                />
+              </div>
+              <InfoElement
+                title="Weight: "
+                data={`${renderNumber(person.mass, 'kg.')}`}
+              />
+            </FlexContainer>
+            <InfoElement title="Eye Color: " data={person.eye_color} />
+            <InfoElement title="Hair: " data={person.hair_color} />
+            <InfoElement title="Skin: " data={person.skin_color} />
+          </Container>
+        </FlexContainer>
+
+        <VehiclesInfo>
+          <VehiclesContainer
+            vehicleIds={person.vehicles}
+            type="vehicles"
+            tooltipAlign="left"
+            title="Vehicles"
+          />
+          <VehiclesContainer
+            vehicleIds={person.starships}
+            type="starships"
+            tooltipAlign="right"
+            title="Starships"
+          />
+        </VehiclesInfo>
+        <FilmsContainer filmIds={person.films} />
+      </MainContainer>
+    </div>
   );
 };
+
+const VehiclesInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  padding-bottom: 12px;
+  @media ${device.laptop} {
+    flex-direction: row;
+  }
+`;
 
 export default Character;
