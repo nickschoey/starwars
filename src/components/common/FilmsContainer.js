@@ -10,23 +10,15 @@ const FilmsContainer = ({ filmIds }) => {
   const films = filmIds.map(id => allFilms[id]);
 
   return (
-    <FilmsNesContainer>
-      <Container style={{ flexGrow: 1 }} dark title="Films">
-        {films.map(film => (
-          <p key={film.url}>
-            <Anchor to={`/film/${film.id}`}>{film.title}</Anchor>
-          </p>
-        ))}
-      </Container>
-    </FilmsNesContainer>
+    <Container style={{ flexGrow: 1, width: '95%' }} dark title="Films">
+      {films.map(film => (
+        <p key={film.url}>
+          <Anchor to={`/film/${film.id}`}>{film.title}</Anchor>
+        </p>
+      ))}
+    </Container>
   );
 };
-
-const FilmsNesContainer = styled.div`
-  margin: 5px;
-  display: flex;
-  width: 95%;
-`;
 
 FilmsContainer.propTypes = {
   filmIds: PropTypes.arrayOf(PropTypes.number).isRequired

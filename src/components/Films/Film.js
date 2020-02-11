@@ -3,8 +3,10 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Container } from 'nes-react';
 import ReactTooltip from 'react-tooltip';
+import styled from 'styled-components';
 import state from '../../data';
 import {
+  Root,
   MainContainer,
   FlexContainer,
   ImageContainer
@@ -15,6 +17,7 @@ import VehiclesContainer from '../common/VehiclesContainer';
 import PeopleContainer from '../common/PeopleContainer';
 import Anchor from '../common/Anchor';
 import { disableVisible } from '../../actions/search';
+import { device } from '../../helper/constants';
 
 const Film = () => {
   const { id } = useParams();
@@ -58,61 +61,73 @@ const Film = () => {
 
   const romanNumeral = romanNumerals[film.episode_id];
   return (
-    <MainContainer dark>
-      <h1>{`Star Wars Episode ${romanNumeral}: ${film.title}`}</h1>
-      <FlexContainer dark>
-        <ImageContainer dark>
-          <div style={{ fontSize: '5rem', padding: '10px' }}>
-            {romanNumeral}
-          </div>
-        </ImageContainer>
-        <Container dark style={{ width: '800px' }}>
-          <InfoElement title="Title: " data={film.title} />
-          <InfoElement title="Directed by " data={film.director} />
-          <InfoElement title="Produced by " data={film.producer} />
-          <InfoElement title="Release date: " data={film.release_date} />
-        </Container>
-      </FlexContainer>
-      <div style={{ display: 'flex', width: '1100px' }}>
-        <VehiclesContainer
-          title="Vehicles"
-          vehicleIds={film.vehicles}
-          type="vehicles"
-          tooltipAlign="left"
+    <Root>
+      <MainContainer dark>
+        <h1 style={{ textAlign: 'center' }}>
+          {`Star Wars Episode ${romanNumeral}: ${film.title}`}
+        </h1>
+        <FlexContainer dark>
+          <ImageContainer dark>
+            <div style={{ fontSize: '5rem', padding: '10px' }}>
+              {romanNumeral}
+            </div>
+          </ImageContainer>
+          <Container dark style={{ flexGrow: 1 }}>
+            <InfoElement title="Title: " data={film.title} />
+            <InfoElement title="Directed by " data={film.director} />
+            <InfoElement title="Produced by " data={film.producer} />
+            <InfoElement title="Release date: " data={film.release_date} />
+          </Container>
+        </FlexContainer>
+        <SwitchingContainer>
+          <VehiclesContainer
+            title="Vehicles"
+            vehicleIds={film.vehicles}
+            type="vehicles"
+            tooltipAlign="left"
+          />
+          <VehiclesContainer
+            title="Starships"
+            vehicleIds={film.starships}
+            type="starships"
+            tooltipAlign="right"
+          />
+        </SwitchingContainer>
+        <SwitchingContainer>
+          <Container
+            dark
+            title="Species"
+            style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}
+          >
+            {renderSpecies()}
+          </Container>
+          <Container
+            dark
+            title="Planets"
+            style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}
+          >
+            {renderPlanets()}
+          </Container>
+        </SwitchingContainer>
+        <PeopleContainer
+          title={`Characters appearing in ${film.title}`}
+          peopleIds={film.characters}
         />
-        <VehiclesContainer
-          title="Starships"
-          vehicleIds={film.starships}
-          type="starships"
-          tooltipAlign="right"
-        />
-      </div>
-      <div style={{ display: 'flex', width: '1100px' }}>
-        <Container
-          dark
-          title="Species"
-          style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}
-        >
-          {renderSpecies()}
+        <Container style={{ width: '95%' }} dark title="Opening Text">
+          <p>{film.opening_crawl}</p>
         </Container>
-        <Container
-          dark
-          title="Planets"
-          style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}
-        >
-          {renderPlanets()}
-        </Container>
-      </div>
-      <PeopleContainer
-        title={`Characters appearing in ${film.title}`}
-        styling={{ width: '1100px' }}
-        peopleIds={film.characters}
-      />
-      <Container dark title="Opening Text" style={{ width: '1100px' }}>
-        <p>{film.opening_crawl}</p>
-      </Container>
-    </MainContainer>
+      </MainContainer>
+    </Root>
   );
 };
 
 export default Film;
+
+const SwitchingContainer = styled.div`
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  @media ${device.laptop} {
+    flex-direction: row;
+  }
+`;

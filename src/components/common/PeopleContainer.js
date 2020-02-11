@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import PersonMiniature from './PersonMiniature';
 import state from '../../data';
 
-const PeopleContainer = ({ title, styling, peopleIds }) => {
+const PeopleContainer = ({ title, peopleIds }) => {
   const people = state.characters.data;
   const peopleToShow = peopleIds.map(id => people[id]);
 
@@ -16,23 +16,14 @@ const PeopleContainer = ({ title, styling, peopleIds }) => {
   };
 
   return (
-    <Container dark title={title} style={styling}>
-      <MiniatureContainer
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          flexWrap: 'wrap'
-        }}
-      >
-        {renderPeople()}
-      </MiniatureContainer>
+    <Container style={{ width: '95%' }} dark title={title}>
+      <MiniatureContainer>{renderPeople()}</MiniatureContainer>
     </Container>
   );
 };
 
 PeopleContainer.propTypes = {
   title: PropTypes.string.isRequired,
-  styling: PropTypes.object.isRequired,
   peopleIds: PropTypes.array.isRequired
 };
 
@@ -40,6 +31,8 @@ const MiniatureContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  width: 95%;
+  max-width: 1024px;
 `;
 
 export default PeopleContainer;

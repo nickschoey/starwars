@@ -8,6 +8,8 @@ import PeopleContainer from '../common/PeopleContainer';
 import FilmsContainer from '../common/FilmsContainer';
 import renderNumber from '../../helper/renderNumber';
 import { disableVisible } from '../../actions/search';
+import { MainContainer, Root } from '../common/Containers';
+import { device } from '../../helper/constants';
 
 const Planet = () => {
   const { id } = useParams();
@@ -19,63 +21,68 @@ const Planet = () => {
   }, [dispatch]);
 
   return (
-    <MainContainer>
-      <h1>{planet.name}</h1>
-      <h3>
-        {`(${renderNumber(
-          planet.population,
-          ' inhabitants',
-          'Population Unknown'
-        )})`}
-      </h3>
-      <div style={{ display: 'flex' }}>
-        <Container dark style={{ width: '650px' }}>
-          <p>
-            <strong>Rotation Period: </strong>
-            {renderNumber(planet.rotation_period, ' hours')}
-          </p>
-          <p>
-            <strong>Orbital Period: </strong>
-            {renderNumber(planet.orbital_period, ' days')}
-          </p>
-          <p>
-            <strong>Diameter: </strong>
-            {renderNumber(planet.diameter, 'km.')}
-          </p>
-          <p>
-            <strong>Climate: </strong>
-            {`${planet.climate}`}
-          </p>
-          <p>
-            <strong>Gravity: </strong>
-            {`${planet.gravity}`}
-          </p>
-          <p>
-            <strong>Terrain: </strong>
-            {`${planet.terrain}`}
-          </p>
-          <p>
-            <strong>Surface Water: </strong>
-            {renderNumber(planet.surface_water, '%')}
-          </p>
-        </Container>
-        <FilmsContainer styling={{ width: '450px' }} filmIds={planet.films} />
-      </div>
-      <PeopleContainer
-        title={`Characters from ${planet.name}`}
-        styling={{ width: '1100px' }}
-        peopleIds={planet.residents}
-      />
-    </MainContainer>
+    <Root>
+      <MainContainer>
+        <h1>{planet.name}</h1>
+        <h3 style={{ textAlign: 'center' }}>
+          {`(${renderNumber(
+            planet.population,
+            ' inhabitants',
+            'Population Unknown'
+          )})`}
+        </h3>
+        <DataContainer>
+          <Container style={{ width: '95%' }} title="Data" dark>
+            <p>
+              <strong>Rotation Period: </strong>
+              {renderNumber(planet.rotation_period, ' hours')}
+            </p>
+            <p>
+              <strong>Orbital Period: </strong>
+              {renderNumber(planet.orbital_period, ' days')}
+            </p>
+            <p>
+              <strong>Diameter: </strong>
+              {renderNumber(planet.diameter, 'km.')}
+            </p>
+            <p>
+              <strong>Climate: </strong>
+              {`${planet.climate}`}
+            </p>
+            <p>
+              <strong>Gravity: </strong>
+              {`${planet.gravity}`}
+            </p>
+            <p>
+              <strong>Terrain: </strong>
+              {`${planet.terrain}`}
+            </p>
+            <p>
+              <strong>Surface Water: </strong>
+              {renderNumber(planet.surface_water, '%')}
+            </p>
+          </Container>
+          <FilmsContainer filmIds={planet.films} />
+        </DataContainer>
+        <PeopleContainer
+          title={`Characters from ${planet.name}`}
+          peopleIds={planet.residents}
+        />
+      </MainContainer>
+    </Root>
   );
 };
 
-const MainContainer = styled.div`
+const DataContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding-top: 20px;
+  width: 95%;
+  padding-bottom: 12px;
+  @media ${device.laptop} {
+    align-items: stretch;
+    flex-direction: row;
+  }
 `;
 
 export default Planet;
