@@ -17,7 +17,7 @@ import VehiclesContainer from '../common/VehiclesContainer';
 import PeopleContainer from '../common/PeopleContainer';
 import Anchor from '../common/Anchor';
 import { disableVisible } from '../../actions/search';
-import { device } from '../../helper/constants';
+import { device, colors } from '../../helper/constants';
 
 const Film = () => {
   const { id } = useParams();
@@ -37,7 +37,11 @@ const Film = () => {
       const speciesPlanet = planets[specie.homeworld];
       return (
         <div>
-          <p style={{ color: '#b6231e' }} data-tip data-for={specie.url}>
+          <p
+            style={{ color: colors.starWarsRed }}
+            data-tip
+            data-for={specie.url}
+          >
             {`${specie.name}`}
           </p>
           <ReactTooltip id={specie.url} place="bottom">

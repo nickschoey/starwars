@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container } from 'nes-react';
-import Anchor from '../common/Anchor';
 import styled from 'styled-components';
+import Anchor from '../common/Anchor';
+import { colors } from '../../helper/constants';
 
 const PlanetCard = ({ planet }) => {
   return (
@@ -14,7 +15,7 @@ const PlanetCard = ({ planet }) => {
 
 const PlanetContainer = styled(Container)`
   &:hover {
-    color: #ffe81f;
+    color: ${colors.starWarsYellow};
   }
 `;
 

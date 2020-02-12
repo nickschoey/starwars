@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import renderNumber from '../../helper/renderNumber';
+import { colors } from '../../helper/constants';
 
 const VehicleTooltip = ({ vehicle, align }) => {
   return (
@@ -18,7 +19,7 @@ const VehicleTooltip = ({ vehicle, align }) => {
       <li>{`Crew: ${vehicle.crew}`}</li>
       <li>{`Passengers: ${vehicle.passengers}`}</li>
       <li>{`Cargo: ${renderNumber(vehicle.cargo_capacity, ' tons')}`}</li>
-      <div style={{ padding: '8px', color: '#ffe81f' }}>
+      <div style={{ padding: '8px', color: colors.starWarsYellow }}>
         {renderNumber(vehicle.cost_in_credits, ' credits', 'Unknown Cost')}
       </div>
     </ReactTooltip>

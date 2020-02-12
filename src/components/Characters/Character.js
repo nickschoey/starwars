@@ -17,7 +17,7 @@ import {
 } from '../common/Containers';
 import { disableVisible } from '../../actions/search';
 import renderNumber from '../../helper/renderNumber';
-import { device } from '../../helper/constants';
+import { device, colors } from '../../helper/constants';
 
 const Character = () => {
   const { id } = useParams();
@@ -44,7 +44,11 @@ const Character = () => {
     const speciesPlanet = state.planets.data[species.homeworld];
     return (
       <div>
-        <h2 style={{ color: '#b6231e' }} data-tip data-for="speciesInfo">
+        <h2
+          style={{ color: colors.starWarsRed }}
+          data-tip
+          data-for="speciesInfo"
+        >
           {`(${species.name})`}
         </h2>
         <ReactTooltip id="speciesInfo" place="bottom">
