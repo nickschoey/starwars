@@ -30,6 +30,7 @@ export default function getAllData(endpoint) {
       return data;
     })
     .catch(() => {
+      // Swapi tends to fail and get saturated. This returns the right data if needed
       return state[endpoint];
     });
 }
