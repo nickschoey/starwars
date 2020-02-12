@@ -7,8 +7,6 @@ import FilmCard from './Films/FilmCard';
 import { enableVisible, resetSearch } from '../actions/search';
 import applyFilter from '../helper/applyFilter';
 import sortCollection from '../helper/sortCollection';
-import styled from 'styled-components';
-import { device } from '../helper/constants';
 import { GridContainer } from './common/Containers';
 import { changeView } from '../actions/navigation';
 

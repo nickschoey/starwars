@@ -6,22 +6,18 @@ import { colors, device } from '../../helper/constants';
 const Github = () => {
   return (
     <BalloonContainer>
-      <Balloon
-        style={{
-          backgroundColor: colors.starWarsBlack,
-          textAlign: 'center',
-          display: 'flex'
-        }}
-        fromRight
-      >
+      <StyledBalloon fromRight>
         <p>
           View the
-          <StyledAnchor href="https://github.com/nickschoey/starwars">
+          <StyledAnchor
+            target="_blank"
+            href="https://github.com/nickschoey/starwars"
+          >
             {' '}
             Code
           </StyledAnchor>
         </p>
-      </Balloon>
+      </StyledBalloon>
       <Sprite sprite="octocat" style={{ alignSelf: 'flex-end' }} />
     </BalloonContainer>
   );
@@ -39,7 +35,13 @@ const BalloonContainer = styled.div`
   }
 `;
 
-const StyledAnchor = styled.div`
+const StyledBalloon = styled(Balloon)`
+  background-color: ${colors.starWarsBlack};
+  text-align: center;
+  display: flex;
+`;
+
+const StyledAnchor = styled.a`
   color: ${colors.starWarsYellow};
   text-decoration: none;
   &:hover {

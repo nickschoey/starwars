@@ -7,6 +7,7 @@ import romanNumerals from '../../helper/romanNumerals';
 import state from '../../data';
 import PersonMiniature from '../common/PersonMiniature';
 import { device, colors } from '../../helper/constants';
+import ReactTooltip from 'react-tooltip';
 
 const FilmCard = ({ film }) => {
   const allCharacters = state.characters.data;
@@ -17,22 +18,20 @@ const FilmCard = ({ film }) => {
       <FilmCardContainer>
         <InnerContainer dark>
           <BigText>{`${romanNumerals[film.episode_id]} ${film.title}`}</BigText>
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'center'
-            }}
-          >
+          <FilmPeople>
             {filmCharacters.map(character => (
-              <PersonMiniature
-                key={character.url}
-                justMiniature
-                withLabel={false}
-                id={character.id}
-              />
+              <div key={character.url} data-tip data-for={character.url}>
+                <PersonMiniature
+                  justMiniature
+                  withLabel={false}
+                  id={character.id}
+                />
+                <ReactTooltip id={character.url}>
+                  <p style={{ fontSize: '0.7rem' }}>{character.name}</p>
+                </ReactTooltip>
+              </div>
             ))}
-          </div>
+          </FilmPeople>
         </InnerContainer>
       </FilmCardContainer>
     </Anchor>
@@ -45,6 +44,12 @@ const FilmCardContainer = styled.div`
   align-items: center;
   padding: 10px;
   max-width: 900px;
+`;
+
+const FilmPeople = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const InnerContainer = styled(Container)`

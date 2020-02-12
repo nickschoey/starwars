@@ -1,26 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { Radios } from 'nes-react';
 import { useHistory } from 'react-router-dom';
 import { Sticky } from 'react-sticky';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeSearch } from '../actions/search';
 import { colors, device } from '../helper/constants';
-
-const routeOptions = [
-  {
-    value: '/',
-    label: 'People'
-  },
-  {
-    value: '/planets',
-    label: 'Planets'
-  },
-  {
-    value: '/films',
-    label: 'Films'
-  }
-];
 
 const Hero = () => {
   const dispatch = useDispatch();
@@ -78,15 +62,6 @@ const PageTitle = styled.div`
   }
 `;
 
-const StyledRadios = styled.div`
-  display: flex;
-  font-size: 7px;
-  padding-top: 10px;
-  @media ${device.tablet} {
-    font-size: 1rem;
-  }
-`;
-
 const StyledInput = styled.input`
   justify-self: center;
   max-width: 90%;
@@ -97,19 +72,9 @@ const StyledInput = styled.input`
   }
 `;
 
-const RadioElement = styled.div`
-  color: ${props => {
-    return props.view === props.value
-      ? colors.starWarsYellow
-      : colors.starWarsWhite;
-  }};
-  padding: 0px 15px;
-`;
-
 const SelectView = () => {
   const view = useSelector(state => state.navigation.view);
   const history = useHistory();
-
   const navigateToView = value => {
     history.push(value);
   };
@@ -140,5 +105,23 @@ const SelectView = () => {
     </StyledRadios>
   );
 };
+
+const StyledRadios = styled.div`
+  display: flex;
+  font-size: 7px;
+  padding-top: 10px;
+  @media ${device.tablet} {
+    font-size: 1rem;
+  }
+`;
+
+const RadioElement = styled.div`
+  color: ${props => {
+    return props.view === props.value
+      ? colors.starWarsYellow
+      : colors.starWarsWhite;
+  }};
+  padding: 0px 15px;
+`;
 
 export default Hero;

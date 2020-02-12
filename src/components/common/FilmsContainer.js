@@ -21,11 +21,16 @@ const FilmsContainer = ({ filmIds }) => {
   };
 
   return (
-    <Container style={{ flexGrow: 1, width: '95%' }} dark title="Films">
+    <StyledContainer dark title="Films">
       {renderFilms()}
-    </Container>
+    </StyledContainer>
   );
 };
+
+const StyledContainer = styled(Container)`
+  flex-grow: 1;
+  width: 95%;
+`;
 
 FilmsContainer.propTypes = {
   filmIds: PropTypes.arrayOf(PropTypes.number).isRequired
