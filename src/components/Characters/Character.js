@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Container } from 'nes-react';
 import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components';
-import state from '../../data';
+// import state from '../../data';
 import Anchor from '../common/Anchor';
 import loadImage from '../../helper/importImage';
 import FilmsContainer from '../common/FilmsContainer';
@@ -25,9 +25,12 @@ import { changeView } from '../../actions/navigation';
 const Character = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const person = state.characters.data[id];
-  const planet = state.planets.data[person.homeworld];
-  const species = state.species.data[person.species];
+  const person = useSelector(state => state.characters.data[id]);
+  const planet = useSelector(state => state.planets.data[person.homeworld]);
+  const species = useSelector(state => state.species.data[person.species]);
+  const speciesPlanet = useSelector(
+    state => state.planets.data[species.homeworld]
+  );
   const [image, setImage] = useState(null);
 
   useEffect(() => {
@@ -45,7 +48,6 @@ const Character = () => {
       );
     }
 
-    const speciesPlanet = state.planets.data[species.homeworld];
     return (
       <div>
         <h2

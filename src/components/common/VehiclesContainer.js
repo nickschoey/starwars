@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container } from 'nes-react';
 import styled from 'styled-components';
-import state from '../../data';
+// import state from '../../data';
 import VehicleTooltip from './VehicleTooltip';
 import { colors } from '../../helper/constants';
+import { useSelector } from 'react-redux';
 
 const VehiclesContainer = ({ vehicleIds, type, tooltipAlign, title }) => {
-  const allVehicles = state[type].data;
+  const allVehicles = useSelector(state => state[type].data);
   const vehicles = vehicleIds.map(id => allVehicles[id]);
 
   const renderVehicles = () => {

@@ -1,12 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Container } from 'nes-react';
 import styled from 'styled-components';
-import state from '../../data';
+// import state from '../../data';
 import Anchor from './Anchor';
 
 const FilmsContainer = ({ filmIds }) => {
-  const allFilms = state.films.data;
+  const allFilms = useSelector(state => state.films.data);
   const films = filmIds.map(id => allFilms[id]);
 
   const renderFilms = () => {

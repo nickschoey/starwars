@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Container } from 'nes-react';
 import PersonCard from './Characters/PersonCard';
-import state from '../data';
+// import state from '../data';
 import CardView from './common/CardView';
 import { enableVisible, resetSearch } from '../actions/search';
 import applyFilter from '../helper/applyFilter';
@@ -11,12 +11,11 @@ import { GridContainer } from './common/Containers';
 import { changeView } from '../actions/navigation';
 
 const Characters = () => {
-  // const characters = useSelector(state => state.characters);
   const dispatch = useDispatch();
-  const allCharacters = state.characters.data;
+  const allCharacters = useSelector(state => state.characters.data);
+  const searchText = useSelector(state => state.search.text);
   const [characters, setCharacters] = useState(allCharacters);
   const [ascendingSort, setAscendingSort] = useState(true);
-  const searchText = useSelector(stat => stat.search.text);
 
   // Calling search algorithm
   useEffect(() => {

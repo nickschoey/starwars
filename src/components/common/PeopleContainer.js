@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { Container } from 'nes-react';
 import styled from 'styled-components';
 import PersonMiniature from './PersonMiniature';
-import state from '../../data';
+import { useSelector } from 'react-redux';
+// import state from '../../data';
 
 const PeopleContainer = ({ title, peopleIds }) => {
-  const people = state.characters.data;
+  const people = useSelector(state => state.characters.data);
   const peopleToShow = peopleIds.map(id => people[id]);
 
   const renderPeople = () => {

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Container } from 'nes-react';
 import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components';
-import state from '../../data';
+// import state from '../../data';
 import {
   Root,
   MainContainer,
@@ -24,9 +24,9 @@ import { changeView } from '../../actions/navigation';
 const Film = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const film = state.films.data[id];
-  const species = state.species.data;
-  const planets = state.planets.data;
+  const film = useSelector(state => state.films.data[id]);
+  const species = useSelector(state => state.species.data);
+  const planets = useSelector(state => state.planets.data);
   const filmSpecies = film.species.map(speciesId => species[speciesId]);
   const filmPlanets = film.planets.map(planetId => planets[planetId]);
 

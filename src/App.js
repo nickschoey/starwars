@@ -22,21 +22,20 @@ import Github from './components/common/Github';
 
 const App = () => {
   const dispatch = useDispatch();
-  const state = useSelector(state => state);
   useEffect(() => {
-    // dispatch(getCharacters());
-    // dispatch(getFilms());
-    // dispatch(getStarships());
-    // dispatch(getSpecies());
-    // dispatch(getVehicles());
-    // dispatch(getPlanets());
+    dispatch(getCharacters());
+    dispatch(getFilms());
+    dispatch(getStarships());
+    dispatch(getSpecies());
+    dispatch(getVehicles());
+    dispatch(getPlanets());
   }, []);
   return (
     <Router>
       <StickyContainer>
         <Hero />
         <Github />
-        {/* <LoadModal /> */}
+        <LoadModal />
 
         <Switch>
           <Route exact path="/">

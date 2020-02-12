@@ -1,16 +1,17 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Container } from 'nes-react';
 import styled from 'styled-components';
+import ReactTooltip from 'react-tooltip';
 import Anchor from '../common/Anchor';
 import romanNumerals from '../../helper/romanNumerals';
-import state from '../../data';
+// import state from '../../data';
 import PersonMiniature from '../common/PersonMiniature';
 import { device, colors } from '../../helper/constants';
-import ReactTooltip from 'react-tooltip';
 
 const FilmCard = ({ film }) => {
-  const allCharacters = state.characters.data;
+  const allCharacters = useSelector(state => state.characters.data);
   const filmCharacters = film.characters.map(id => allCharacters[id]);
 
   return (
