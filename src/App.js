@@ -18,6 +18,7 @@ import getPlanets from './actions/getPlanets';
 import LoadModal from './components/LoadModal';
 import Planet from './components/Planets/Planet';
 import Film from './components/Films/Film';
+import Github from './components/common/Github';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const App = () => {
     <Router>
       <StickyContainer>
         <Hero />
-
+        <Github />
         {/* <LoadModal /> */}
 
         <Switch>
