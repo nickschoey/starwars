@@ -10,6 +10,7 @@ import renderNumber from '../../helper/renderNumber';
 import { disableVisible } from '../../actions/search';
 import { MainContainer, Root } from '../common/Containers';
 import { device } from '../../helper/constants';
+import BackButton from '../common/BackButton';
 
 const Planet = () => {
   const { id } = useParams();
@@ -22,6 +23,7 @@ const Planet = () => {
 
   return (
     <Root>
+      <BackButton />
       <MainContainer>
         <h1>{planet.name}</h1>
         <h3 style={{ textAlign: 'center' }}>

@@ -13,11 +13,13 @@ import InfoElement from '../common/InfoElement';
 import {
   MainContainer,
   FlexContainer,
-  ImageContainer
+  ImageContainer,
+  Root
 } from '../common/Containers';
 import { disableVisible } from '../../actions/search';
 import renderNumber from '../../helper/renderNumber';
 import { device, colors } from '../../helper/constants';
+import BackButton from '../common/BackButton';
 
 const Character = () => {
   const { id } = useParams();
@@ -65,7 +67,8 @@ const Character = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <Root>
+      <BackButton />
       <MainContainer dark>
         <h1 style={{ textAlign: 'center' }}>{person.name}</h1>
         {renderSpecies()}
@@ -124,7 +127,7 @@ const Character = () => {
         </VehiclesInfo>
         <FilmsContainer filmIds={person.films} />
       </MainContainer>
-    </div>
+    </Root>
   );
 };
 

@@ -18,6 +18,7 @@ import PeopleContainer from '../common/PeopleContainer';
 import Anchor from '../common/Anchor';
 import { disableVisible } from '../../actions/search';
 import { device, colors } from '../../helper/constants';
+import BackButton from '../common/BackButton';
 
 const Film = () => {
   const { id } = useParams();
@@ -71,6 +72,7 @@ const Film = () => {
   const romanNumeral = romanNumerals[film.episode_id];
   return (
     <Root>
+      <BackButton />
       <MainContainer dark>
         <h1 style={{ textAlign: 'center' }}>
           {`Star Wars Episode ${romanNumeral}: ${film.title}`}
