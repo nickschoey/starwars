@@ -46,4 +46,4 @@ Your app is ready to be deployed!
 
 ### Notice
 
-8 Bit art used created by [Lustriouscharming](https://www.deviantart.com/lustriouscharming)
+8 bit art created by [Lustriouscharming](https://www.deviantart.com/lustriouscharming)
