@@ -19,9 +19,12 @@ import LoadModal from './components/LoadModal';
 import Planet from './components/Planets/Planet';
 import Film from './components/Films/Film';
 import Github from './components/common/Github';
+import useLoadStatus from './helper/useLoadStatus';
 
 const App = () => {
   const dispatch = useDispatch();
+  const dataLoaded = useLoadStatus();
+
   useEffect(() => {
     dispatch(getCharacters());
     dispatch(getFilms());
@@ -29,34 +32,39 @@ const App = () => {
     dispatch(getSpecies());
     dispatch(getVehicles());
     dispatch(getPlanets());
-  }, []);
+  }, [dispatch]);
+
   return (
     <Router>
-      <StickyContainer>
-        <Hero />
-        <Github />
+      {!dataLoaded.success ? (
         <LoadModal />
-        <Switch>
-          <Route exact path="/">
-            <Characters />
-          </Route>
-          <Route exact path="/planets">
-            <Planets />
-          </Route>
-          <Route exact path="/films">
-            <Films />
-          </Route>
-          <Route path="/character/:id">
-            <Character />
-          </Route>
-          <Route path="/planet/:id">
-            <Planet />
-          </Route>
-          <Route path="/film/:id">
-            <Film />
-          </Route>
-        </Switch>
-      </StickyContainer>
+      ) : (
+        <StickyContainer>
+          <Hero />
+          <Github />
+
+          <Switch>
+            <Route exact path="/">
+              <Characters />
+            </Route>
+            <Route exact path="/planets">
+              <Planets />
+            </Route>
+            <Route exact path="/films">
+              <Films />
+            </Route>
+            <Route path="/character/:id">
+              <Character />
+            </Route>
+            <Route path="/planet/:id">
+              <Planet />
+            </Route>
+            <Route path="/film/:id">
+              <Film />
+            </Route>
+          </Switch>
+        </StickyContainer>
+      )}
     </Router>
   );
 };

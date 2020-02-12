@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Popup from 'reactjs-popup';
 import { Container, Progress } from 'nes-react';
 import { useSelector } from 'react-redux';
+import useLoadStatus from '../helper/useLoadStatus';
+import { colors } from '../helper/constants';
 
 export default () => {
   const [open, setOpen] = useState(true);
@@ -11,27 +13,13 @@ export default () => {
   const species = useSelector(state => state.species);
   const starships = useSelector(state => state.starships);
   const vehicles = useSelector(state => state.vehicles);
+  const dataLoaded = useLoadStatus();
 
   useEffect(() => {
-    const isLoadingDone = () => {
-      return (
-        characters.pending === false &&
-        films.pending === false &&
-        planets.pending === false &&
-        species.pending === false &&
-        starships.pending === false &&
-        vehicles.pending === false
-      );
-    };
-    if (isLoadingDone()) setOpen(false);
-  }, [
-    characters.pending,
-    films.pending,
-    planets.pending,
-    species.pending,
-    starships.pending,
-    vehicles.pending
-  ]);
+    if (dataLoaded) {
+      setOpen(false);
+    }
+  }, [dataLoaded]);
 
   const renderProgress = (state, tag) => {
     const { data, pending } = state;
@@ -60,12 +48,12 @@ export default () => {
   };
 
   return (
-    <Popup
-      open={open}
-      modal
-      closeOnEscape={false}
-      closeOnDocumentClick={false}
-      lockScroll={false}
+    <div
+      style={{
+        backgroundColor: colors.starWarsWhite,
+        position: 'absolute',
+        zIndex: 50000
+      }}
     >
       <Container style={{ color: 'black' }}>
         <p>Welcome to the 8 bits Star Wars catalogue!</p>
@@ -78,6 +66,6 @@ export default () => {
         {renderProgress(starships, 'starships')}
         {renderProgress(vehicles, 'vehicles')}
       </Container>
-    </Popup>
+    </div>
   );
 };
