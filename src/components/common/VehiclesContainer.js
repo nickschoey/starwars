@@ -11,6 +11,13 @@ const VehiclesContainer = ({ vehicleIds, type, tooltipAlign, title }) => {
   const vehicles = vehicleIds.map(id => allVehicles[id]);
 
   const renderVehicles = () => {
+    if (vehicles.length === 0) {
+      return (
+        <p style={{ textAlign: 'center ' }}>
+          {`This character has no ${type}`}
+        </p>
+      );
+    }
     return vehicles.map(vehicle => (
       <div key={vehicle.url}>
         <VehicleText data-tip data-for={vehicle.url}>

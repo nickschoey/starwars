@@ -9,13 +9,20 @@ const FilmsContainer = ({ filmIds }) => {
   const allFilms = state.films.data;
   const films = filmIds.map(id => allFilms[id]);
 
+  const renderFilms = () => {
+    if (films.length === 0) {
+      return <p style={{ textAlign: 'center' }}>No films happen here...</p>;
+    }
+    return films.map(film => (
+      <p key={film.url}>
+        <Anchor to={`/film/${film.id}`}>{film.title}</Anchor>
+      </p>
+    ));
+  };
+
   return (
     <Container style={{ flexGrow: 1, width: '95%' }} dark title="Films">
-      {films.map(film => (
-        <p key={film.url}>
-          <Anchor to={`/film/${film.id}`}>{film.title}</Anchor>
-        </p>
-      ))}
+      {renderFilms()}
     </Container>
   );
 };

@@ -10,6 +10,9 @@ const PeopleContainer = ({ title, peopleIds }) => {
   const peopleToShow = peopleIds.map(id => people[id]);
 
   const renderPeople = () => {
+    if (peopleToShow.length === 0) {
+      return <p style={{ textAlign: 'center' }}>There is no one here...</p>;
+    }
     return peopleToShow.map(person => (
       <PersonMiniature key={person.url} name={person.name} id={person.id} />
     ));
