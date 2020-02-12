@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { StickyContainer } from 'react-sticky';
 
 import Character from './components/Characters/Character';
@@ -36,7 +36,6 @@ const App = () => {
         <Hero />
         <Github />
         <LoadModal />
-
         <Switch>
           <Route exact path="/">
             <Characters />

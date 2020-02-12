@@ -9,6 +9,7 @@ import applyFilter from '../helper/applyFilter';
 import sortCollection from '../helper/sortCollection';
 import { GridContainer } from './common/Containers';
 import { changeView } from '../actions/navigation';
+import generateFilters from './Characters/generateFilters';
 
 const Characters = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,6 @@ const Characters = () => {
   const searchText = useSelector(state => state.search.text);
   const [characters, setCharacters] = useState(allCharacters);
   const [ascendingSort, setAscendingSort] = useState(true);
-
   // Calling search algorithm
   useEffect(() => {
     if (searchText !== '') {

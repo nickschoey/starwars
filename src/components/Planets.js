@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Container, Button } from 'nes-react';
 import CardView from './common/CardView';
-import state from '../data';
 import PlanetCard from './Planets/PlanetCard';
 import { enableVisible, resetSearch } from '../actions/search';
 import applyFilter from '../helper/applyFilter';
-import { Container, Button } from 'nes-react';
 import sortCollection from '../helper/sortCollection';
 import { GridContainer } from './common/Containers';
 import { changeView } from '../actions/navigation';
 
 const Planets = () => {
   const dispatch = useDispatch();
-  const allPlanets = state.planets.data;
+  const allPlanets = useSelector(state => state.planets.data);
   const [planets, setPlanets] = useState(allPlanets);
   const [ascendingSort, setAscendingSort] = useState(true);
   const searchText = useSelector(stat => stat.search.text);

@@ -46,7 +46,7 @@ export default () => {
     if (pending) {
       return (
         <div style={{ paddingTop: '10px' }}>
-          <dvi>{`Counting ${tag} in the galaxy...`}</dvi>
+          <div>{`Counting ${tag} in the galaxy...`}</div>
           <Progress value={50} max={100} />
         </div>
       );

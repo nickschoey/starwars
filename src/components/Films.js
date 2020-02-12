@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Button } from 'nes-react';
 import CardView from './common/CardView';
-import state from '../data';
 import FilmCard from './Films/FilmCard';
 import { enableVisible, resetSearch } from '../actions/search';
 import applyFilter from '../helper/applyFilter';
@@ -12,7 +11,7 @@ import { changeView } from '../actions/navigation';
 
 const Films = () => {
   const dispatch = useDispatch();
-  const allFilms = state.films.data;
+  const allFilms = useSelector(state => state.films.data);
   const [films, setFilms] = useState(allFilms);
   const [ascendingSort, setAscendingSort] = useState(true);
   const searchText = useSelector(stat => stat.search.text);

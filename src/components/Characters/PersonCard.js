@@ -27,7 +27,7 @@ const PersonCard = ({ person }) => {
 };
 
 const CardContainer = styled.div`
-  padding: 5px;
+  padding: 7px;
 `;
 
 const CardFrame = styled(Container)`
@@ -40,7 +40,7 @@ const CardFrame = styled(Container)`
 `;
 const CardContent = styled.div`
   position: absolute;
-  bottom: 15px;
+  bottom: 13px;
   z-index: -1;
 `;
 

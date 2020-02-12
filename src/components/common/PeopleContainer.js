@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { Container } from 'nes-react';
 import styled from 'styled-components';
 import PersonMiniature from './PersonMiniature';
-import { useSelector } from 'react-redux';
 // import state from '../../data';
 
 const PeopleContainer = ({ title, peopleIds }) => {

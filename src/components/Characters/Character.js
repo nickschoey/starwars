@@ -27,9 +27,11 @@ const Character = () => {
   const dispatch = useDispatch();
   const person = useSelector(state => state.characters.data[id]);
   const planet = useSelector(state => state.planets.data[person.homeworld]);
-  const species = useSelector(state => state.species.data[person.species]);
-  const speciesPlanet = useSelector(
-    state => state.planets.data[species.homeworld]
+  const species = useSelector(state =>
+    person.species.lenght !== 0 ? state.species.data[person.species] : null
+  );
+  const speciesPlanet = useSelector(state =>
+    species ? state.planets.data[species.homeworld] : null
   );
   const [image, setImage] = useState(null);
 
