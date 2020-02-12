@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { Container } from 'nes-react';
 import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components';
@@ -24,6 +24,7 @@ import { changeView } from '../../actions/navigation';
 const Film = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const film = useSelector(state => state.films.data[id]);
   const species = useSelector(state => state.species.data);
   const planets = useSelector(state => state.planets.data);
@@ -34,6 +35,10 @@ const Film = () => {
     dispatch(disableVisible());
     dispatch(changeView('films'));
   }, [dispatch]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const renderSpecies = () =>
     filmSpecies.map(specie => {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Button } from 'nes-react';
+import { useLocation } from 'react-router-dom';
 import CardView from './common/CardView';
 import FilmCard from './Films/FilmCard';
 import { enableVisible, resetSearch } from '../actions/search';
@@ -11,6 +12,7 @@ import { changeView } from '../actions/navigation';
 
 const Films = () => {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const allFilms = useSelector(state => state.films.data);
   const [films, setFilms] = useState(allFilms);
   const [ascendingSort, setAscendingSort] = useState(true);
@@ -32,6 +34,10 @@ const Films = () => {
     dispatch(enableVisible());
     dispatch(changeView('films'));
   }, [dispatch]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const onHandleSort = value => {
     const filmsArray = Object.values(films);

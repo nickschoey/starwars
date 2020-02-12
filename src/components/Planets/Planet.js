@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { Container } from 'nes-react';
 // import state from '../../data';
@@ -12,9 +12,11 @@ import { MainContainer, Root } from '../common/Containers';
 import { device } from '../../helper/constants';
 import BackButton from '../common/BackButton';
 import { changeView } from '../../actions/navigation';
+import capitalize from '../../helper/capitalize';
 
 const Planet = () => {
   const { id } = useParams();
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const planet = useSelector(state => state.planets.data[id]);
 
@@ -22,6 +24,10 @@ const Planet = () => {
     dispatch(disableVisible());
     dispatch(changeView('planets'));
   }, [dispatch]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <Root>
@@ -51,7 +57,7 @@ const Planet = () => {
             </p>
             <p>
               <strong>Climate: </strong>
-              {`${planet.climate}`}
+              {`${capitalize(planet.climate)}`}
             </p>
             <p>
               <strong>Gravity: </strong>
@@ -59,7 +65,7 @@ const Planet = () => {
             </p>
             <p>
               <strong>Terrain: </strong>
-              {`${planet.terrain}`}
+              {`${capitalize(planet.terrain)}`}
             </p>
             <p>
               <strong>Surface Water: </strong>

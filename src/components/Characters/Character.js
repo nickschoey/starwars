@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { Container } from 'nes-react';
 import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components';
@@ -21,9 +21,11 @@ import renderNumber from '../../helper/renderNumber';
 import { device, colors } from '../../helper/constants';
 import BackButton from '../common/BackButton';
 import { changeView } from '../../actions/navigation';
+import capitalize from '../../helper/capitalize';
 
 const Character = () => {
   const { id } = useParams();
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const person = useSelector(state => state.characters.data[id]);
   const planet = useSelector(state => state.planets.data[person.homeworld]);
@@ -40,6 +42,10 @@ const Character = () => {
     dispatch(disableVisible());
     dispatch(changeView('people'));
   }, [dispatch, person.id]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const renderSpecies = () => {
     if (!species) {
@@ -61,7 +67,7 @@ const Character = () => {
         </h2>
         <ReactTooltip id="speciesInfo" place="bottom">
           <p>
-            {`${species.classification} ${species.designation} ${
+            {`${capitalize(species.classification)} ${species.designation} ${
               species.homeworld !== null
                 ? ` originary from ${speciesPlanet.name}.`
                 : `without a homeworld.`
@@ -111,9 +117,12 @@ const Character = () => {
                 data={`${renderNumber(person.mass, 'kg.')}`}
               />
             </FlexContainer>
-            <InfoElement title="Eye Color: " data={person.eye_color} />
-            <InfoElement title="Hair: " data={person.hair_color} />
-            <InfoElement title="Skin: " data={person.skin_color} />
+            <InfoElement
+              title="Eye Color: "
+              data={capitalize(person.eye_color)}
+            />
+            <InfoElement title="Hair: " data={capitalize(person.hair_color)} />
+            <InfoElement title="Skin: " data={capitalize(person.skin_color)} />
           </Container>
         </FlexContainer>
 
