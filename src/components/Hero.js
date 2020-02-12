@@ -81,9 +81,10 @@ const HeroContainer = styled.div`
 `;
 
 const PageTitle = styled.div`
-  font-size: 8px;
+  font-size: 0.8rem;
   padding-bottom: 5px;
-  @media ${device.desktop} {
+  text-align: center;
+  @media ${device.laptopL} {
     font-size: 1rem;
     padding-bottom: 0px;
     display: inline;

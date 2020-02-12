@@ -53,11 +53,16 @@ const Film = () => {
       );
     });
   const renderPlanets = () =>
-    filmPlanets.map(planet => (
-      <p key={planet.url}>
-        <Anchor to={`/planet/${planet.id}`}>{planet.name}</Anchor>
-      </p>
-    ));
+    filmPlanets.map(planet => {
+      if (planet !== undefined) {
+        return (
+          <p key={planet.url}>
+            <Anchor to={`/planet/${planet.id}`}>{planet.name}</Anchor>
+          </p>
+        );
+      }
+      return <p />;
+    });
 
   const romanNumeral = romanNumerals[film.episode_id];
   return (
