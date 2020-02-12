@@ -10,6 +10,7 @@ import sortCollection from '../helper/sortCollection';
 import styled from 'styled-components';
 import { device } from '../helper/constants';
 import { GridContainer } from './common/Containers';
+import { changeView } from '../actions/navigation';
 
 const Films = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const Films = () => {
   useEffect(() => {
     dispatch(resetSearch());
     dispatch(enableVisible());
+    dispatch(changeView('films'));
   }, [dispatch]);
 
   const onHandleSort = value => {

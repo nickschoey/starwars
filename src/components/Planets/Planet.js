@@ -11,6 +11,7 @@ import { disableVisible } from '../../actions/search';
 import { MainContainer, Root } from '../common/Containers';
 import { device } from '../../helper/constants';
 import BackButton from '../common/BackButton';
+import { changeView } from '../../actions/navigation';
 
 const Planet = () => {
   const { id } = useParams();
@@ -19,6 +20,7 @@ const Planet = () => {
 
   useEffect(() => {
     dispatch(disableVisible());
+    dispatch(changeView('planets'));
   }, [dispatch]);
 
   return (

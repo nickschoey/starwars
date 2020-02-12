@@ -5,6 +5,7 @@ import { device } from '../../helper/constants';
 export const Root = styled.div`
   display: flex;
   justify-content: center;
+  padding-bottom: 15rem;
 `;
 
 export const MainContainer = styled.div`
@@ -27,6 +28,7 @@ export const GridContainer = styled.div`
   align-items: center;
   flex-direction: column;
   padding-top: 2rem;
+  padding-bottom: 15rem;
 `;
 
 export const FlexContainer = styled.div`

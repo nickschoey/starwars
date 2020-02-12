@@ -23,16 +23,9 @@ const routeOptions = [
 ];
 
 const Hero = () => {
-  const [selectedRadio, setselectedRadio] = useState('/');
   const dispatch = useDispatch();
   const searchValue = useSelector(state => state.search.text);
   const searchVisible = useSelector(state => state.search.visible);
-  const history = useHistory();
-
-  const navigateToView = value => {
-    setselectedRadio(value);
-    history.push(value);
-  };
 
   const handleChange = e => {
     dispatch(changeSearch(e.target.value));
@@ -50,13 +43,7 @@ const Hero = () => {
             onChange={handleChange}
             placeholder="Search"
           />
-          <StyledRadios>
-            <Radios
-              selectedValue={selectedRadio}
-              options={routeOptions}
-              onValueChange={navigateToView}
-            />
-          </StyledRadios>
+          <SelectView />
         </HeroContainer>
       )}
     </Sticky>
@@ -92,6 +79,7 @@ const PageTitle = styled.div`
 `;
 
 const StyledRadios = styled.div`
+  display: flex;
   font-size: 7px;
   padding-top: 10px;
   @media ${device.tablet} {
@@ -108,4 +96,49 @@ const StyledInput = styled.input`
     font-size: 1rem;
   }
 `;
+
+const RadioElement = styled.div`
+  color: ${props => {
+    return props.view === props.value
+      ? colors.starWarsYellow
+      : colors.starWarsWhite;
+  }};
+  padding: 0px 15px;
+`;
+
+const SelectView = () => {
+  const view = useSelector(state => state.navigation.view);
+  const history = useHistory();
+
+  const navigateToView = value => {
+    history.push(value);
+  };
+
+  return (
+    <StyledRadios>
+      <RadioElement
+        view={view}
+        value="people"
+        onClick={() => navigateToView('/')}
+      >
+        People
+      </RadioElement>
+      <RadioElement
+        view={view}
+        value="planets"
+        onClick={() => navigateToView('/planets')}
+      >
+        Planets
+      </RadioElement>
+      <RadioElement
+        view={view}
+        value="films"
+        onClick={() => navigateToView('/films')}
+      >
+        Films
+      </RadioElement>
+    </StyledRadios>
+  );
+};
+
 export default Hero;

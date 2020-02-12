@@ -6,6 +6,7 @@ import films from './filmsReducer';
 import starships from './starshipsReducer';
 import species from './speciesReducer';
 import search from './searchReducer';
+import navigation from './navigationReducer';
 
 export default combineReducers({
   characters,
@@ -14,5 +15,6 @@ export default combineReducers({
   films,
   starships,
   species,
-  search
+  search,
+  navigation
 });

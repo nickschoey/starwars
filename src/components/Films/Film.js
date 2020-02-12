@@ -19,6 +19,7 @@ import Anchor from '../common/Anchor';
 import { disableVisible } from '../../actions/search';
 import { device, colors } from '../../helper/constants';
 import BackButton from '../common/BackButton';
+import { changeView } from '../../actions/navigation';
 
 const Film = () => {
   const { id } = useParams();
@@ -31,6 +32,7 @@ const Film = () => {
 
   useEffect(() => {
     dispatch(disableVisible());
+    dispatch(changeView('films'));
   }, [dispatch]);
 
   const renderSpecies = () =>

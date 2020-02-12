@@ -8,6 +8,7 @@ import { enableVisible, resetSearch } from '../actions/search';
 import applyFilter from '../helper/applyFilter';
 import sortCollection from '../helper/sortCollection';
 import { GridContainer } from './common/Containers';
+import { changeView } from '../actions/navigation';
 
 const Characters = () => {
   // const characters = useSelector(state => state.characters);
@@ -35,6 +36,7 @@ const Characters = () => {
   useEffect(() => {
     dispatch(resetSearch());
     dispatch(enableVisible());
+    dispatch(changeView('people'));
   }, [dispatch]);
 
   const onHandleSort = value => {

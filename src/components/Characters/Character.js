@@ -20,6 +20,7 @@ import { disableVisible } from '../../actions/search';
 import renderNumber from '../../helper/renderNumber';
 import { device, colors } from '../../helper/constants';
 import BackButton from '../common/BackButton';
+import { changeView } from '../../actions/navigation';
 
 const Character = () => {
   const { id } = useParams();
@@ -32,6 +33,7 @@ const Character = () => {
   useEffect(() => {
     loadImage(person.id, setImage);
     dispatch(disableVisible());
+    dispatch(changeView('people'));
   }, [dispatch, person.id]);
 
   const renderSpecies = () => {
@@ -77,7 +79,7 @@ const Character = () => {
           <ImageContainer dark>
             <img src={image} alt={person.name} />
           </ImageContainer>
-          <Container dark>
+          <Container dark style={{ flexGrow: 1 }}>
             <FlexContainer dark>
               <div style={{ marginRight: '10px' }}>
                 <InfoElement

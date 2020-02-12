@@ -8,6 +8,7 @@ import applyFilter from '../helper/applyFilter';
 import { Container, Button } from 'nes-react';
 import sortCollection from '../helper/sortCollection';
 import { GridContainer } from './common/Containers';
+import { changeView } from '../actions/navigation';
 
 const Planets = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const Planets = () => {
   useEffect(() => {
     dispatch(resetSearch());
     dispatch(enableVisible());
+    dispatch(changeView('planets'));
   }, [dispatch]);
 
   const onHandleSort = value => {
