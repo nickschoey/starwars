@@ -1,64 +1,63 @@
-import React, { useState, useEffect } from 'react';
-import Popup from 'reactjs-popup';
-import { Container, Progress } from 'nes-react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import useLoadStatus from '../helper/useLoadStatus';
+import { Container, Progress } from 'nes-react';
+import styled from 'styled-components';
 import { colors } from '../helper/constants';
+import capitalize from '../helper/capitalize';
 
 export default () => {
-  const [open, setOpen] = useState(true);
   const characters = useSelector(state => state.characters);
   const films = useSelector(state => state.films);
   const planets = useSelector(state => state.planets);
   const species = useSelector(state => state.species);
   const starships = useSelector(state => state.starships);
   const vehicles = useSelector(state => state.vehicles);
-  const dataLoaded = useLoadStatus();
-
-  useEffect(() => {
-    if (dataLoaded) {
-      setOpen(false);
-    }
-  }, [dataLoaded]);
 
   const renderProgress = (state, tag) => {
     const { data, pending } = state;
+    const elementsFound = Object.keys(data).length;
     if (pending === null) {
       return (
-        <div style={{ paddingTop: '10px' }}>
-          <div>{`Counting ${tag} in the galaxy...`}</div>
-          <Progress value={0} max={100} />
-        </div>
+        <ProgressBar
+          tag={capitalize(tag)}
+          value={0}
+          startMessage="Counting"
+          endMessage="in the galaxy..."
+        />
       );
     }
     if (pending) {
       return (
-        <div style={{ paddingTop: '10px' }}>
-          <div>{`Counting ${tag} in the galaxy...`}</div>
-          <Progress value={50} max={100} />
-        </div>
+        <ProgressBar
+          tag={capitalize(tag)}
+          value={50}
+          startMessage="Counting"
+          endMessage="in the galaxy..."
+          primary
+        />
       );
     }
     return (
-      <div style={{ paddingTop: '10px' }}>
-        <div>{`Done! ${Object.keys(data).length} ${tag} found.`}</div>
-        <Progress value={100} max={100} primary />
-      </div>
+      <ProgressBar
+        tag={`${elementsFound} ${capitalize(tag)}`}
+        value={100}
+        primary
+        startMessage="Found"
+      />
     );
   };
-
   return (
-    <div
-      style={{
-        backgroundColor: colors.starWarsWhite,
-        position: 'absolute',
-        zIndex: 50000
-      }}
-    >
-      <Container style={{ color: 'black' }}>
-        <p>Welcome to the 8 bits Star Wars catalogue!</p>
+    <LoadScreen>
+      <Container dark>
+        <div style={{ textAlign: 'center' }}>
+          <p>
+            Welcome to The 8 bits
+            <Yellow> Star Wars </Yellow>
+            catalogue!
+          </p>
 
-        <p>Give us a sec while we fetch all the needed data!</p>
+          <p>Give us a sec while we fetch all the needed data!</p>
+        </div>
         {renderProgress(characters, 'people')}
         {renderProgress(films, 'films')}
         {renderProgress(planets, 'planets')}
@@ -66,6 +65,29 @@ export default () => {
         {renderProgress(starships, 'starships')}
         {renderProgress(vehicles, 'vehicles')}
       </Container>
+    </LoadScreen>
+  );
+};
+
+const ProgressBar = ({ tag, value, primary, startMessage, endMessage }) => {
+  return (
+    <div style={{ paddingTop: '10px' }}>
+      <div>
+        <span>{startMessage}</span>
+        <Yellow>{` ${tag} `}</Yellow>
+        <span>{endMessage}</span>
+      </div>
+      <Progress value={value} max={100} primary={primary} />
     </div>
   );
 };
+
+const LoadScreen = styled.div`
+  position: absolute;
+  z-index: 50000;
+  width: 100vw;
+`;
+
+const Yellow = styled.span`
+  color: ${colors.starWarsYellow};
+`;
