@@ -122,6 +122,9 @@ const RadioElement = styled.div`
       : colors.starWarsWhite;
   }};
   padding: 0px 15px;
+  &:hover {
+    color: ${colors.starWarsYellowSecondary};
+  }
 `;
 
 export default Hero;
