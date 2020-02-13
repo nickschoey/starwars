@@ -20,35 +20,32 @@ const App = () => {
 
   return (
     <Router>
-      {!dataLoaded.success ? (
-        <LoadModal />
-      ) : (
-        <StickyContainer>
-          <Hero />
-          <Github />
-
-          <Switch>
-            <Route exact path="/">
-              <Characters />
-            </Route>
-            <Route exact path="/planets">
-              <Planets />
-            </Route>
-            <Route exact path="/films">
-              <Films />
-            </Route>
-            <Route path="/character/:id">
-              <Character />
-            </Route>
-            <Route path="/planet/:id">
-              <Planet />
-            </Route>
-            <Route path="/film/:id">
-              <Film />
-            </Route>
-          </Switch>
-        </StickyContainer>
-      )}
+      <StickyContainer>
+        <Hero />
+        <Github />
+        <Switch>
+          <Route exact path="/">
+            {dataLoaded.success ? <Characters /> : <LoadModal />}
+          </Route>
+          <Route exact path="/planets">
+            {dataLoaded.success ? <Planets /> : <LoadModal />}
+          </Route>
+          <Route exact path="/films">
+            {dataLoaded.success ? <Films /> : <LoadModal />}
+          </Route>
+          <Route path="/character/:id">
+            {dataLoaded.success ? <Characters /> : <LoadModal />}
+          </Route>
+          <Route path="/planet/:id">
+            {dataLoaded.success ? <Planet /> : <LoadModal />}
+            <Planet />
+          </Route>
+          <Route path="/film/:id">
+            {dataLoaded.success ? <Film /> : <LoadModal />}
+            <Film />
+          </Route>
+        </Switch>
+      </StickyContainer>
     </Router>
   );
 };
