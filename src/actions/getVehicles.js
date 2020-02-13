@@ -49,6 +49,7 @@ function getVehicles() {
           return acc;
         }, {});
         dispatch(getVehiclesSuccess(vehicles));
+        localStorage.setItem('vehicles', JSON.stringify(vehicles));
         return res;
       })
       .catch(error => {

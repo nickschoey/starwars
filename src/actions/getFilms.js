@@ -57,6 +57,7 @@ function getFilms() {
           return acc;
         }, {});
         dispatch(getFilmsSuccess(films));
+        localStorage.setItem('films', JSON.stringify(films));
         return res;
       })
       .catch(error => {

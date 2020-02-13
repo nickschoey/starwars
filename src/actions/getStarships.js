@@ -49,6 +49,7 @@ function getStarships() {
           return acc;
         }, {});
         dispatch(getStarshipsSuccess(starships));
+        localStorage.setItem('starships', JSON.stringify(starships));
         return res;
       })
       .catch(error => {

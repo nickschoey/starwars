@@ -49,6 +49,7 @@ function getPlanets() {
           return acc;
         }, {});
         dispatch(getPlanetsSuccess(planets));
+        localStorage.setItem('planets', JSON.stringify(planets));
         return res;
       })
       .catch(error => {
