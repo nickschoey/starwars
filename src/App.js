@@ -34,7 +34,7 @@ const App = () => {
             {dataLoaded.success ? <Films /> : <LoadModal />}
           </Route>
           <Route path="/character/:id">
-            {dataLoaded.success ? <Characters /> : <LoadModal />}
+            {dataLoaded.success ? <Character /> : <LoadModal />}
           </Route>
           <Route path="/planet/:id">
             {dataLoaded.success ? <Planet /> : <LoadModal />}
