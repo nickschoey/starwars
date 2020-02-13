@@ -9,12 +9,12 @@ import Planets from './components/Planets';
 import Films from './components/Films';
 import Characters from './components/Characters';
 
-import getCharacters from './actions/getCharacters';
-import getFilms from './actions/getFilms';
-import getStarships from './actions/getStarships';
-import getSpecies from './actions/getSpecies';
-import getVehicles from './actions/getVehicles';
-import getPlanets from './actions/getPlanets';
+import getCharacters, { getCharactersSuccess } from './actions/getCharacters';
+import getFilms, { getFilmsSuccess } from './actions/getFilms';
+import getStarships, { getStarshipsSuccess } from './actions/getStarships';
+import getSpecies, { getSpeciesSuccess } from './actions/getSpecies';
+import getVehicles, { getVehiclesSuccess } from './actions/getVehicles';
+import getPlanets, { getPlanetsSuccess } from './actions/getPlanets';
 import LoadModal from './components/LoadModal';
 import Planet from './components/Planets/Planet';
 import Film from './components/Films/Film';
@@ -26,12 +26,35 @@ const App = () => {
   const dataLoaded = useLoadStatus();
 
   useEffect(() => {
-    dispatch(getCharacters());
-    dispatch(getFilms());
-    dispatch(getStarships());
-    dispatch(getSpecies());
-    dispatch(getVehicles());
-    dispatch(getPlanets());
+    const cachedCharacters = JSON.parse(localStorage.getItem('characters'));
+    const cachedFilms = JSON.parse(localStorage.getItem('films'));
+    const cachedSpecies = JSON.parse(localStorage.getItem('species'));
+    const cachedVehicles = JSON.parse(localStorage.getItem('vehicles'));
+    const cachedPlanets = JSON.parse(localStorage.getItem('planets'));
+    const cachedStarships = JSON.parse(localStorage.getItem('starships'));
+
+    if (
+      cachedCharacters &&
+      cachedFilms &&
+      cachedSpecies &&
+      cachedVehicles &&
+      cachedPlanets &&
+      cachedStarships
+    ) {
+      dispatch(getCharactersSuccess(cachedCharacters));
+      dispatch(getFilmsSuccess(cachedFilms));
+      dispatch(getSpeciesSuccess(cachedSpecies));
+      dispatch(getVehiclesSuccess(cachedVehicles));
+      dispatch(getPlanetsSuccess(cachedPlanets));
+      dispatch(getStarshipsSuccess(cachedStarships));
+    } else {
+      dispatch(getCharacters());
+      dispatch(getFilms());
+      dispatch(getStarships());
+      dispatch(getSpecies());
+      dispatch(getVehicles());
+      dispatch(getPlanets());
+    }
   }, [dispatch]);
 
   return (

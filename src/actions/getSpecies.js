@@ -53,6 +53,7 @@ function getSpecies() {
           return acc;
         }, {});
         dispatch(getSpeciesSuccess(species));
+        localStorage.setItem('species', JSON.stringify(species));
         return res;
       })
       .catch(error => {

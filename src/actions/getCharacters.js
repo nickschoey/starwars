@@ -56,6 +56,7 @@ function getCharacters() {
           return acc;
         }, {});
         dispatch(getCharactersSuccess(people));
+        localStorage.setItem('characters', JSON.stringify(people));
         return res;
       })
       .catch(error => {
