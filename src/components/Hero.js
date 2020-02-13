@@ -5,6 +5,7 @@ import { Sticky } from 'react-sticky';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeSearch } from '../actions/search';
 import { colors, device } from '../helper/constants';
+import { Yellow } from './common/Containers';
 
 const Hero = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,11 @@ const Hero = () => {
       {({ style }) => (
         <HeroContainer style={style}>
           <PageTitle style={{ justifySelf: 'flex-start' }}>
-            The 8 bits Star Wars Catalog
+            <span>
+              The 8 bits
+              <Yellow> Star Wars </Yellow>
+              Catalog
+            </span>
           </PageTitle>
           <StyledInput
             visible={searchVisible}
@@ -37,7 +42,6 @@ const Hero = () => {
 const HeroContainer = styled.div`
   font-size: 1.2rem;
   width: 100vw;
-  color: ${colors.starWarsYellow};
   background-color: ${colors.starWarsBlack};
   z-index: 2000;
   display: flex;
@@ -52,7 +56,7 @@ const HeroContainer = styled.div`
 `;
 
 const PageTitle = styled.div`
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   padding-bottom: 5px;
   text-align: center;
   @media ${device.laptopL} {
@@ -108,7 +112,7 @@ const SelectView = () => {
 
 const StyledRadios = styled.div`
   display: flex;
-  font-size: 7px;
+  font-size: 10px;
   padding-top: 10px;
   @media ${device.tablet} {
     font-size: 1rem;
@@ -122,6 +126,9 @@ const RadioElement = styled.div`
       : colors.starWarsWhite;
   }};
   padding: 0px 15px;
+  &:hover {
+    color: ${colors.starWarsYellowSecondary};
+  }
 `;
 
 export default Hero;
