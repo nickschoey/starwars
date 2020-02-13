@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Container } from 'nes-react';
-import { device } from '../../helper/constants';
+import { device, colors } from '../../helper/constants';
 
 export const Root = styled.div`
   display: flex;
@@ -46,4 +46,8 @@ export const ImageContainer = styled(Container)`
   align-items: center;
   justify-content: center;
   height: auto;
+`;
+
+export const Yellow = styled.span`
+  color: ${colors.starWarsYellow};
 `;

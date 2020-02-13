@@ -4,6 +4,7 @@ import { Container, Progress } from 'nes-react';
 import styled from 'styled-components';
 import { colors } from '../helper/constants';
 import capitalize from '../helper/capitalize';
+import { Yellow } from './common/Containers';
 
 export default () => {
   const characters = useSelector(state => state.characters);
@@ -86,8 +87,4 @@ const LoadScreen = styled.div`
   position: absolute;
   z-index: 50000;
   width: 100vw;
-`;
-
-const Yellow = styled.span`
-  color: ${colors.starWarsYellow};
 `;
