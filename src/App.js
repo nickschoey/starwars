@@ -38,11 +38,9 @@ const App = () => {
           </Route>
           <Route path="/planet/:id">
             {dataLoaded.success ? <Planet /> : <LoadModal />}
-            <Planet />
           </Route>
           <Route path="/film/:id">
             {dataLoaded.success ? <Film /> : <LoadModal />}
-            <Film />
           </Route>
         </Switch>
       </StickyContainer>
