@@ -39,8 +39,11 @@ const Film = () => {
     dispatch(changeView('films'));
   }, [dispatch]);
 
-  const renderSpecies = () =>
-    filmSpecies.map(specie => {
+  const renderSpecies = () => {
+    const renderSpeciesPlanetName = name => {
+      return name === 'unknown' ? 'an unknown place' : name;
+    };
+    return filmSpecies.map(specie => {
       const speciesPlanet = planets[specie.homeworld];
       return (
         <div key={specie.url}>
@@ -55,7 +58,9 @@ const Film = () => {
             <p>
               {`${capitalize(specie.classification)} ${specie.designation} ${
                 specie.homeworld !== null
-                  ? ` originary from ${speciesPlanet.name}.`
+                  ? ` originary from ${renderSpeciesPlanetName(
+                      speciesPlanet.name
+                    )}.`
                   : `without a homeworld.`
               }`}
             </p>
@@ -63,6 +68,7 @@ const Film = () => {
         </div>
       );
     });
+  };
   const renderPlanets = () =>
     filmPlanets.map(planet => {
       if (planet !== undefined) {
