@@ -19,16 +19,16 @@ const PeopleContainer = ({ title, peopleIds }) => {
   };
 
   return (
-    <Container style={{ width: '95%' }} dark title={title}>
+    <OuterContainer dark title={title}>
       <MiniatureContainer>{renderPeople()}</MiniatureContainer>
-    </Container>
+    </OuterContainer>
   );
 };
 
-PeopleContainer.propTypes = {
-  title: PropTypes.string.isRequired,
-  peopleIds: PropTypes.array.isRequired
-};
+const OuterContainer = styled(Container)`
+  width: 95%;
+  padding-bottom: 7px;
+`;
 
 const MiniatureContainer = styled.div`
   display: flex;
@@ -37,5 +37,10 @@ const MiniatureContainer = styled.div`
   width: 95%;
   max-width: 1024px;
 `;
+
+PeopleContainer.propTypes = {
+  title: PropTypes.string.isRequired,
+  peopleIds: PropTypes.array.isRequired
+};
 
 export default PeopleContainer;
