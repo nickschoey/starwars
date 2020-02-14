@@ -18,7 +18,6 @@ function useSwapi() {
   const cachedStarships = JSON.parse(localStorage.getItem('starships'));
 
   useEffect(() => {
-    console.log('fire');
     if (
       cachedCharacters &&
       cachedFilms &&

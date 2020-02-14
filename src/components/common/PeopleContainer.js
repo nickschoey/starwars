@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { Container } from 'nes-react';
 import styled from 'styled-components';
 import PersonMiniature from './PersonMiniature';
-// import state from '../../data';
 
 const PeopleContainer = ({ title, peopleIds }) => {
   const people = useSelector(state => state.characters.data);

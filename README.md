@@ -1,5 +1,5 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5acc6b13-de26-4e71-9822-3e93761ab471/deploy-status)](https://app.netlify.com/sites/8bitswars/deploys)
-# The 8 bit Star Wars Catalog
+# The Star Wars 8 Bit Catalog
 
 https://8bitswars.netlify.com/
 

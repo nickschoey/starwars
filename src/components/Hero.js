@@ -19,11 +19,11 @@ const Hero = () => {
     <Sticky>
       {({ style }) => (
         <HeroContainer style={style}>
-          <PageTitle style={{ justifySelf: 'flex-start' }}>
+          <PageTitle>
             <span>
-              The 8 bits
+              <span>The</span>
               <Yellow> Star Wars </Yellow>
-              Catalog
+              <span>8 Bit Catalog</span>
             </span>
           </PageTitle>
           <StyledInput

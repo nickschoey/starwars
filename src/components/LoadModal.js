@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Container, Progress } from 'nes-react';
 import styled from 'styled-components';
-import { colors } from '../helper/constants';
 import capitalize from '../helper/capitalize';
 import { Yellow } from './common/Containers';
 
@@ -88,3 +88,16 @@ const LoadScreen = styled.div`
   z-index: 50000;
   width: 100vw;
 `;
+
+ProgressBar.propTypes = {
+  tag: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+  primary: PropTypes.bool,
+  startMessage: PropTypes.string.isRequired,
+  endMessage: PropTypes.string
+};
+
+ProgressBar.defaultProps = {
+  primary: false,
+  endMessage: ''
+};
