@@ -90,9 +90,7 @@ const Film = () => {
         </ElementTitle>
         <FlexContainer dark>
           <ImageContainer dark>
-            <div style={{ fontSize: '5rem', padding: '10px' }}>
-              {romanNumeral}
-            </div>
+            <NumeralContainer style={{}}>{romanNumeral}</NumeralContainer>
           </ImageContainer>
           <Container dark style={{ flexGrow: 1 }}>
             <InfoElement title="Title: " data={film.title} />
@@ -116,20 +114,12 @@ const Film = () => {
           />
         </SwitchingContainer>
         <SwitchingContainer>
-          <Container
-            dark
-            title="Species"
-            style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}
-          >
+          <ListContainer dark title="Species">
             {renderSpecies()}
-          </Container>
-          <Container
-            dark
-            title="Planets"
-            style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}
-          >
+          </ListContainer>
+          <ListContainer dark title="Planets">
             {renderPlanets()}
-          </Container>
+          </ListContainer>
         </SwitchingContainer>
         <PeopleContainer
           title={`Characters appearing in ${film.title}`}
@@ -143,13 +133,25 @@ const Film = () => {
   );
 };
 
-export default Film;
-
 const SwitchingContainer = styled.div`
   width: 95%;
   display: flex;
+  padding-bottom: 7px;
   flex-direction: column;
   @media ${device.laptop} {
     flex-direction: row;
   }
 `;
+
+const NumeralContainer = styled.div`
+  font-size: 5rem;
+  padding: 10px;
+`;
+
+const ListContainer = styled(Container)`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`;
+
+export default Film;
