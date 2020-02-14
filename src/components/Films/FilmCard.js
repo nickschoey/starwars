@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import ReactTooltip from 'react-tooltip';
 import Anchor from '../common/Anchor';
 import romanNumerals from '../../helper/romanNumerals';
-// import state from '../../data';
 import PersonMiniature from '../common/PersonMiniature';
 import { device, colors } from '../../helper/constants';
 

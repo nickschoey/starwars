@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Container } from 'nes-react';
 import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components';
-// import state from '../../data';
 import {
   Root,
   MainContainer,
@@ -20,31 +19,30 @@ import { disableVisible } from '../../actions/search';
 import { device, colors } from '../../helper/constants';
 import BackButton from '../common/BackButton';
 import { changeView } from '../../actions/navigation';
+import useTopScroll from '../../helper/useTopScroll';
+import ElementTitle from '../common/ElementTitle';
 
 const Film = () => {
+  useTopScroll();
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { pathname } = useLocation();
   const film = useSelector(state => state.films.data[id]);
   const species = useSelector(state => state.species.data);
   const planets = useSelector(state => state.planets.data);
   const filmSpecies = film.species.map(speciesId => species[speciesId]);
   const filmPlanets = film.planets.map(planetId => planets[planetId]);
+  const romanNumeral = romanNumerals[film.episode_id];
 
   useEffect(() => {
     dispatch(disableVisible());
     dispatch(changeView('films'));
   }, [dispatch]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
   const renderSpecies = () =>
     filmSpecies.map(specie => {
       const speciesPlanet = planets[specie.homeworld];
       return (
-        <div>
+        <div key={specie.url}>
           <p
             style={{ color: colors.starWarsRed }}
             data-tip
@@ -76,14 +74,13 @@ const Film = () => {
       return <p />;
     });
 
-  const romanNumeral = romanNumerals[film.episode_id];
   return (
     <Root>
       <BackButton />
       <MainContainer dark>
-        <h1 style={{ textAlign: 'center' }}>
+        <ElementTitle>
           {`Star Wars Episode ${romanNumeral}: ${film.title}`}
-        </h1>
+        </ElementTitle>
         <FlexContainer dark>
           <ImageContainer dark>
             <div style={{ fontSize: '5rem', padding: '10px' }}>

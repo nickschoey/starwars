@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Container } from 'nes-react';
 import styled from 'styled-components';
-// import state from '../../data';
 import Anchor from './Anchor';
 
 const FilmsContainer = ({ filmIds }) => {

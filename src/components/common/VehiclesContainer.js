@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Container } from 'nes-react';
 import styled from 'styled-components';
-// import state from '../../data';
 import VehicleTooltip from './VehicleTooltip';
 import { colors } from '../../helper/constants';
 

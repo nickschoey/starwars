@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Container } from 'nes-react';
-import { useLocation } from 'react-router-dom';
 import PersonCard from './Characters/PersonCard';
-// import state from '../data';
 import CardView from './common/CardView';
 import { enableVisible, resetSearch } from '../actions/search';
 import applyFilter from '../helper/applyFilter';
 import sortCollection from '../helper/sortCollection';
 import { GridContainer } from './common/Containers';
 import { changeView } from '../actions/navigation';
-// import generateFilters from './Characters/generateFilters';
+import useTopScroll from '../helper/useTopScroll';
+
 const Characters = () => {
+  useTopScroll();
   const dispatch = useDispatch();
   const allCharacters = useSelector(state => state.characters.data);
   const searchText = useSelector(state => state.search.text);
   const [characters, setCharacters] = useState(allCharacters);
   const [ascendingSort, setAscendingSort] = useState(true);
-  const { pathname } = useLocation();
 
   // Calling search algorithm
   useEffect(() => {
@@ -39,10 +38,6 @@ const Characters = () => {
     dispatch(enableVisible());
     dispatch(changeView('people'));
   }, [dispatch]);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
 
   const onHandleSort = value => {
     const charactersArray = Object.values(characters);

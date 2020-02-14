@@ -1,3 +1,4 @@
+// Filters are not yet used
 const generateFilters = characters =>
   Object.keys(characters).reduce(
     (acc, el) => {

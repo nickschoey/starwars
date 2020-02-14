@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Container } from 'nes-react';
 import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components';
-// import state from '../../data';
 import Anchor from '../common/Anchor';
 import loadImage from '../../helper/importImage';
 import FilmsContainer from '../common/FilmsContainer';
@@ -22,10 +21,12 @@ import { device, colors } from '../../helper/constants';
 import BackButton from '../common/BackButton';
 import { changeView } from '../../actions/navigation';
 import capitalize from '../../helper/capitalize';
+import useTopScroll from '../../helper/useTopScroll';
+import ElementTitle from '../common/ElementTitle';
 
 const Character = () => {
+  useTopScroll();
   const { id } = useParams();
-  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const person = useSelector(state => state.characters.data[id]);
   const planet = useSelector(state => state.planets.data[person.homeworld]);
@@ -42,10 +43,6 @@ const Character = () => {
     dispatch(disableVisible());
     dispatch(changeView('people'));
   }, [dispatch, person.id]);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
 
   const renderSpecies = () => {
     if (!species) {
@@ -82,7 +79,7 @@ const Character = () => {
     <Root>
       <BackButton />
       <MainContainer dark>
-        <h1 style={{ textAlign: 'center' }}>{person.name}</h1>
+        <ElementTitle>{person.name}</ElementTitle>
         {renderSpecies()}
 
         <FlexContainer dark>
