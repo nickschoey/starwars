@@ -45,6 +45,12 @@ const Character = () => {
   }, [dispatch, person.id]);
 
   const renderSpecies = () => {
+    const renderSpeciesPlanetName = () => {
+      return speciesPlanet.name === 'unknown'
+        ? 'an unknown place'
+        : speciesPlanet.name;
+    };
+
     if (!species) {
       return (
         <div>
@@ -66,7 +72,7 @@ const Character = () => {
           <p>
             {`${capitalize(species.classification)} ${species.designation} ${
               species.homeworld !== null
-                ? ` originary from ${speciesPlanet.name}.`
+                ? ` originary from ${renderSpeciesPlanetName()}.`
                 : `without a homeworld.`
             }`}
           </p>
