@@ -21,6 +21,7 @@ import BackButton from '../common/BackButton';
 import { changeView } from '../../actions/navigation';
 import useTopScroll from '../../helper/useTopScroll';
 import ElementTitle from '../common/ElementTitle';
+import capitalize from '../../helper/capitalize';
 
 const Film = () => {
   useTopScroll();
@@ -52,7 +53,7 @@ const Film = () => {
           </p>
           <ReactTooltip id={specie.url} place="bottom">
             <p>
-              {`${specie.classification} ${specie.designation} ${
+              {`${capitalize(specie.classification)} ${specie.designation} ${
                 specie.homeworld !== null
                   ? ` originary from ${speciesPlanet.name}.`
                   : `without a homeworld.`
