@@ -6,7 +6,7 @@ import { colors } from '../../helper/constants';
 
 const Anchor = ({ children, to, color }) => {
   return (
-    <StyledLink color={color} to={to}>
+    <StyledLink data-test="component-anchor" color={color} to={to}>
       {children}
     </StyledLink>
   );
