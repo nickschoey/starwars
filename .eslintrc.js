@@ -27,7 +27,8 @@ module.exports = {
     'jest/no-identical-title': 'error',
     'jest/prefer-to-have-length': 'warn',
     'jest/valid-expect': 'error',
-    'react/forbid-prop-types': 0
+    'react/forbid-prop-types': 0,
+    'react/jsx-props-no-spreading': 0
   },
   env: {
     'jest/globals': true

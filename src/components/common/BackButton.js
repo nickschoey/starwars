@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button } from 'nes-react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { device } from '../../helper/constants';
+import NesButton from './NesButton';
 
 const BackButton = () => {
   const history = useHistory();
@@ -11,10 +11,10 @@ const BackButton = () => {
     history.goBack();
   };
   return (
-    <ButtonContainer>
-      <Button primary onClick={handleClick}>
+    <ButtonContainer data-test="component-backButton">
+      <NesButton primary onClick={handleClick}>
         {'<- Back'}
-      </Button>
+      </NesButton>
     </ButtonContainer>
   );
 };

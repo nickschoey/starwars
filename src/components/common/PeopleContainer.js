@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { Container } from 'nes-react';
 import styled from 'styled-components';
 import PersonMiniature from './PersonMiniature';
+import NesContainer from './NesContainer';
 
 const PeopleContainer = ({ title, peopleIds }) => {
   const people = useSelector(state => state.characters.data);
@@ -25,7 +25,7 @@ const PeopleContainer = ({ title, peopleIds }) => {
   );
 };
 
-const OuterContainer = styled(Container)`
+const OuterContainer = styled(NesContainer)`
   width: 95%;
   padding-bottom: 7px;
 `;

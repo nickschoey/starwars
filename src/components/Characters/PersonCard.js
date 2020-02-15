@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Container } from 'nes-react';
 import Anchor from '../common/Anchor';
 import loadImage from '../../helper/importImage';
-import { device } from '../../helper/constants';
+import { device, colors } from '../../helper/constants';
+import NesContainer from '../common/NesContainer';
 
 const PersonCard = ({ person }) => {
   const [image, setImage] = useState(null);
@@ -15,8 +15,12 @@ const PersonCard = ({ person }) => {
 
   return (
     <CardContainer>
-      <Anchor to={`/character/${person.id}`}>
-        <CardFrame dark rounded title={person.name}>
+      <Anchor
+        to={`/character/${person.id}`}
+        color={colors.starWarsWhite}
+        hoverColor={colors.starWarsYellow}
+      >
+        <CardFrame title={person.name} titleSize="0.6rem">
           <CardContent>
             <Image src={image} alt={person.name} />
           </CardContent>
@@ -27,26 +31,33 @@ const PersonCard = ({ person }) => {
 };
 
 const CardContainer = styled.div`
-  padding: 7px;
+  padding: 5px;
 `;
 
-const CardFrame = styled(Container)`
-  height: 170px;
-  width: 170px;
+const CardFrame = styled(NesContainer)`
+  display: flex;
+  height: 190px;
+  width: 190px;
+  margin: 7px;
+  &:hover {
+    box-shadow: 6px 0 ${colors.starWarsYellow}, -6px 0 ${colors.starWarsYellow},
+      0 -6px ${colors.starWarsYellow}, 0 6px ${colors.starWarsYellow};
+  }
   @media ${device.tablet} {
-    height: 230px;
-    width: 230px;
+    height: 220px;
+    width: 220px;
   }
 `;
 const CardContent = styled.div`
   position: absolute;
   bottom: 13px;
+  right: -5px;
   z-index: -1;
 `;
 
 const Image = styled.img`
   height: auto;
-  width: 100%;
+  width: 95%;
 `;
 
 PersonCard.propTypes = {
