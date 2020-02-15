@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button } from 'nes-react';
 import PersonCard from './Characters/PersonCard';
 import CardView from './common/CardView';
 import { enableVisible, resetSearch } from '../actions/search';
@@ -10,6 +9,7 @@ import { GridContainer } from './common/Containers';
 import { changeView } from '../actions/navigation';
 import useTopScroll from '../helper/useTopScroll';
 import NesContainer from './common/NesContainer';
+import NesButton from './common/NesButton';
 
 const Characters = () => {
   useTopScroll();
@@ -62,9 +62,9 @@ const Characters = () => {
       <h1>People</h1>
       <div style={{ alignSelf: 'center' }}>
         <NesContainer dark title="Sort">
-          <Button onClick={() => onHandleSort('name')}>
+          <NesButton onClick={() => onHandleSort('name')}>
             {`Name ${ascendingSort ? 'A↓Z' : 'Z↑A'}`}
-          </Button>
+          </NesButton>
         </NesContainer>
       </div>
       <CardView>{renderCharacters()}</CardView>

@@ -6,7 +6,7 @@ import ReactTooltip from 'react-tooltip';
 import Anchor from '../common/Anchor';
 import romanNumerals from '../../helper/romanNumerals';
 import PersonMiniature from '../common/PersonMiniature';
-import { device } from '../../helper/constants';
+import { device, colors } from '../../helper/constants';
 import NesContainer from '../common/NesContainer';
 
 const FilmCard = ({ film }) => {
@@ -14,7 +14,11 @@ const FilmCard = ({ film }) => {
   const filmCharacters = film.characters.map(id => allCharacters[id]);
 
   return (
-    <Anchor to={`/film/${film.id}`}>
+    <Anchor
+      to={`/film/${film.id}`}
+      color={colors.starWarsWhite}
+      hoverColor={colors.starWarsYellow}
+    >
       <FilmCardContainer>
         <InnerContainer dark>
           <BigText>{`${romanNumerals[film.episode_id]} ${film.title}`}</BigText>
@@ -60,12 +64,13 @@ const InnerContainer = styled(NesContainer)`
 `;
 
 const BigText = styled.div`
+  text-align: center;
   padding-bottom: 10px;
   display: flex;
   justify-content: center;
   font-size: 1rem;
   @media ${device.tablet} {
-    font-size: 2rem;
+    font-size: 1.4rem;
   }
 `;
 

@@ -22,7 +22,16 @@ export const device = {
 export const colors = {
   starWarsYellow: '#ffe81f',
   starWarsYellowSecondary: '#a39000',
+
   starWarsBlack: '#212529',
   starWarsRed: '#b6231e',
-  starWarsWhite: '#fafafa'
+  starWarsWhite: '#fafafa',
+
+  starWarsBluePrimary: '#209cee',
+  starWarsBlueHover: '#108de0',
+  starWarsBlueShadow: '#006bb3',
+
+  starWarsGreyPrimary: '#fafafa',
+  starWarsGreyHover: '#e7e7e7',
+  starWarsGreyShadow: '#adafbc'
 };

@@ -16,8 +16,10 @@ const StyledButton = styled.button`
   vertical-align: middle;
   cursor: pointer;
   user-select: none;
-  color: ${colors.starWarsWhite};
-  background-color: #209cee;
+  color: ${props =>
+    props.primary ? colors.starWarsGreyPrimary : colors.starWarsBlack};
+  background-color: ${props =>
+    props.primary ? colors.starWarsBluePrimary : colors.starWarsGreyPrimary};
 
   &::after {
     position: absolute;
@@ -25,31 +27,47 @@ const StyledButton = styled.button`
     right: -4px;
     bottom: -4px;
     left: -4px;
-    content: '';
-    box-shadow: inset -4px -4px #006bb3;
-  }
-
-  &:hover {
-    color: ${colors.starWarsWhite};
+    box-shadow: inset -4px -4px
+      ${props =>
+        props.primary ? colors.starWarsBlueShadow : colors.starWarsGreyShadow};
     text-decoration: none;
-    background-color: #108de0;
+    background-color: ${props =>
+      props.primary ? colors.starWarsBlueHover : colors.starWarsGreyHover};
 
     &::after {
-      box-shadow: inset -6px -6px #006bb3;
+      box-shadow: inset -6px -6px
+        ${props =>
+          props.primary
+            ? colors.starWarsBlueShadow
+            : colors.starWarsGreyShadow};
     }
   }
 
   &:focus {
-    box-shadow: 0 0 0 6px rgba(#006bb3, 0.3);
+    box-shadow: 0 0 0 6px
+      rgba(
+        ${props =>
+          props.primary
+            ? colors.starWarsBlueShadow
+            : colors.starWarsGreyShadow},
+        0.3
+      );
   }
 
   &:active:not(.is-disabled)::after {
-    box-shadow: inset 4px 4px #006bb3;
+    box-shadow: inset 4px 4px
+      ${props =>
+        props.primary ? colors.starWarsBlueShadow : colors.starWarsGreyShadow};
   }
 `;
 
 NesButton.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  primary: PropTypes.bool
+};
+
+NesButton.defaultProps = {
+  primary: false
 };
 
 export default NesButton;

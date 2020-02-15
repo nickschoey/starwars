@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button } from 'nes-react';
 import CardView from './common/CardView';
 import FilmCard from './Films/FilmCard';
 import { enableVisible, resetSearch } from '../actions/search';
@@ -10,6 +9,7 @@ import { GridContainer } from './common/Containers';
 import { changeView } from '../actions/navigation';
 import useTopScroll from '../helper/useTopScroll';
 import NesContainer from './common/NesContainer';
+import NesButton from './common/NesButton';
 
 const Films = () => {
   useTopScroll();
@@ -53,9 +53,9 @@ const Films = () => {
       <h1>Films</h1>
       <div style={{ alignSelf: 'center' }}>
         <NesContainer title="Sort">
-          <Button onClick={() => onHandleSort('title')}>
+          <NesButton onClick={() => onHandleSort('title')}>
             {`Title ${ascendingSort ? 'A↓Z' : 'Z↑A'}`}
-          </Button>
+          </NesButton>
         </NesContainer>
       </div>
       <CardView>{renderFilms()}</CardView>
