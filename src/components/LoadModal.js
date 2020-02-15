@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { Progress } from 'nes-react';
 import styled from 'styled-components';
 import capitalize from '../helper/capitalize';
 import { Yellow } from './common/Containers';
 import NesContainer from './common/NesContainer';
 
-export default () => {
+const LoadModal = () => {
   const characters = useSelector(state => state.characters);
   const films = useSelector(state => state.films);
   const planets = useSelector(state => state.planets);
@@ -20,31 +19,30 @@ export default () => {
     const elementsFound = Object.keys(data).length;
     if (pending === null) {
       return (
-        <ProgressBar
+        <Progress
           tag={capitalize(tag)}
           value={0}
           startMessage="Counting"
-          endMessage="in the galaxy..."
+          endMessage=" in the galaxy..."
         />
       );
     }
     if (pending) {
       return (
-        <ProgressBar
+        <Progress
           tag={capitalize(tag)}
           value={50}
           startMessage="Counting"
-          endMessage="in the galaxy..."
-          primary
+          endMessage=" in the galaxy..."
         />
       );
     }
     return (
-      <ProgressBar
+      <Progress
         tag={`${elementsFound} ${capitalize(tag)}`}
         value={100}
-        primary
         startMessage="Found"
+        endMessage="!"
       />
     );
   };
@@ -60,29 +58,34 @@ export default () => {
 
           <p>Give us a sec while we fetch all the needed data!</p>
         </div>
-        {renderProgress(characters, 'people')}
-        {renderProgress(films, 'films')}
-        {renderProgress(planets, 'planets')}
-        {renderProgress(species, 'species')}
-        {renderProgress(starships, 'starships')}
-        {renderProgress(vehicles, 'vehicles')}
+        <ProgressContainer>
+          {renderProgress(characters, 'people')}
+          {renderProgress(films, 'films')}
+          {renderProgress(planets, 'planets')}
+          {renderProgress(species, 'species')}
+          {renderProgress(starships, 'starships')}
+          {renderProgress(vehicles, 'vehicles')}
+        </ProgressContainer>
       </NesContainer>
     </LoadScreen>
   );
 };
 
-const ProgressBar = ({ tag, value, primary, startMessage, endMessage }) => {
+const Progress = ({ tag, startMessage, endMessage }) => {
   return (
-    <div style={{ paddingTop: '10px' }}>
-      <div>
-        <span>{startMessage}</span>
-        <Yellow>{` ${tag} `}</Yellow>
-        <span>{endMessage}</span>
-      </div>
-      <Progress value={value} max={100} primary={primary} />
-    </div>
+    <p style={{ paddingTop: '10px' }}>
+      <span>{startMessage}</span>
+      <Yellow>{` ${tag}`}</Yellow>
+      <span>{endMessage}</span>
+    </p>
   );
 };
+
+const ProgressContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const LoadScreen = styled.div`
   position: absolute;
@@ -90,15 +93,14 @@ const LoadScreen = styled.div`
   width: 100vw;
 `;
 
-ProgressBar.propTypes = {
+Progress.propTypes = {
   tag: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
-  primary: PropTypes.bool,
   startMessage: PropTypes.string.isRequired,
   endMessage: PropTypes.string
 };
 
-ProgressBar.defaultProps = {
-  primary: false,
+Progress.defaultProps = {
   endMessage: ''
 };
+
+export default LoadModal;
