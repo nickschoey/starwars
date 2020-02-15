@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Container } from 'nes-react';
 import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components';
 import {
@@ -22,6 +21,7 @@ import { changeView } from '../../actions/navigation';
 import useTopScroll from '../../helper/useTopScroll';
 import ElementTitle from '../common/ElementTitle';
 import capitalize from '../../helper/capitalize';
+import NesContainer from '../common/NesContainer';
 
 const Film = () => {
   useTopScroll();
@@ -92,12 +92,12 @@ const Film = () => {
           <ImageContainer dark>
             <NumeralContainer style={{}}>{romanNumeral}</NumeralContainer>
           </ImageContainer>
-          <Container dark style={{ flexGrow: 1 }}>
+          <NesContainer dark style={{ flexGrow: 1 }}>
             <InfoElement title="Title: " data={film.title} />
             <InfoElement title="Directed by " data={film.director} />
             <InfoElement title="Produced by " data={film.producer} />
             <InfoElement title="Release date: " data={film.release_date} />
-          </Container>
+          </NesContainer>
         </FlexContainer>
         <SwitchingContainer>
           <VehiclesContainer
@@ -125,9 +125,9 @@ const Film = () => {
           title={`Characters appearing in ${film.title}`}
           peopleIds={film.characters}
         />
-        <Container style={{ width: '95%' }} dark title="Opening Text">
+        <NesContainer style={{ width: '95%' }} dark title="Opening Text">
           <p>{film.opening_crawl}</p>
-        </Container>
+        </NesContainer>
       </MainContainer>
     </Root>
   );
@@ -148,7 +148,7 @@ const NumeralContainer = styled.div`
   padding: 10px;
 `;
 
-const ListContainer = styled(Container)`
+const ListContainer = styled(NesContainer)`
   display: flex;
   flex-direction: column;
   flex-grow: 1;

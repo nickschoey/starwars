@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { Container, Progress } from 'nes-react';
+import { Progress } from 'nes-react';
 import styled from 'styled-components';
 import capitalize from '../helper/capitalize';
 import { Yellow } from './common/Containers';
+import NesContainer from './common/NesContainer';
 
 export default () => {
   const characters = useSelector(state => state.characters);
@@ -49,7 +50,7 @@ export default () => {
   };
   return (
     <LoadScreen>
-      <Container dark>
+      <NesContainer>
         <div style={{ textAlign: 'center' }}>
           <p>
             Welcome to The 8 bits
@@ -65,7 +66,7 @@ export default () => {
         {renderProgress(species, 'species')}
         {renderProgress(starships, 'starships')}
         {renderProgress(vehicles, 'vehicles')}
-      </Container>
+      </NesContainer>
     </LoadScreen>
   );
 };

@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Container } from 'nes-react';
 import styled from 'styled-components';
 import ReactTooltip from 'react-tooltip';
 import Anchor from '../common/Anchor';
 import romanNumerals from '../../helper/romanNumerals';
 import PersonMiniature from '../common/PersonMiniature';
-import { device, colors } from '../../helper/constants';
+import { device } from '../../helper/constants';
+import NesContainer from '../common/NesContainer';
 
 const FilmCard = ({ film }) => {
   const allCharacters = useSelector(state => state.characters.data);
@@ -52,7 +52,7 @@ const FilmPeople = styled.div`
   justify-content: center;
 `;
 
-const InnerContainer = styled(Container)`
+const InnerContainer = styled(NesContainer)`
   display: flex;
   flex-grow: 1;
   max-height: 100%;
@@ -64,9 +64,6 @@ const BigText = styled.div`
   display: flex;
   justify-content: center;
   font-size: 1rem;
-  &:hover {
-    color: ${colors.starWarsYellow};
-  }
   @media ${device.tablet} {
     font-size: 2rem;
   }

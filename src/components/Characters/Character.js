@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Container } from 'nes-react';
 import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components';
 import Anchor from '../common/Anchor';
@@ -23,6 +22,7 @@ import { changeView } from '../../actions/navigation';
 import capitalize from '../../helper/capitalize';
 import useTopScroll from '../../helper/useTopScroll';
 import ElementTitle from '../common/ElementTitle';
+import NesContainer from '../common/NesContainer';
 
 const Character = () => {
   useTopScroll();
@@ -88,11 +88,11 @@ const Character = () => {
         <ElementTitle>{person.name}</ElementTitle>
         {renderSpecies()}
 
-        <FlexContainer dark>
-          <ImageContainer dark>
+        <FlexContainer>
+          <ImageContainer>
             <img src={image} alt={person.name} />
           </ImageContainer>
-          <Container dark style={{ flexGrow: 1 }}>
+          <NesContainer dark style={{ flexGrow: 1 }}>
             <FlexContainer dark>
               <div style={{ marginRight: '10px' }}>
                 <InfoElement
@@ -126,7 +126,7 @@ const Character = () => {
             />
             <InfoElement title="Hair: " data={capitalize(person.hair_color)} />
             <InfoElement title="Skin: " data={capitalize(person.skin_color)} />
-          </Container>
+          </NesContainer>
         </FlexContainer>
 
         <VehiclesInfo>

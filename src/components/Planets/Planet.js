@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { Container } from 'nes-react';
 import PeopleContainer from '../common/PeopleContainer';
 import FilmsContainer from '../common/FilmsContainer';
 import renderNumber from '../../helper/renderNumber';
@@ -14,6 +13,7 @@ import { changeView } from '../../actions/navigation';
 import capitalize from '../../helper/capitalize';
 import useTopScroll from '../../helper/useTopScroll';
 import ElementTitle from '../common/ElementTitle';
+import NesContainer from '../common/NesContainer';
 
 const Planet = () => {
   useTopScroll();
@@ -39,7 +39,7 @@ const Planet = () => {
           )})`}
         </h3>
         <DataContainer>
-          <Container style={{ width: '95%' }} title="Data" dark>
+          <NesContainer style={{ width: '95%' }} title="Data">
             <p>
               <strong>Rotation Period: </strong>
               {renderNumber(planet.rotation_period, ' hours')}
@@ -68,7 +68,7 @@ const Planet = () => {
               <strong>Surface Water: </strong>
               {renderNumber(planet.surface_water, '%')}
             </p>
-          </Container>
+          </NesContainer>
           <FilmsContainer filmIds={planet.films} />
         </DataContainer>
         <PeopleContainer
