@@ -13,13 +13,11 @@ const NesContainer = ({ children, title, titleSize, ...props }) => {
 };
 
 const ContainerOuter = styled.div`
-  margin: 5px;
   position: relative;
   padding: 1.5rem 2rem;
-  border-color: ${colors.starWarsWhite};
-  border-style: solid;
-  border-width: 4px;
-  border-radius: 3px;
+  box-shadow: 5px 0 ${colors.starWarsWhite}, -5px 0 ${colors.starWarsWhite},
+    0 -5px ${colors.starWarsWhite}, 0 5px ${colors.starWarsWhite};
+  margin: 10px 10px;
 `;
 
 const ContainerTitle = styled.div`

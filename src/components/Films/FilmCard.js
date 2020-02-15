@@ -20,7 +20,7 @@ const FilmCard = ({ film }) => {
       hoverColor={colors.starWarsYellow}
     >
       <FilmCardContainer>
-        <InnerContainer dark>
+        <InnerContainer>
           <BigText>{`${romanNumerals[film.episode_id]} ${film.title}`}</BigText>
           <FilmPeople>
             {filmCharacters.map(character => (
@@ -61,6 +61,10 @@ const InnerContainer = styled(NesContainer)`
   flex-grow: 1;
   max-height: 100%;
   flex-direction: column;
+  &:hover {
+    box-shadow: 6px 0 ${colors.starWarsYellow}, -6px 0 ${colors.starWarsYellow},
+      0 -6px ${colors.starWarsYellow}, 0 6px ${colors.starWarsYellow};
+  }
 `;
 
 const BigText = styled.div`

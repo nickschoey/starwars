@@ -19,7 +19,8 @@ const PlanetCard = ({ planet }) => {
 
 const PlanetContainer = styled(NesContainer)`
   &:hover {
-    border-color: ${colors.starWarsYellow};
+    box-shadow: 6px 0 ${colors.starWarsYellow}, -6px 0 ${colors.starWarsYellow},
+      0 -6px ${colors.starWarsYellow}, 0 6px ${colors.starWarsYellow};
   }
 `;
 
