@@ -11,7 +11,7 @@ const BackButton = () => {
     history.goBack();
   };
   return (
-    <ButtonContainer data-test="component-backButton">
+    <ButtonContainer>
       <NesButton primary onClick={handleClick}>
         {'<- Back'}
       </NesButton>

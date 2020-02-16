@@ -12,7 +12,7 @@ const component = (
   </MemoryRouter>
 );
 
-test('shows the children', () => {
+test('it renders', () => {
   render(component);
   expect(screen.getByText(testMessage)).toBeInTheDocument();
 });
