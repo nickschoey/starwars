@@ -23,7 +23,7 @@ const ContainerOuter = styled.div`
 const ContainerTitle = styled.div`
   display: table;
   padding: 0 0.5rem;
-  margin: -1.8rem 0 1rem;
+  margin: -2rem 0 1rem;
   font-size: ${props => props.titleSize};
   font-weight: bold;
   background-color: ${colors.starWarsBlack};

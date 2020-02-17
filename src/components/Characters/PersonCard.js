@@ -20,7 +20,7 @@ const PersonCard = ({ person }) => {
         color={colors.starWarsWhite}
         hoverColor={colors.starWarsYellow}
       >
-        <CardFrame title={person.name} titleSize="0.6rem">
+        <CardFrame title={person.name} titleSize="0.8rem">
           <CardContent>
             <Image src={image} alt={person.name} />
           </CardContent>
