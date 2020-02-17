@@ -36,14 +36,15 @@ const CardContainer = styled.div`
 
 const CardFrame = styled(NesContainer)`
   display: flex;
-  height: 190px;
-  width: 190px;
-  margin: 7px;
+  height: 150px;
+  width: 150px;
+  margin: 4px;
   &:hover {
     box-shadow: 6px 0 ${colors.starWarsYellow}, -6px 0 ${colors.starWarsYellow},
       0 -6px ${colors.starWarsYellow}, 0 6px ${colors.starWarsYellow};
   }
   @media ${device.tablet} {
+    margin: 7px;
     height: 220px;
     width: 220px;
   }
