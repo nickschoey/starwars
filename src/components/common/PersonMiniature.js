@@ -13,7 +13,7 @@ const PersonMiniature = ({ name, id, withLabel, justMiniature }) => {
   if (justMiniature) {
     return (
       <div>
-        <SmallImage src={image} />
+        <SmallImage src={image} alt={name} />
       </div>
     );
   }
@@ -21,25 +21,12 @@ const PersonMiniature = ({ name, id, withLabel, justMiniature }) => {
     <Anchor to={`/character/${id}`}>
       <Wrapper>
         <ImageWrapper>
-          <Image src={image} />
+          <Image src={image} alt={name} />
         </ImageWrapper>
         {withLabel && <p>{name}</p>}
       </Wrapper>
     </Anchor>
   );
-};
-
-PersonMiniature.propTypes = {
-  name: PropTypes.string,
-  id: PropTypes.number.isRequired,
-  withLabel: PropTypes.bool,
-  justMiniature: PropTypes.bool
-};
-
-PersonMiniature.defaultProps = {
-  name: '',
-  withLabel: true,
-  justMiniature: false
 };
 
 const Wrapper = styled.div`
@@ -63,5 +50,18 @@ const SmallImage = styled.img`
   height: 45px;
   width: auto;
 `;
+
+PersonMiniature.propTypes = {
+  name: PropTypes.string,
+  id: PropTypes.number.isRequired,
+  withLabel: PropTypes.bool,
+  justMiniature: PropTypes.bool
+};
+
+PersonMiniature.defaultProps = {
+  name: '',
+  withLabel: true,
+  justMiniature: false
+};
 
 export default PersonMiniature;

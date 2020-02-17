@@ -1,25 +1,24 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, fireEvent, screen } from '@testing-library/react';
 import BackButton from './BackButton';
-import { findByTestAttr } from '../../../test/testUtils';
 import 'jest-styled-components';
 
-jest.mock('react-router-dom', () => {
-  return {
-    useHistory: () => ({ goBack: () => {} })
-  };
-});
-/**
- * Factory function to create a ShallowWrapper for the BackButton component.
- * @function setup
- * @returns {ShallowWrapper}
- */
-const setup = () => {
-  return shallow(<BackButton />);
-};
+const component = <BackButton />;
+const mockFn = jest.fn();
+jest.mock('react-router-dom', () => ({
+  useHistory: () => ({
+    goBack: mockFn
+  })
+}));
 
-test('renders without error', () => {
-  const wrapper = setup();
-  const backButtonComponent = findByTestAttr(wrapper, 'component-backButton');
-  expect(backButtonComponent).toHaveLength(1);
+test('it renders', () => {
+  render(component);
+  expect(screen.getByText('<- Back')).toBeInTheDocument();
+});
+
+test('it navigates back when clicked', () => {
+  const { getByText } = render(component);
+  const button = getByText('<- Back');
+  fireEvent.click(button);
+  expect(mockFn).toHaveBeenCalled();
 });
