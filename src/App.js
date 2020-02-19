@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { StickyContainer } from 'react-sticky';
-
 import Character from './components/Characters/Character';
 import Hero from './components/Hero';
 import Planets from './components/Planets';
@@ -13,6 +12,7 @@ import Film from './components/Films/Film';
 import Github from './components/common/Github';
 import useLoadStatus from './helper/useLoadStatus';
 import useSwapi from './helper/useSwapi';
+import Page404 from './components/Page404';
 
 const App = () => {
   const dataLoaded = useLoadStatus();
@@ -42,6 +42,7 @@ const App = () => {
           <Route path="/film/:id">
             {dataLoaded.success ? <Film /> : <LoadModal />}
           </Route>
+          <Route path="*" exact component={Page404} />
         </Switch>
       </StickyContainer>
     </Router>
