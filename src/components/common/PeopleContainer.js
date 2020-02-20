@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { Container } from 'nes-react';
 import styled from 'styled-components';
 import PersonMiniature from './PersonMiniature';
-// import state from '../../data';
+import NesContainer from './NesContainer';
 
 const PeopleContainer = ({ title, peopleIds }) => {
   const people = useSelector(state => state.characters.data);
@@ -20,16 +19,16 @@ const PeopleContainer = ({ title, peopleIds }) => {
   };
 
   return (
-    <Container style={{ width: '95%' }} dark title={title}>
+    <OuterContainer dark title={title}>
       <MiniatureContainer>{renderPeople()}</MiniatureContainer>
-    </Container>
+    </OuterContainer>
   );
 };
 
-PeopleContainer.propTypes = {
-  title: PropTypes.string.isRequired,
-  peopleIds: PropTypes.array.isRequired
-};
+const OuterContainer = styled(NesContainer)`
+  width: 95%;
+  padding-bottom: 7px;
+`;
 
 const MiniatureContainer = styled.div`
   display: flex;
@@ -38,5 +37,10 @@ const MiniatureContainer = styled.div`
   width: 95%;
   max-width: 1024px;
 `;
+
+PeopleContainer.propTypes = {
+  title: PropTypes.string.isRequired,
+  peopleIds: PropTypes.array.isRequired
+};
 
 export default PeopleContainer;

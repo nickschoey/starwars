@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { Container } from 'nes-react';
 import styled from 'styled-components';
-// import state from '../../data';
 import VehicleTooltip from './VehicleTooltip';
 import { colors } from '../../helper/constants';
+import NesContainer from './NesContainer';
 
 const VehiclesContainer = ({ vehicleIds, type, tooltipAlign, title }) => {
   const allVehicles = useSelector(state => state[type].data);
@@ -30,9 +29,9 @@ const VehiclesContainer = ({ vehicleIds, type, tooltipAlign, title }) => {
   };
 
   return (
-    <Container style={{ flexGrow: 1 }} dark title={title}>
+    <NesContainer style={{ flexGrow: 1 }} title={title}>
       {renderVehicles()}
-    </Container>
+    </NesContainer>
   );
 };
 

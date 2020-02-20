@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container, Button } from 'nes-react';
-import { useLocation } from 'react-router-dom';
 import CardView from './common/CardView';
 import PlanetCard from './Planets/PlanetCard';
 import { enableVisible, resetSearch } from '../actions/search';
@@ -9,14 +7,18 @@ import applyFilter from '../helper/applyFilter';
 import sortCollection from '../helper/sortCollection';
 import { GridContainer } from './common/Containers';
 import { changeView } from '../actions/navigation';
+import useTopScroll from '../helper/useTopScroll';
+import NesContainer from './common/NesContainer';
+import NesButton from './common/NesButton';
 
 const Planets = () => {
+  useTopScroll();
   const dispatch = useDispatch();
-  const { pathname } = useLocation();
   const allPlanets = useSelector(state => state.planets.data);
   const [planets, setPlanets] = useState(allPlanets);
   const [ascendingSort, setAscendingSort] = useState(true);
   const searchText = useSelector(stat => stat.search.text);
+
   useEffect(() => {
     if (searchText !== '') {
       const filteredData = applyFilter(searchText, Object.values(allPlanets), [
@@ -34,10 +36,6 @@ const Planets = () => {
     dispatch(changeView('planets'));
   }, [dispatch]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
   const onHandleSort = value => {
     const planetsArray = Object.values(planets);
     const sortedPlanets = sortCollection(planetsArray, value, ascendingSort);
@@ -54,11 +52,11 @@ const Planets = () => {
     <GridContainer>
       <h1>Planets</h1>
       <div style={{ alignSelf: 'center' }}>
-        <Container dark title="Sort">
-          <Button onClick={() => onHandleSort('name')}>
+        <NesContainer title="Sort">
+          <NesButton onClick={() => onHandleSort('name')}>
             {`Name ${ascendingSort ? 'A↓Z' : 'Z↑A'}`}
-          </Button>
-        </Container>
+          </NesButton>
+        </NesContainer>
       </div>
       <CardView>{renderPlanets()}</CardView>
     </GridContainer>

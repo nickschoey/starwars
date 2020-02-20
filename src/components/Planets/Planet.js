@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { Container } from 'nes-react';
-// import state from '../../data';
 import PeopleContainer from '../common/PeopleContainer';
 import FilmsContainer from '../common/FilmsContainer';
 import renderNumber from '../../helper/renderNumber';
@@ -13,10 +11,13 @@ import { device } from '../../helper/constants';
 import BackButton from '../common/BackButton';
 import { changeView } from '../../actions/navigation';
 import capitalize from '../../helper/capitalize';
+import useTopScroll from '../../helper/useTopScroll';
+import ElementTitle from '../common/ElementTitle';
+import NesContainer from '../common/NesContainer';
 
 const Planet = () => {
+  useTopScroll();
   const { id } = useParams();
-  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const planet = useSelector(state => state.planets.data[id]);
 
@@ -25,15 +26,11 @@ const Planet = () => {
     dispatch(changeView('planets'));
   }, [dispatch]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
   return (
     <Root>
       <BackButton />
       <MainContainer>
-        <h1>{planet.name}</h1>
+        <ElementTitle>{planet.name}</ElementTitle>
         <h3 style={{ textAlign: 'center' }}>
           {`(${renderNumber(
             planet.population,
@@ -42,7 +39,7 @@ const Planet = () => {
           )})`}
         </h3>
         <DataContainer>
-          <Container style={{ width: '95%' }} title="Data" dark>
+          <NesContainer style={{ width: '95%' }} title="Data">
             <p>
               <strong>Rotation Period: </strong>
               {renderNumber(planet.rotation_period, ' hours')}
@@ -71,7 +68,7 @@ const Planet = () => {
               <strong>Surface Water: </strong>
               {renderNumber(planet.surface_water, '%')}
             </p>
-          </Container>
+          </NesContainer>
           <FilmsContainer filmIds={planet.films} />
         </DataContainer>
         <PeopleContainer

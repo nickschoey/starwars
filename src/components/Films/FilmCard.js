@@ -1,23 +1,26 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Container } from 'nes-react';
 import styled from 'styled-components';
 import ReactTooltip from 'react-tooltip';
 import Anchor from '../common/Anchor';
 import romanNumerals from '../../helper/romanNumerals';
-// import state from '../../data';
 import PersonMiniature from '../common/PersonMiniature';
 import { device, colors } from '../../helper/constants';
+import NesContainer from '../common/NesContainer';
 
 const FilmCard = ({ film }) => {
   const allCharacters = useSelector(state => state.characters.data);
   const filmCharacters = film.characters.map(id => allCharacters[id]);
 
   return (
-    <Anchor to={`/film/${film.id}`}>
+    <Anchor
+      to={`/film/${film.id}`}
+      color={colors.starWarsWhite}
+      hoverColor={colors.starWarsYellow}
+    >
       <FilmCardContainer>
-        <InnerContainer dark>
+        <InnerContainer>
           <BigText>{`${romanNumerals[film.episode_id]} ${film.title}`}</BigText>
           <FilmPeople>
             {filmCharacters.map(character => (
@@ -53,23 +56,25 @@ const FilmPeople = styled.div`
   justify-content: center;
 `;
 
-const InnerContainer = styled(Container)`
+const InnerContainer = styled(NesContainer)`
   display: flex;
   flex-grow: 1;
   max-height: 100%;
   flex-direction: column;
+  &:hover {
+    box-shadow: 6px 0 ${colors.starWarsYellow}, -6px 0 ${colors.starWarsYellow},
+      0 -6px ${colors.starWarsYellow}, 0 6px ${colors.starWarsYellow};
+  }
 `;
 
 const BigText = styled.div`
+  text-align: center;
   padding-bottom: 10px;
   display: flex;
   justify-content: center;
   font-size: 1rem;
-  &:hover {
-    color: ${colors.starWarsYellow};
-  }
   @media ${device.tablet} {
-    font-size: 2rem;
+    font-size: 1.4rem;
   }
 `;
 

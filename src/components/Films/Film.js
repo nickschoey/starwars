@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useLocation } from 'react-router-dom';
-import { Container } from 'nes-react';
+import { useParams } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components';
-// import state from '../../data';
 import {
   Root,
   MainContainer,
@@ -20,31 +18,35 @@ import { disableVisible } from '../../actions/search';
 import { device, colors } from '../../helper/constants';
 import BackButton from '../common/BackButton';
 import { changeView } from '../../actions/navigation';
+import useTopScroll from '../../helper/useTopScroll';
+import ElementTitle from '../common/ElementTitle';
+import capitalize from '../../helper/capitalize';
+import NesContainer from '../common/NesContainer';
 
 const Film = () => {
+  useTopScroll();
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { pathname } = useLocation();
   const film = useSelector(state => state.films.data[id]);
   const species = useSelector(state => state.species.data);
   const planets = useSelector(state => state.planets.data);
   const filmSpecies = film.species.map(speciesId => species[speciesId]);
   const filmPlanets = film.planets.map(planetId => planets[planetId]);
+  const romanNumeral = romanNumerals[film.episode_id];
 
   useEffect(() => {
     dispatch(disableVisible());
     dispatch(changeView('films'));
   }, [dispatch]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  const renderSpecies = () =>
-    filmSpecies.map(specie => {
+  const renderSpecies = () => {
+    const renderSpeciesPlanetName = name => {
+      return name === 'unknown' ? 'an unknown place' : name;
+    };
+    return filmSpecies.map(specie => {
       const speciesPlanet = planets[specie.homeworld];
       return (
-        <div>
+        <div key={specie.url}>
           <p
             style={{ color: colors.starWarsRed }}
             data-tip
@@ -54,9 +56,11 @@ const Film = () => {
           </p>
           <ReactTooltip id={specie.url} place="bottom">
             <p>
-              {`${specie.classification} ${specie.designation} ${
+              {`${capitalize(specie.classification)} ${specie.designation} ${
                 specie.homeworld !== null
-                  ? ` originary from ${speciesPlanet.name}.`
+                  ? ` originary from ${renderSpeciesPlanetName(
+                      speciesPlanet.name
+                    )}.`
                   : `without a homeworld.`
               }`}
             </p>
@@ -64,6 +68,7 @@ const Film = () => {
         </div>
       );
     });
+  };
   const renderPlanets = () =>
     filmPlanets.map(planet => {
       if (planet !== undefined) {
@@ -76,26 +81,23 @@ const Film = () => {
       return <p />;
     });
 
-  const romanNumeral = romanNumerals[film.episode_id];
   return (
     <Root>
       <BackButton />
       <MainContainer dark>
-        <h1 style={{ textAlign: 'center' }}>
+        <ElementTitle>
           {`Star Wars Episode ${romanNumeral}: ${film.title}`}
-        </h1>
+        </ElementTitle>
         <FlexContainer dark>
           <ImageContainer dark>
-            <div style={{ fontSize: '5rem', padding: '10px' }}>
-              {romanNumeral}
-            </div>
+            <NumeralContainer style={{}}>{romanNumeral}</NumeralContainer>
           </ImageContainer>
-          <Container dark style={{ flexGrow: 1 }}>
+          <NesContainer dark style={{ flexGrow: 1 }}>
             <InfoElement title="Title: " data={film.title} />
             <InfoElement title="Directed by " data={film.director} />
             <InfoElement title="Produced by " data={film.producer} />
             <InfoElement title="Release date: " data={film.release_date} />
-          </Container>
+          </NesContainer>
         </FlexContainer>
         <SwitchingContainer>
           <VehiclesContainer
@@ -112,40 +114,44 @@ const Film = () => {
           />
         </SwitchingContainer>
         <SwitchingContainer>
-          <Container
-            dark
-            title="Species"
-            style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}
-          >
+          <ListContainer dark title="Species">
             {renderSpecies()}
-          </Container>
-          <Container
-            dark
-            title="Planets"
-            style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}
-          >
+          </ListContainer>
+          <ListContainer dark title="Planets">
             {renderPlanets()}
-          </Container>
+          </ListContainer>
         </SwitchingContainer>
         <PeopleContainer
           title={`Characters appearing in ${film.title}`}
           peopleIds={film.characters}
         />
-        <Container style={{ width: '95%' }} dark title="Opening Text">
+        <NesContainer style={{ width: '95%' }} dark title="Opening Text">
           <p>{film.opening_crawl}</p>
-        </Container>
+        </NesContainer>
       </MainContainer>
     </Root>
   );
 };
 
-export default Film;
-
 const SwitchingContainer = styled.div`
   width: 95%;
   display: flex;
+  padding-bottom: 7px;
   flex-direction: column;
   @media ${device.laptop} {
     flex-direction: row;
   }
 `;
+
+const NumeralContainer = styled.div`
+  font-size: 5rem;
+  padding: 10px;
+`;
+
+const ListContainer = styled(NesContainer)`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`;
+
+export default Film;

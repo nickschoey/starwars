@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from '../../helper/constants';
 
-const Anchor = ({ children, to, color }) => {
+const Anchor = ({ children, to, color, hovercolor }) => {
   return (
-    <StyledLink color={color} to={to}>
+    <StyledLink color={color} to={to} hovercolor={hovercolor}>
       {children}
     </StyledLink>
   );
@@ -16,7 +16,7 @@ const StyledLink = styled(Link)`
   color: ${props => props.color};
   text-decoration: none;
   &:hover {
-    color: ${colors.starWarsYellowSecondary};
+    color: ${props => props.hovercolor};
     text-decoration: none;
   }
 `;
@@ -24,11 +24,13 @@ const StyledLink = styled(Link)`
 Anchor.propTypes = {
   children: PropTypes.node.isRequired,
   to: PropTypes.string.isRequired,
-  color: PropTypes.string
+  color: PropTypes.string,
+  hovercolor: PropTypes.string
 };
 
 Anchor.defaultProps = {
-  color: colors.starWarsYellow
+  color: colors.starWarsYellow,
+  hovercolor: colors.starWarsYellowSecondary
 };
 
 export default Anchor;

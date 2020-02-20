@@ -5,6 +5,9 @@ module.exports = {
   },
   extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
   globals: {
+    document: true,
+    window: true,
+    localStorage: true,
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly'
   },
@@ -12,7 +15,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true
     },
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
     sourceType: 'module'
   },
   plugins: ['react', 'jest'],
@@ -24,7 +27,8 @@ module.exports = {
     'jest/no-identical-title': 'error',
     'jest/prefer-to-have-length': 'warn',
     'jest/valid-expect': 'error',
-    'react/forbid-prop-types': 0
+    'react/forbid-prop-types': 0,
+    'react/jsx-props-no-spreading': 0
   },
   env: {
     'jest/globals': true

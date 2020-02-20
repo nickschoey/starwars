@@ -35,6 +35,7 @@ export default function getAllData(endpoint) {
     });
 }
 
+// Load offline data for dev purposes
 // export default function getAllData(endpoint) {
 //   return new Promise((res, rej) => {
 //     res(state[endpoint]);

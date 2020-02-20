@@ -31,17 +31,7 @@ const VehicleTooltip = ({ vehicle, align }) => {
 };
 
 VehicleTooltip.propTypes = {
-  vehicle: PropTypes.objectOf({
-    url: PropTypes.string,
-    name: PropTypes.string,
-    manufacturer: PropTypes.string,
-    vehicle_class: PropTypes.string,
-    max_atmosphering_speed: PropTypes.string,
-    crew: PropTypes.string,
-    passengers: PropTypes.string,
-    cargo_capacity: PropTypes.string,
-    costi_in_credits: PropTypes.string
-  }).isRequired,
+  vehicle: PropTypes.object.isRequired,
   align: PropTypes.string.isRequired
 };
 

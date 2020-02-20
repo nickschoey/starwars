@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Container } from 'nes-react';
 import { device, colors } from '../../helper/constants';
+import NesContainer from './NesContainer';
 
 export const Root = styled.div`
   display: flex;
@@ -41,7 +41,7 @@ export const FlexContainer = styled.div`
   }
 `;
 
-export const ImageContainer = styled(Container)`
+export const ImageContainer = styled(NesContainer)`
   display: flex;
   align-items: center;
   justify-content: center;

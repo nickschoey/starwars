@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useLocation } from 'react-router-dom';
-import { Container } from 'nes-react';
+import { useParams } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components';
-// import state from '../../data';
 import Anchor from '../common/Anchor';
 import loadImage from '../../helper/importImage';
 import FilmsContainer from '../common/FilmsContainer';
@@ -22,10 +20,13 @@ import { device, colors } from '../../helper/constants';
 import BackButton from '../common/BackButton';
 import { changeView } from '../../actions/navigation';
 import capitalize from '../../helper/capitalize';
+import useTopScroll from '../../helper/useTopScroll';
+import ElementTitle from '../common/ElementTitle';
+import NesContainer from '../common/NesContainer';
 
 const Character = () => {
+  useTopScroll();
   const { id } = useParams();
-  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const person = useSelector(state => state.characters.data[id]);
   const planet = useSelector(state => state.planets.data[person.homeworld]);
@@ -43,11 +44,13 @@ const Character = () => {
     dispatch(changeView('people'));
   }, [dispatch, person.id]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
   const renderSpecies = () => {
+    const renderSpeciesPlanetName = () => {
+      return speciesPlanet.name === 'unknown'
+        ? 'an unknown place'
+        : speciesPlanet.name;
+    };
+
     if (!species) {
       return (
         <div>
@@ -69,7 +72,7 @@ const Character = () => {
           <p>
             {`${capitalize(species.classification)} ${species.designation} ${
               species.homeworld !== null
-                ? ` originary from ${speciesPlanet.name}.`
+                ? ` originary from ${renderSpeciesPlanetName()}.`
                 : `without a homeworld.`
             }`}
           </p>
@@ -82,14 +85,14 @@ const Character = () => {
     <Root>
       <BackButton />
       <MainContainer dark>
-        <h1 style={{ textAlign: 'center' }}>{person.name}</h1>
+        <ElementTitle>{person.name}</ElementTitle>
         {renderSpecies()}
 
-        <FlexContainer dark>
-          <ImageContainer dark>
+        <FlexContainer>
+          <ImageContainer>
             <img src={image} alt={person.name} />
           </ImageContainer>
-          <Container dark style={{ flexGrow: 1 }}>
+          <NesContainer dark style={{ flexGrow: 1 }}>
             <FlexContainer dark>
               <div style={{ marginRight: '10px' }}>
                 <InfoElement
@@ -123,7 +126,7 @@ const Character = () => {
             />
             <InfoElement title="Hair: " data={capitalize(person.hair_color)} />
             <InfoElement title="Skin: " data={capitalize(person.skin_color)} />
-          </Container>
+          </NesContainer>
         </FlexContainer>
 
         <VehiclesInfo>
